@@ -1,5 +1,5 @@
 # Foodprint
-by Anne-Marie Dufour - annemariedufour.com
+by Anne-Marie Dufour - [annemariedufour.com](http://annemariedufour.com/)
 
 A d3.js visualisation of how small changes to our daily diet can have a big impact on our foodprint.
 
