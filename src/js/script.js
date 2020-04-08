@@ -55,46 +55,51 @@ function showActions() {
 
 function addBreakfast() {
   const meal = "breakfast";
-  const selectionRemoved = "";
-  const selectionAdded = "eggs_and_bacon";
-  generateNodes(meal, selectionRemoved, selectionAdded);
+  const removedIngredients = [];
+  const addedIngredients = getIngredients(meal, "eggs_and_bacon");
+  updateNodes(meal, removedIngredients, addedIngredients);
 }
 
 function addLunch() {
-  let meal = "lunch";
-  const selectionRemoved = "";
-  const selectionAdded = "chicken_salad";
-  generateNodes(meal, selectionRemoved, selectionAdded);
+  const meal = "lunch";
+  const removedIngredients = [];
+  const addedIngredients = getIngredients(meal, "chicken_salad");
+  updateNodes(meal, removedIngredients, addedIngredients);
 }
 
 function swapBreakfast() {
-  let meal = "breakfast";
-  let selectionRemoved = "eggs_and_bacon";
-  let selectionAdded = "oatmeal_with_berries_and_nuts";
-  generateNodes(meal, selectionRemoved, selectionAdded);
+  const meal = "breakfast";
+  const removedIngredients = getIngredients(meal, "eggs_and_bacon");
+  const addedIngredients = getIngredients(meal, "oatmeal_with_berries_and_nuts");
+  updateNodes(meal, removedIngredients, addedIngredients);
 }
 
-function generateNodes(meal, selectionRemoved, selectionAdded) {
+function swapIngredient() {
+  const meal = "lunch";
+  const removedIngredients = [{ "id": "poultry_meat", "label": "Chicken" }];
+  const addedIngredients = [{ "id": "tofu", "label": "Tofu" }];
+  updateNodes(meal, removedIngredients, addedIngredients);
+}
 
-  // Remove ingredients which are not used anymore
-  if (selectionRemoved !== '') {
-    console.log(nodes);
-    const ingredients = getIngredients(meal, selectionRemoved);
-    console.log(ingredients);
+function updateNodes(meal, removedIngredients, addedIngredients) {
+
+  // Remove nodes related to ingredients that are not used anymore
+  if (removedIngredients.length > 0) {
     let remainingNodes = nodes;
-    ingredients.forEach(ingredient => {
+    removedIngredients.forEach(ingredient => {
       remainingNodes = remainingNodes.filter(item => {
-        return item.id !== ingredient.id && item.meal !== meal;
+        let keepItem = true;
+        (item.id === ingredient.id && item.meal === meal) ? keepItem = false : keepItem = true;
+        return keepItem;
       })
     });
     nodes = remainingNodes;
   }
 
   // Generate nodes for each added ingredient
-  if (selectionAdded !== '') {
-    const ingredients = getIngredients(meal, selectionAdded);
+  if (addedIngredients.length > 0) {
 
-    ingredients.forEach(ingredient => {
+    addedIngredients.forEach(ingredient => {
       // Find ingredient foodprint in data
       const ingredientFoodprint = dataFoodprint.find(item => item.id === ingredient.id);
       
