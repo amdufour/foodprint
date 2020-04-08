@@ -10,7 +10,7 @@ const colors = ['#8B572A', '#417505', '#4A90E2', '#D0021B', '#F5A623'];
 const categories = [
     { cluster: 0, label: 'land_use_m2_per_kg', factor: 100 },
     { cluster: 1, label: 'gas_emissions_kgCO2eq_per_kg', factor: 100 },
-    { cluster: 2, label: 'water_liters_per_kg', factor: 100 },
+    { cluster: 2, label: 'water_liters_per_kg', factor: 50 },
     { cluster: 3, label: 'eutrophying_emissions_kgPO4eq_per_kg', factor: 100 },
     { cluster: 4, label: 'cost_usd_per_kg', factor: 100 },
   ];
@@ -54,39 +54,66 @@ function showActions() {
 }
 
 function addBreakfast() {
-  let meal = "breakfast";
-  let selection = "eggs_and_bacon";
-  generateNodes(meal, selection);
+  const meal = "breakfast";
+  const selectionRemoved = "";
+  const selectionAdded = "eggs_and_bacon";
+  generateNodes(meal, selectionRemoved, selectionAdded);
 }
 
 function addLunch() {
   let meal = "lunch";
-  let selection = "chicken_salad";
-  generateNodes(meal, selection);
+  const selectionRemoved = "";
+  const selectionAdded = "chicken_salad";
+  generateNodes(meal, selectionRemoved, selectionAdded);
 }
 
-function generateNodes(meal, selection) {
-  const mealDetail = menusDetail[meal].find(meal => meal.name === selection);
-  const ingredients = mealDetail.ingredients;
+function swapBreakfast() {
+  let meal = "breakfast";
+  let selectionRemoved = "eggs_and_bacon";
+  let selectionAdded = "oatmeal_with_berries_and_nuts";
+  generateNodes(meal, selectionRemoved, selectionAdded);
+}
 
-  // Generate nodes for each ingredient
-  ingredients.forEach(ingredient => {
-    // Find ingredient foodprint in data
-    const ingredientFoodprint = dataFoodprint.find(item => item.id === ingredient.id);
-    
-    // Create a node for each category
-    categories.forEach((category, i) => {
-      const radius = Math.sqrt((parseFloat(ingredientFoodprint[category.label]) * parseFloat(ingredientFoodprint.portion_kg) * category.factor) / Math.PI);
-      const d = {
-        label: ingredient.id,
-        cluster: category.cluster,
-        radius: radius,
-        x: category.cluster * 250 + Math.random(),
-        y: 250 + Math.random()
-      }
-      nodes.push(d);
+function generateNodes(meal, selectionRemoved, selectionAdded) {
+
+  // Remove ingredients which are not used anymore
+  if (selectionRemoved !== '') {
+    console.log(nodes);
+    const ingredients = getIngredients(meal, selectionRemoved);
+    console.log(ingredients);
+    let remainingNodes = nodes;
+    ingredients.forEach(ingredient => {
+      remainingNodes = remainingNodes.filter(item => {
+        return item.id !== ingredient.id && item.meal !== meal;
+      })
     });
-  });
+    nodes = remainingNodes;
+  }
+
+  // Generate nodes for each added ingredient
+  if (selectionAdded !== '') {
+    const ingredients = getIngredients(meal, selectionAdded);
+
+    ingredients.forEach(ingredient => {
+      // Find ingredient foodprint in data
+      const ingredientFoodprint = dataFoodprint.find(item => item.id === ingredient.id);
+      
+      // Create a node for each category
+      categories.forEach((category, i) => {
+        const radius = Math.sqrt((parseFloat(ingredientFoodprint[category.label]) * parseFloat(ingredientFoodprint.portion_kg) * category.factor) / Math.PI);
+        const d = {
+          meal: meal,
+          id: ingredient.id,
+          label: ingredient.label,
+          cluster: category.cluster,
+          radius: radius,
+          x: category.cluster * 250 + Math.random(),
+          y: 250 + Math.random()
+        }
+        nodes.push(d);
+      });
+    });
+  }
 
   // Display the simulation with updated nodes
   updateSimulation();
@@ -133,4 +160,8 @@ function layoutTick() {
     .attr('cx', d => d.x)
     .attr('cy', d => d.y)
     .attr('r', d => d.radius);
+}
+
+function getIngredients(meal, selection) {
+  return menusDetail[meal].find(meal => meal.name === selection).ingredients;
 }
