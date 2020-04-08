@@ -1,0 +1,37 @@
+{
+  "breakfast": [
+    {
+      "name": "eggs_and_bacon",
+      "ingredients": [
+        { "id": "eggs", "label": "Eggs" },
+        { "id": "pig_meat", "label": "Bacon" },
+        { "id": "wheat_and_rye", "label": "Toats" },
+        { "id": "butter", "label": "Butter" },
+        { "id": "tomatoes", "label": "Slices of tomatoe" }
+      ],
+      "swaps": []
+    },
+    {
+      "name": "oatmeal_with_berries_and_nuts",
+      "ingredients": [
+        { "id": "oatmeal", "label": "Oatmeal" },
+        { "id": "milk", "label": "Milk" },
+        { "id": "berries_and_grapes", "label": "Berries" },
+        { "id": "nuts", "label": "Nuts" }
+      ],
+      "swaps": []
+    }
+  ],
+  "lunch": [
+    {
+      "name": "chicken_salad",
+      "ingredients": [
+        { "id": "poultry_meat", "label": "Chicken" },
+        { "id": "vegetables_other", "label": "Lettuce and other vegetables" },
+        { "id": "cheese", "label": "Cheese" },
+        { "id": "oil_rapeseed", "label": "Vegetable oil based dressing" }
+      ],
+      "swaps": []
+    }
+  ]
+}
