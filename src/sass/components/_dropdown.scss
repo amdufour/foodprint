@@ -1,0 +1,67 @@
+.dropdown {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  border: 2px solid $blue;
+  border-radius: $radius;
+  cursor: pointer;
+
+  // Selection
+  .dropdown-selection {
+    padding: 10px 40px 10px 10px;
+    color: $blue;
+  }
+
+  // Arrow
+  .dropdown-arrow--container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    .dropdown-arrow {
+      position: absolute;
+      z-index: -1;
+      top: 12px;
+      right: 15px;
+      width: 18px;
+      height: 18px;
+      background-image: url(../svg/arrow-blue.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+  }
+
+  // Options
+  .dropdown-options {
+    position: relative;
+    overflow: hidden;
+    max-height: 500px;
+    padding: 10px 0;
+    border-top: 1px solid $blue;
+    transition: all 150ms ease-out;
+    &.hide-options {
+      max-height: 0 !important;
+      padding: 0;
+      border-top-color: transparent;
+    }
+    .options {
+      padding: 8px 10px;
+      color: $blue;
+      background-color: transparent;
+      transition: all 100ms ease-in;
+      &:hover, &:focus {
+        background-color: $blue;
+        color: #fff;
+        transition: all 100ms ease-out;
+      }
+      &.active {
+        font-weight: 700;
+        color: $blue;
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+  }
+}

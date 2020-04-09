@@ -1,7 +1,8 @@
 {
   "breakfast": [
     {
-      "name": "eggs_and_bacon",
+      "key": "eggs_and_bacon",
+      "label": "Eggs & Bacon with Toats",
       "ingredients": [
         { "id": "eggs", "label": "Eggs" },
         { "id": "pig_meat", "label": "Bacon" },
@@ -9,22 +10,129 @@
         { "id": "butter", "label": "Butter" },
         { "id": "tomatoes", "label": "Slices of tomatoe" }
       ],
-      "swaps": []
+      "swaps": [
+        {
+          "key": "bacon_to_cheese",
+          "label": "Bacon -> Cheese",
+          "removedIngredients": [
+            { "id": "pig_meat", "label": "Bacon" }
+          ],
+          "addedIngredients": [
+            { "id": "cheese", "label": "Cheese" }
+          ]
+        },
+        {
+          "key": "bacon_to_nuts",
+          "label": "Bacon -> Nuts",
+          "removedIngredients": [
+            { "id": "pig_meat", "label": "Bacon" }
+          ],
+          "addedIngredients": [
+            { "id": "nuts", "label": "Nuts" }
+          ]
+        },
+        {
+          "key": "butter_to_margarine",
+          "label": "Butter -> Margarine",
+          "removedIngredients": [
+            { "id": "butter", "label": "Butter" }
+          ],
+          "addedIngredients": [
+            { "id": "margarine", "label": "Margarine" }
+          ]
+        },
+        {
+          "key": "butter_to_olive_oil",
+          "label": "Butter -> Olive oil",
+          "removedIngredients": [
+            { "id": "butter", "label": "Butter" }
+          ],
+          "addedIngredients": [
+            { "id": "oil_olive", "label": "Olive oil" }
+          ]
+        }
+      ]
     },
     {
-      "name": "oatmeal_with_berries_and_nuts",
+      "key": "oatmeal_with_berries_and_nuts",
+      "label": "Oatmeal with Berries and Nuts",
       "ingredients": [
         { "id": "oatmeal", "label": "Oatmeal" },
         { "id": "milk", "label": "Milk" },
         { "id": "berries_and_grapes", "label": "Berries" },
         { "id": "nuts", "label": "Nuts" }
       ],
-      "swaps": []
+      "swaps": [
+        {
+          "key": "milk_to_soy_milk",
+          "label": "Milk -> Soy milk",
+          "removedIngredients": [
+            { "id": "milk", "label": "milk" }
+          ],
+          "addedIngredients": [
+            { "id": "soymilk", "label": "Soy milk" }
+          ]
+        },
+        {
+          "key": "berries_to_bananas",
+          "label": "Berries -> Bananas",
+          "removedIngredients": [
+            { "id": "berries_and_grapes", "label": "Berries" }
+          ],
+          "addedIngredients": [
+            { "id": "bananas", "label": "Bananas" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "omelette_with_cheese_and_vegetables",
+      "label": "Omelette with Cheese and Vegetables",
+      "ingredients": [
+        { "id": "eggs", "label": "Eggs" },
+        { "id": "milk", "label": "Milk" },
+        { "id": "cheese", "label": "Cheese" },
+        { "id": "vegetables_other", "label": "Mixed vegetables" }
+      ],
+      "swaps": [
+        {
+          "key": "milk_to_soy_milk",
+          "label": "Milk -> Soy milk",
+          "removedIngredients": [
+            { "id": "milk", "label": "milk" }
+          ],
+          "addedIngredients": [
+            { "id": "soymilk", "label": "Soy milk" }
+          ]
+        },
+        {
+          "key": "remove_cheese",
+          "label": "Omit cheese",
+          "removedIngredients": [
+            { "id": "cheese", "label": "cheese" }
+          ],
+          "addedIngredients": []
+        },
+        {
+          "key": "milk_to_soy_milk",
+          "label": "Try a Country Tofu Scamble!",
+          "removedIngredients": [
+            { "id": "eggs", "label": "Eggs" },
+            { "id": "milk", "label": "Milk" },
+            { "id": "cheese", "label": "Cheese" }
+          ],
+          "addedIngredients": [
+            { "id": "tofu", "label": "Tofu" },
+            { "id": "tomatoes", "label": "Tomatoes" }
+          ]
+        }
+      ]
     }
   ],
   "lunch": [
     {
-      "name": "chicken_salad",
+      "key": "chicken_salad",
+      "label": "Chicken salad with Cheese",
       "ingredients": [
         { "id": "poultry_meat", "label": "Chicken" },
         { "id": "vegetables_other", "label": "Lettuce and other vegetables" },

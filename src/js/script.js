@@ -1,5 +1,5 @@
-const width = 1600;
-const height = 500;
+const width = window.innerWidth > 1630 ? 1600 : window.innerWidth - 30;
+const height = window.innerHeight - 500;
 const padding = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
 const radiusClustersCenters = 150; // Radius of the clusters centers
@@ -7,6 +7,8 @@ const radiusClustersCenters = 150; // Radius of the clusters centers
 const n = 200; // total number of nodes
 
 const colors = ['#8B572A', '#417505', '#4A90E2', '#D0021B', '#F5A623'];
+// const meals = ['breakfast', 'lunch', 'snack', 'dinner'];
+const meals = ['breakfast'];
 const categories = [
     { cluster: 0, label: 'land_use_m2_per_kg', factor: 100 },
     { cluster: 1, label: 'gas_emissions_kgCO2eq_per_kg', factor: 100 },
@@ -25,7 +27,7 @@ let clusters = d3.range(m).map((category, i) => {
     cluster: i,
     radius: maxRadius,
     x: i * 200,
-    y: 250
+    y: height/2
   };
   return d;
 });
@@ -43,43 +45,64 @@ Promise.all(promises).then(data => {
   menusDetail = data[1];
 
   // Now that the data is imported, allow user to interact with them
-  showActions();
+  // showActions();
+  appendSelectors();
 });
 
 function showActions() {
-  let buttons = document.getElementsByClassName('hide');
-  while (buttons.length > 0) {
-    buttons[0].classList.remove("hide");
-  }
+  // let buttons = document.getElementsByClassName('hide');
+  // while (buttons.length > 0) {
+  //   buttons[0].classList.remove("hide");
+  // }
 }
 
-function addBreakfast() {
-  const meal = "breakfast";
-  const removedIngredients = [];
-  const addedIngredients = getIngredients(meal, "eggs_and_bacon");
-  updateNodes(meal, removedIngredients, addedIngredients);
+function appendSelectors() {
+  // Append meal selectors to the DOM
+  meals.forEach(meal => {
+    let selectionList = [];
+    menusDetail[meal].forEach(selection => {
+      const menu = {
+        key: selection.key,
+        label: selection.label
+      };
+      selectionList.push(menu);
+    });
+    appendDropdown(meal, selectionList);
+  });
 }
 
-function addLunch() {
-  const meal = "lunch";
-  const removedIngredients = [];
-  const addedIngredients = getIngredients(meal, "chicken_salad");
-  updateNodes(meal, removedIngredients, addedIngredients);
+// Prep data for node generation
+function callVisualization (meal, selection) {
+  
 }
 
-function swapBreakfast() {
-  const meal = "breakfast";
-  const removedIngredients = getIngredients(meal, "eggs_and_bacon");
-  const addedIngredients = getIngredients(meal, "oatmeal_with_berries_and_nuts");
-  updateNodes(meal, removedIngredients, addedIngredients);
-}
+// function addBreakfast() {
+//   const meal = "breakfast";
+//   const removedIngredients = [];
+//   const addedIngredients = getIngredients(meal, "eggs_and_bacon");
+//   updateNodes(meal, removedIngredients, addedIngredients);
+// }
 
-function swapIngredient() {
-  const meal = "lunch";
-  const removedIngredients = [{ "id": "poultry_meat", "label": "Chicken" }];
-  const addedIngredients = [{ "id": "tofu", "label": "Tofu" }];
-  updateNodes(meal, removedIngredients, addedIngredients);
-}
+// function addLunch() {
+//   const meal = "lunch";
+//   const removedIngredients = [];
+//   const addedIngredients = getIngredients(meal, "chicken_salad");
+//   updateNodes(meal, removedIngredients, addedIngredients);
+// }
+
+// function swapBreakfast() {
+//   const meal = "breakfast";
+//   const removedIngredients = getIngredients(meal, "eggs_and_bacon");
+//   const addedIngredients = getIngredients(meal, "oatmeal_with_berries_and_nuts");
+//   updateNodes(meal, removedIngredients, addedIngredients);
+// }
+
+// function swapIngredient() {
+//   const meal = "lunch";
+//   const removedIngredients = [{ "id": "poultry_meat", "label": "Chicken" }];
+//   const addedIngredients = [{ "id": "tofu", "label": "Tofu" }];
+//   updateNodes(meal, removedIngredients, addedIngredients);
+// }
 
 function updateNodes(meal, removedIngredients, addedIngredients) {
 
@@ -114,8 +137,8 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
           label: ingredient.label,
           cluster: category.cluster,
           radius: radius,
-          x: category.cluster * 250 + Math.random(),
-          y: 250 + Math.random()
+          x: category.cluster * 200 + Math.random(),
+          y: height/2 + Math.random()
         };
         nodes.push(d);
       });
@@ -141,7 +164,7 @@ let simulation = d3.forceSimulation()
   // Attract clusters toward specific positions
   .force('x', d3.forceX().x(d => d.cluster * 200)
     .strength(0.8))
-  .force('y', d3.forceY().y(250)
+  .force('y', d3.forceY().y(height/2)
     .strength(0.8))
   // Cluster nodes by section
   .force('cluster', d3.forceCluster()
@@ -191,7 +214,7 @@ function layoutTick() {
 
 // Get list of ingredients of a selected meal
 function getIngredients(meal, selection) {
-  return menusDetail[meal].find(meal => meal.name === selection).ingredients;
+  return menusDetail[meal].find(meal => meal.key === selection).ingredients;
 }
 
 // Get detailed foodprint of an ingredient
@@ -201,14 +224,13 @@ function getFoodprint(ingredient) {
 
 // Show/hide tooltip
 function showTooltip(d) {
-  console.log(d);
   // Get position of the tooltip based on position of the mouse 
   // on the page and the size of the hovered circle
   const xpos = d3.event.pageX + d.radius;
   const ypos = d3.event.pageY + 270;
 
+  // Get the foodprint detail of the hovered ingredient
   const ingredientFoodprint = getFoodprint(d.id);
-  console.log(ingredientFoodprint);
 
   // Add text to the existing tooltip markup
   d3.select('#tooltip .tooltip--ingredient').text(d.label);

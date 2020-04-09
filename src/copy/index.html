@@ -2,15 +2,28 @@
 <html>
 <head>
 	<title>Foodprint - a d3.js visualization</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/main.min.css">
 </head>
 <body>
 	<div class="container">
+		<h1 class="foodprint-title">Calculate your daily foodprint</h1>
 		<div id="foodprint"></div>
-		<button class="hide" type="button" onclick="addBreakfast()">Select breakfast</button>
+
+		<div id="row dropdowns-container">
+			<div class="col-12 col-md-3">
+				<div class="dropdown dropdown--meal dropdown--breakfast" onclick="toggleDropdownDisplay(event)">
+					<div class="dropdown-header">
+						<div class="dropdown-selection">Select a breakfast</div>
+						<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
+					</div>
+					<div class="dropdown-options hide-options"></div>
+				</div>
+			</div>
+		</div>
+		<!-- <button class="hide" type="button" onclick="addBreakfast()">Select breakfast</button>
 		<button class="hide" type="button" onclick="addLunch()">Select lunch</button>
 		<button class="hide" type="button" onclick="swapBreakfast()">Swap breakfast</button>
-		<button class="hide" type="button" onclick="swapIngredient()">Swap chicken for tofu</button>
+		<button class="hide" type="button" onclick="swapIngredient()">Swap chicken for tofu</button> -->
 
 		<div id="tooltip">
 			<div class="tooltip--container">
@@ -33,6 +46,8 @@
 	<script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://unpkg.com/d3-force-attract@latest"></script>
 	<script src="https://unpkg.com/d3-force-cluster@latest"></script>
-	<script src="js/script.min.js"></script>
+	<script src="js/dropdown.js"></script>
+	<!-- <script src="js/script.min.js"></script> -->
+	<script src="js/script.js"></script>
 </body>
 </html>
