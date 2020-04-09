@@ -1,4 +1,4 @@
-const width = 960;
+const width = 1600;
 const height = 500;
 const padding = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
@@ -88,10 +88,12 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
     let remainingNodes = nodes;
     removedIngredients.forEach(ingredient => {
       remainingNodes = remainingNodes.filter(item => {
-        let keepItem = true;
-        (item.id === ingredient.id && item.meal === meal) ? keepItem = false : keepItem = true;
-        return keepItem;
-      })
+        if (item.id === ingredient.id && item.meal === meal) {
+          return false;
+        } else {
+          return true;
+        }
+      });
     });
     nodes = remainingNodes;
   }
@@ -101,7 +103,7 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
 
     addedIngredients.forEach(ingredient => {
       // Find ingredient foodprint in data
-      const ingredientFoodprint = dataFoodprint.find(item => item.id === ingredient.id);
+      const ingredientFoodprint = getFoodprint(ingredient.id);
       
       // Create a node for each category
       categories.forEach((category, i) => {
@@ -114,7 +116,7 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
           radius: radius,
           x: category.cluster * 250 + Math.random(),
           y: 250 + Math.random()
-        }
+        };
         nodes.push(d);
       });
     });
@@ -126,6 +128,7 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
 
 let svg = d3.select('#foodprint')
   .append('svg')
+    .attr('class', 'foodprint-container')
     .attr('width', width)
     .attr('height', height);
 
@@ -136,8 +139,10 @@ let simulation = d3.forceSimulation()
   // Keep entire simulation balenced around screen center
   .force('center', d3.forceCenter(width/2, height/2))
   // Attract clusters toward specific positions
-  .force('x', d3.forceX().x(d => d.cluster * 200))
-  .force('y', d3.forceY().y(250))
+  .force('x', d3.forceX().x(d => d.cluster * 200)
+    .strength(0.8))
+  .force('y', d3.forceY().y(250)
+    .strength(0.8))
   // Cluster nodes by section
   .force('cluster', d3.forceCluster()
     .centers(d => clusters[d.cluster])
@@ -151,8 +156,25 @@ function updateSimulation() {
   node = node.data(nodes);
   node.exit().remove();
   node = node.enter().append('circle')
+    .attr('class', d => { return 'node node-' + d.meal + '-' + d.id; })
     .style('fill', d => colors[d.cluster])
-    .merge(node);
+    .merge(node)
+    .on('mouseover', d => {
+      // Add a blue stroke to the circles related to the hovered ingredient
+      d3.selectAll('.node-' + d.meal + '-' + d.id)
+        .classed('active', true);
+
+      // Show the tooltip
+      showTooltip(d);
+    })
+    .on('mouseout', d => {
+      // Remove blue stroke
+      d3.selectAll('.node-' + d.meal + '-' + d.id)
+        .classed('active', false);
+
+      // Hide the tooltip
+      hideTooltip();
+    });
 
   // Update and restart the simulation
   simulation.nodes(nodes);
@@ -167,6 +189,48 @@ function layoutTick() {
     .attr('r', d => d.radius);
 }
 
+// Get list of ingredients of a selected meal
 function getIngredients(meal, selection) {
   return menusDetail[meal].find(meal => meal.name === selection).ingredients;
+}
+
+// Get detailed foodprint of an ingredient
+function getFoodprint(ingredient) {
+  return dataFoodprint.find(item => item.id === ingredient);
+}
+
+// Show/hide tooltip
+function showTooltip(d) {
+  console.log(d);
+  // Get position of the tooltip based on position of the mouse 
+  // on the page and the size of the hovered circle
+  const xpos = d3.event.pageX + d.radius;
+  const ypos = d3.event.pageY + 270;
+
+  const ingredientFoodprint = getFoodprint(d.id);
+  console.log(ingredientFoodprint);
+
+  // Add text to the existing tooltip markup
+  d3.select('#tooltip .tooltip--ingredient').text(d.label);
+  d3.select('#tooltip .detail--land span').text(parseFloat(ingredientFoodprint.land_use_m2_per_kg).toFixed(2));
+  d3.select('#tooltip .detail--gas span').text(parseFloat(ingredientFoodprint.gas_emissions_kgCO2eq_per_kg).toFixed(2));
+  d3.select('#tooltip .detail--water span').text(parseFloat(ingredientFoodprint.water_liters_per_kg).toFixed(2));
+  d3.select('#tooltip .detail--eutro span').text(parseFloat(ingredientFoodprint.eutrophying_emissions_kgPO4eq_per_kg).toFixed(2));
+  d3.select('#tooltip .detail--cost span').text(parseFloat(ingredientFoodprint.cost_usd_per_kg).toFixed(2));
+
+  // Make the tooltip appear at the right location
+  d3.select('#tooltip')
+    .style('top', ypos + 'px')
+    .style('left', xpos + 'px')
+    .transition()
+    .duration(0)
+    .style('opacity', 1);
+}
+function hideTooltip() {
+  d3.select('#tooltip')
+    .style('top', '-1000px')
+    .style('left', '-1000px')
+    .transition()
+    .duration(100)
+    .style('opacity', 0);
 }

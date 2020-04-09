@@ -1,0 +1,9 @@
+.node {
+  stroke-width: 3;
+  stroke: transparent;
+  transition: stroke 200ms ease-in;
+  &.active {
+    stroke: $blue;
+    transition: stroke 200ms ease-out;
+  }
+}

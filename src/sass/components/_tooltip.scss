@@ -1,0 +1,67 @@
+#tooltip {
+  position: absolute;
+  opacity: 0;
+  top: -1000px;
+  left: -1000px;
+  .tooltip--container {
+    position: absolute;
+    bottom: 0;
+    left: -200px;
+    width: 400px;
+    padding: 30px $gutter/2;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 3px;
+    box-shadow: 0px 1px 5px rgba(36, 36, 36, 0.5);
+    font-size: 1.5rem;
+  }
+  .tooltip--ingredient {
+    margin-bottom: 10px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid $blue;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $blue;
+  }
+  .tooltip--details {
+    .tooltip--foodprint-index {
+      padding-left: 3px;
+      color: $blue;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+    .detail {
+      position: relative;
+      padding-left: 15px;
+      line-height: 1.6;
+      sup,
+      sub {
+        font-size: .6rem;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 3px;
+        width: 5px;
+        height: 5px;
+        background: $blue;
+        border-radius: 50%;
+      }
+      &.detail--land::before {
+        background: $land;
+      }
+      &.detail--gas::before {
+        background: $gas;
+      }
+      &.detail--water::before {
+        background: $water;
+      }
+      &.detail--eutro::before {
+        background: $eutro;
+      }
+      &.detail--cost::before {
+        background: $cost;
+      }
+    }
+  }
+}

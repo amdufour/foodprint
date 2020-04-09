@@ -1,5 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400|Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-$fontPrimary: 'Open Sans', sans-serif;
-$fontSecondary: 'Raleway', sans-serif;
-$fontSize: 1.2rem;
+$fontPrimary: 'Montserrat', sans-serif;
+$fontSize: 1.6rem;
+
+
+sup {
+  vertical-align: top;
+}
+sub {
+  vertical-align: bottom;
+}
