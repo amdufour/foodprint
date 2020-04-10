@@ -7,8 +7,7 @@ const radiusClustersCenters = 150; // Radius of the clusters centers
 const n = 200; // total number of nodes
 
 const colors = ['#8B572A', '#417505', '#4A90E2', '#D0021B', '#F5A623'];
-// const meals = ['breakfast', 'lunch', 'snack', 'dinner'];
-const meals = ['breakfast'];
+const meals = ['breakfast', 'lunch', 'snack', 'dinner'];
 const categories = [
     { cluster: 0, label: 'land_use_m2_per_kg', factor: 100 },
     { cluster: 1, label: 'gas_emissions_kgCO2eq_per_kg', factor: 100 },
@@ -72,8 +71,16 @@ function appendSelectors() {
 }
 
 // Prep data for node generation
-function callVisualization (meal, selection) {
-  
+function addMeal(meal, currentSelection, newSelection) {
+  let removedIngredients = [];
+  if (currentSelection !== '') {
+    removedIngredients = getIngredients(meal, currentSelection);
+  }
+  const addedIngredients = getIngredients(meal, newSelection);
+  updateNodes(meal, removedIngredients, addedIngredients);
+}
+function swapIngredient() {
+
 }
 
 // function addBreakfast() {
@@ -233,6 +240,7 @@ function showTooltip(d) {
   const ingredientFoodprint = getFoodprint(d.id);
 
   // Add text to the existing tooltip markup
+  d3.select('#tooltip .tooltip--meal span').text(d.meal);
   d3.select('#tooltip .tooltip--ingredient').text(d.label);
   d3.select('#tooltip .detail--land span').text(parseFloat(ingredientFoodprint.land_use_m2_per_kg).toFixed(2));
   d3.select('#tooltip .detail--gas span').text(parseFloat(ingredientFoodprint.gas_emissions_kgCO2eq_per_kg).toFixed(2));

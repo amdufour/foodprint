@@ -5,48 +5,70 @@ function appendDropdown(meal, menuList) {
     selectorOptions.append('div')
       .attr('class', 'options')
       .attr('id', menu.key)
-      .attr('onclick', 'handleDropdownSelection(event)')
+      .attr('onclick', 'handleDropdownSelection(event.target)')
       .text(menu.label);
   });
 }
 
 // Open/Close dropdown
-function toggleDropdownDisplay(e) {
-  if (e.target.parentNode.parentNode.classList.contains('dropdown')) {
-    const dropdown = e.target.parentNode.parentNode;
+function toggleDropdownDisplay(target) {
+  if (target.parentNode.parentNode.classList.contains('dropdown')) {
+    const dropdown = target.parentNode.parentNode;
     const options = dropdown.querySelector('.dropdown-options');
   
-    options.classList.contains('hide-options') ?
-      options.classList.remove('hide-options') :
+    if (options.classList.contains('hide-options')) {
+      dropdown.classList.add('open');
+      options.classList.remove('hide-options');
+    } else {
+      dropdown.classList.remove('open');
       options.classList.add('hide-options');
+    }
+  }
+}
+// If click anywhere else on the page, close open dropdowns
+document.addEventListener('click', (e) => {
+  const parent = e.target.parentNode.parentNode;
+  if (parent === null || parent.classList === undefined || !parent.classList.contains('dropdown')) {
+    closeDropdowns();
+  }
+});
+// Close open dropdowns
+function closeDropdowns() {
+  console.log('close');
+  const dropdowns = document.getElementsByClassName('dropdown-options');
+  for (let dropdown of dropdowns) {
+    if (!dropdown.classList.contains('hide-options')) {
+      dropdown.classList.add('hide-options');
+    }
   }
 }
 
 // Handle dropdown selection
-function handleDropdownSelection(e) {
-  const selectedOption = e.target;
-  console.log(selectedOption);
+function handleDropdownSelection(newSelection) {
+  let currentSelection = '';
 
   // Remove active class from other options
-  let sibling = selectedOption.parentNode.firstChild;
+  let sibling = newSelection.parentNode.firstChild;
   while (sibling) {
     if (sibling.classList.contains('active')) {
+      currentSelection = sibling.id;
       sibling.classList.remove('active');
     }
     sibling = sibling.nextSibling;
   }
 
   // Add active class to selected option
-  selectedOption.classList.add('active');
+  newSelection.classList.add('active');
 
   // Add label of the selected option to the dropdown header
-  const dropdownHeader = selectedOption.parentNode.parentNode.querySelector('.dropdown-selection');
-  dropdownHeader.textContent = selectedOption.innerText;
-
-  // Close dropdown
-  console.log(selectedOption.parentNode);
-  selectedOption.parentNode.classList.add('hide-options');
+  const dropdownContainer = newSelection.parentNode.parentNode;
+  const dropdownHeader = dropdownContainer.querySelector('.dropdown-selection');
+  dropdownHeader.textContent = newSelection.innerText;
 
   // Call the visualization
-  // callVisualization (meal, selection)
+  const toStrip = 'dropdown--';
+  const meal = dropdownContainer.classList[2].substring(toStrip.length);
+  dropdownContainer.classList[1].substring(toStrip.length) === 'meal' ?
+    addMeal(meal, currentSelection, newSelection.id) :
+    swapIngredient();
 }

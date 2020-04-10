@@ -9,9 +9,10 @@
 		<h1 class="foodprint-title">Calculate your daily foodprint</h1>
 		<div id="foodprint"></div>
 
-		<div id="row dropdowns-container">
+		<div class="row dropdowns-container dropdowns-container--meals">
 			<div class="col-12 col-md-3">
-				<div class="dropdown dropdown--meal dropdown--breakfast" onclick="toggleDropdownDisplay(event)">
+				<div class="dropdown-label">Breakfast</div>
+				<div class="dropdown dropdown--meal dropdown--breakfast" onclick="toggleDropdownDisplay(event.target)">
 					<div class="dropdown-header">
 						<div class="dropdown-selection">Select a breakfast</div>
 						<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
@@ -19,15 +20,42 @@
 					<div class="dropdown-options hide-options"></div>
 				</div>
 			</div>
+			<div class="col-12 col-md-3">
+				<div class="dropdown-label">Lunch</div>
+				<div class="dropdown dropdown--meal dropdown--lunch" onclick="toggleDropdownDisplay(event.target)">
+					<div class="dropdown-header">
+						<div class="dropdown-selection">Select a lunch</div>
+						<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
+					</div>
+					<div class="dropdown-options hide-options"></div>
+				</div>
+			</div>
+			<div class="col-12 col-md-3">
+				<div class="dropdown-label">Snack</div>
+				<div class="dropdown dropdown--meal dropdown--snack" onclick="toggleDropdownDisplay(event.target)">
+					<div class="dropdown-header">
+						<div class="dropdown-selection">Select a snack</div>
+						<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
+					</div>
+					<div class="dropdown-options hide-options"></div>
+				</div>
+			</div>
+			<div class="col-12 col-md-3">
+					<div class="dropdown-label">Dinner</div>
+					<div class="dropdown dropdown--meal dropdown--dinner" onclick="toggleDropdownDisplay(event.target)">
+						<div class="dropdown-header">
+							<div class="dropdown-selection">Select a dinner</div>
+							<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
+						</div>
+						<div class="dropdown-options hide-options"></div>
+					</div>
+				</div>
 		</div>
-		<!-- <button class="hide" type="button" onclick="addBreakfast()">Select breakfast</button>
-		<button class="hide" type="button" onclick="addLunch()">Select lunch</button>
-		<button class="hide" type="button" onclick="swapBreakfast()">Swap breakfast</button>
-		<button class="hide" type="button" onclick="swapIngredient()">Swap chicken for tofu</button> -->
 
 		<div id="tooltip">
 			<div class="tooltip--container">
-				<div class="tooltip--ingredient"></div>
+				<div class="tooltip--ingredient">Bacon</div>
+				<div class="tooltip--meal">Meal: <span></span></div>
 				<div class="tooltip--details">
 						<div class="tooltip--foodprint-index">Foodprint detail (per kg of food)<span></span></div>
 						<div class="tooltip--foodprint-detail">

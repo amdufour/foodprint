@@ -1,3 +1,9 @@
+.dropdown-label {
+  margin-bottom: 6px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: $blue;
+}
 .dropdown {
   position: relative;
   width: 100%;
@@ -6,10 +12,18 @@
   border-radius: $radius;
   cursor: pointer;
 
-  // Selection
-  .dropdown-selection {
-    padding: 10px 40px 10px 10px;
-    color: $blue;
+  // Header
+  .dropdown-header {
+    position: relative;
+    height: 40px;
+    .dropdown-selection {
+      padding: 10px 40px 10px 10px;
+      height: 40px;
+      color: $blue;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   // Arrow
@@ -22,7 +36,7 @@
     .dropdown-arrow {
       position: absolute;
       z-index: -1;
-      top: 12px;
+      top: 11px;
       right: 15px;
       width: 18px;
       height: 18px;
@@ -30,21 +44,26 @@
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
+      transition: all 150ms ease-out;
     }
   }
 
   // Options
   .dropdown-options {
-    position: relative;
+    position: absolute;
+    top: 50px;
+    left: -2px;
+    right: -2px;
     overflow: hidden;
     max-height: 500px;
     padding: 10px 0;
-    border-top: 1px solid $blue;
+    border-radius: $radius;
+    box-shadow: 0px 1px 5px rgba($blue, 0.6);
     transition: all 150ms ease-out;
     &.hide-options {
       max-height: 0 !important;
       padding: 0;
-      border-top-color: transparent;
+      box-shadow: none;
     }
     .options {
       padding: 8px 10px;
@@ -62,6 +81,12 @@
         background-color: transparent;
         cursor: default;
       }
+    }
+  }
+
+  &.open {
+    .dropdown-arrow {
+      transform: rotateZ(180deg);
     }
   }
 }
