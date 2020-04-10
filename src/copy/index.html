@@ -7,49 +7,35 @@
 <body>
 	<div class="container">
 		<h1 class="foodprint-title">Calculate your daily foodprint</h1>
+
+		<!-- Foodprint visualization -->
 		<div id="foodprint"></div>
 
+		<!-- Meal selectors -->
 		<div class="row dropdowns-container dropdowns-container--meals">
-			<div class="col-12 col-md-3">
-				<div class="dropdown-label">Breakfast</div>
-				<div class="dropdown dropdown--meal dropdown--breakfast" onclick="toggleDropdownDisplay(event.target)">
-					<div class="dropdown-header">
-						<div class="dropdown-selection">Select a breakfast</div>
-						<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
-					</div>
-					<div class="dropdown-options hide-options"></div>
-				</div>
+			<div class="col-12 col-md-3 dropdown-container--breakfast">
+				<label class="dropdown-label" for="dropdown--breakfast">Breakfast</label>
+				<select id="dropdown--breakfast" class="dropdown dropdown--meal dropdown--breakfast" onchange="handleSelectChange(event.target)">
+					<option disabled selected value class="option">Select a breakfast</option>
+				</select>
 			</div>
-			<div class="col-12 col-md-3">
-				<div class="dropdown-label">Lunch</div>
-				<div class="dropdown dropdown--meal dropdown--lunch" onclick="toggleDropdownDisplay(event.target)">
-					<div class="dropdown-header">
-						<div class="dropdown-selection">Select a lunch</div>
-						<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
-					</div>
-					<div class="dropdown-options hide-options"></div>
-				</div>
+			<div class="col-12 col-md-3 dropdown-container--lunch">
+				<label class="dropdown-label" for="dropdown--lunch">Lunch</label>
+				<select id="dropdown--lunch" class="dropdown dropdown--meal dropdown--lunch" onchange="handleSelectChange(event.target)">
+					<option disabled selected value>Select a lunch</option>
+				</select>
 			</div>
-			<div class="col-12 col-md-3">
-				<div class="dropdown-label">Snack</div>
-				<div class="dropdown dropdown--meal dropdown--snack" onclick="toggleDropdownDisplay(event.target)">
-					<div class="dropdown-header">
-						<div class="dropdown-selection">Select a snack</div>
-						<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
-					</div>
-					<div class="dropdown-options hide-options"></div>
-				</div>
+			<div class="col-12 col-md-3 dropdown-container--snack">
+				<label class="dropdown-label" for="dropdown--snack">Snack</label>
+				<select id="dropdown--snack" class="dropdown dropdown--meal dropdown--snack" onchange="handleSelectChange(event.target)">
+					<option disabled selected value>Select a snack</option>
+				</select>
 			</div>
-			<div class="col-12 col-md-3">
-					<div class="dropdown-label">Dinner</div>
-					<div class="dropdown dropdown--meal dropdown--dinner" onclick="toggleDropdownDisplay(event.target)">
-						<div class="dropdown-header">
-							<div class="dropdown-selection">Select a dinner</div>
-							<div class="dropdown-arrow--container"><span class="dropdown-arrow"></span></div>
-						</div>
-						<div class="dropdown-options hide-options"></div>
-					</div>
-				</div>
+			<div class="col-12 col-md-3 dropdown-container--dinner">
+					<label class="dropdown-label" for="dropdown--dinner">Dinner</label>
+					<select id="dropdown--dinner" class="dropdown dropdown--meal dropdown--dinner" onchange="handleSelectChange(event.target)">
+						<option disabled selected value>Select a dinner</option>
+					</select>
 		</div>
 
 		<div id="tooltip">

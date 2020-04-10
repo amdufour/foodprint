@@ -1,3 +1,4 @@
+const windowWidth = window.innerWidth;
 const width = window.innerWidth > 1630 ? 1600 : window.innerWidth - 30;
 const height = window.innerHeight - 500;
 const padding = 1.5; // Separation between same-color nodes
@@ -66,7 +67,7 @@ function appendSelectors() {
       };
       selectionList.push(menu);
     });
-    appendDropdown(meal, selectionList);
+    appendDropdown(windowWidth, meal, selectionList);
   });
 }
 
