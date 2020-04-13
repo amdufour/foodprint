@@ -1,13 +1,13 @@
 const windowWidth = window.innerWidth;
-const width = window.innerWidth > 1630 ? 1600 : window.innerWidth - 30;
-const height = window.innerHeight - 500;
+const container = 1200;
+const paddingLeft = windowWidth > (container + 30) ? (windowWidth - container)/2 : 15;
+const width = windowWidth > (container + 30) ? container : windowWidth - 30;
+const height = (window.innerHeight - 350) / 2 + 100;
 const padding = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
 const radiusClustersCenters = 150; // Radius of the clusters centers
 
-const n = 200; // total number of nodes
-
-const colors = ['#8B572A', '#417505', '#4A90E2', '#D0021B', '#F5A623'];
+const colors = ['#597322', '#BFA72C', '#CEDEF2', '#D97E8E', '#A68549'];
 const meals = ['breakfast', 'lunch', 'snack', 'dinner'];
 const categories = [
     { cluster: 0, label: 'land_use_m2_per_kg', factor: 100 },
@@ -26,8 +26,8 @@ let clusters = d3.range(m).map((category, i) => {
   const d = {
     cluster: i,
     radius: maxRadius,
-    x: i * 200,
-    y: height/2
+    x: (i+1) * (width/6) + paddingLeft,
+    y: height
   };
   return d;
 });
@@ -121,8 +121,8 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
           cluster: category.cluster,
           radius: radius,
           // x: width/2,
-          x: category.cluster * 200 + Math.random(),
-          y: height/2 + Math.random()
+          x: (i+1) * (width/6) + paddingLeft + Math.random(),
+          y: height + Math.random()
         };
         nodes.push(d);
       });
@@ -142,18 +142,27 @@ let svg = d3.select('#foodprint')
 let node = svg.append('g')
   .selectAll('circle');
 
-let simulation = d3.forceSimulation()
-  // Keep entire simulation balenced around screen center
-  .force('center', d3.forceCenter(width/2, height/2))
-  // Attract clusters toward specific positions
-  .force('x', d3.forceX().x(d => d.cluster * 200)
+let simulation = d3.forceSimulation();
+if (windowWidth <= 768) {
+  simulation
+    // Attract clusters toward the horizontal center
+    .force('x', d3.forceX().x(width/2 + paddingLeft)
+    .strength(0.8));
+} else {
+  simulation
+    // Attract clusters toward specific x positions
+    .force('x', d3.forceX().x(d => (d.cluster+1) * (width/6) + paddingLeft)
+      .strength(0.8))
+    // Cluster nodes by section
+    .force('cluster', d3.forceCluster()
+      .centers(d => clusters[d.cluster])
+      .strength(0.5));
+}
+
+simulation
+  // Attract clusters toward a specific y position
+  .force('y', d3.forceY().y(height)
     .strength(0.8))
-  .force('y', d3.forceY().y(height/2)
-    .strength(0.8))
-  // Cluster nodes by section
-  .force('cluster', d3.forceCluster()
-    .centers(d => clusters[d.cluster])
-    .strength(0.5))
   // Apply collision with padding
   .force('collide', d3.forceCollide(d => (d.radius + padding) ))
   .on('tick', layoutTick);

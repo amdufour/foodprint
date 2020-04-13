@@ -523,16 +523,16 @@
         ]
      },
      {
-        "key":"cheese_and_fruits",
-        "label":"Cheese and Fruits",
+        "key":"cheese_and_grapes",
+        "label":"Cheese and Grapes",
         "ingredients":[
            {
               "id":"cheese",
               "label":"Cheese"
            },
            {
-              "id":"fruits_other",
-              "label":"Fruits"
+              "id":"berries_and_grapes",
+              "label":"Grapes"
            }
         ],
         "swaps":[
@@ -549,6 +549,22 @@
                  {
                     "id":"tofu",
                     "label":"Edamames"
+                 }
+              ]
+           },
+           {
+              "key":"grapes_to_citrus",
+              "label":"Grapes -> Oranges",
+              "removedIngredients":[
+                 {
+                    "id":"berries_and_grapes",
+                    "label":"Grapes"
+                 }
+              ],
+              "addedIngredients":[
+                 {
+                    "id":"citrus_fruit",
+                    "label":"Oranges"
                  }
               ]
            }

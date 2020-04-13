@@ -1,14 +1,17 @@
 // Dropdowns container
 .dropdowns-container {
-  margin-top: calc(100vh - 200px - 250px);
+  margin-top: calc(100vh - 200px - 150px);
 }
 
 // Labels
 .dropdown-label--main {
   margin-bottom: 6px;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: $blue;
+  @media (max-width: $md) {
+    margin-top: 10px;
+  }
 }
 .dropdown-label {
   display: block;
@@ -19,20 +22,23 @@
 // Dropdowns
 .dropdown {
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   width: 100%;
-  max-width: 350px;
-  border: 2px solid $blue;
+  max-width: 250px;
+  border: 1px solid $blue;
   border-radius: $radius;
   cursor: pointer;
+  @media (max-width: $md) {
+    margin-bottom: 10px;
+  }
 
   // Header
   .dropdown-header {
     position: relative;
-    height: 40px;
+    height: 34px;
     .dropdown-selection {
       padding: 10px 40px 10px 10px;
-      height: 40px;
+      height: 34px;
       color: $blue;
       white-space: nowrap;
       overflow: hidden;
@@ -50,10 +56,10 @@
     .dropdown-arrow {
       position: absolute;
       z-index: -1;
-      top: 11px;
+      top: 10px;
       right: 15px;
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
       background-image: url(../svg/arrow-blue.svg);
       background-repeat: no-repeat;
       background-size: contain;
@@ -115,12 +121,27 @@
   }
 }
 
+// Swap dropdowns
 .dropdown-container--swap {
-  .dropdown-label {
-    color: $orange;
-  }
   .dropdown {
-    border-color: $orange;
+    border-color: $pink;
+  }
+  .dropdown-label,
+  .dropdown-header .dropdown-selection,
+  .dropdown-options .option {
+    color: $pink;
+  }
+  .dropdown-options .option {
+    &:hover, &:focus {
+      background-color: $pink;
+    }
+    &.active {
+      color: $pink;
+      background-color: transparent;
+    }
+  }
+  .dropdown-arrow--container .dropdown-arrow {
+    background-image: url(../svg/arrow-pink.svg);
   }
 }
 
