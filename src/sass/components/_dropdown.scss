@@ -1,14 +1,27 @@
-.dropdown-label {
-  display: block;
+// Dropdowns container
+.dropdowns-container {
+  margin-top: calc(100vh - 200px - 250px);
+}
+
+// Labels
+.dropdown-label--main {
   margin-bottom: 6px;
   font-size: 1.8rem;
   font-weight: 700;
   color: $blue;
 }
+.dropdown-label {
+  display: block;
+  margin-bottom: 5px;
+  color: $blue;
+}
+
+// Dropdowns
 .dropdown {
   position: relative;
+  margin-bottom: 30px;
   width: 100%;
-  max-width: 250px;
+  max-width: 350px;
   border: 2px solid $blue;
   border-radius: $radius;
   cursor: pointer;
@@ -52,12 +65,14 @@
   // Options
   .dropdown-options {
     position: absolute;
+    z-index: 100;
     top: 50px;
     left: -2px;
     right: -2px;
     overflow: hidden;
     max-height: 500px;
     padding: 10px 0;
+    background-color: #fff;
     border-radius: $radius;
     box-shadow: 0px 1px 5px rgba($blue, 0.6);
     transition: all 150ms ease-out;
@@ -90,4 +105,27 @@
       transform: rotateZ(180deg);
     }
   }
+}
+
+.dropdown-container {
+  &.disabled {
+    .dropdown {
+      cursor: default;
+    }
+  }
+}
+
+.dropdown-container--swap {
+  .dropdown-label {
+    color: $orange;
+  }
+  .dropdown {
+    border-color: $orange;
+  }
+}
+
+// Disabled dropdown
+.dropdown-container.disabled {
+  opacity: .3;
+  cursor: default;
 }

@@ -12,6 +12,8 @@ function appendDropdown(windowWidth, meal, menuList) {
     });
   } else {
     // If desktop, replace select elements with dropdowns
+
+    // Meal selectors
     selectorOptions.style('display', 'none');
     let container = d3.select('.dropdown-container--' + meal)
       .append('div')
@@ -41,21 +43,45 @@ function appendDropdown(windowWidth, meal, menuList) {
         .text(menu.label);
     });
 
+    // Swap selectors
+    d3.select('.dropdown--swap--' + meal)
+      .style('display', 'none');
+    let swapContainer = d3.select('.dropdown-container--swap--' + meal)
+      .append('div')
+      .attr('id', 'dropdown--swap--' + meal)
+      .attr('class', 'dropdown dropdown--swap dropdown--swap--' + meal)
+      .attr('onclick', 'toggleDropdownDisplay(event.target)');
+    swapContainer.append('div')
+      .attr('class', 'dropdown-header');
+    swapContainer.append('div')
+      .attr('class', 'dropdown-options hide-options');
+
+    let swapHeader = d3.select('.dropdown--swap--' + meal + ' .dropdown-header');
+    swapHeader.append('div')
+      .attr('class', 'dropdown-selection')
+      .text('Select a swap');
+    swapHeader.append('div')
+      .attr('class', 'dropdown-arrow--container')
+      .append('span')
+        .attr('class', 'dropdown-arrow');
   }
 }
 
 // Open/Close dropdown
 function toggleDropdownDisplay(target) {
+  // console.log(target);
   if (target.parentNode.parentNode.classList.contains('dropdown')) {
     const dropdown = target.parentNode.parentNode;
     const options = dropdown.querySelector('.dropdown-options');
   
-    if (options.classList.contains('hide-options')) {
-      dropdown.classList.add('open');
-      options.classList.remove('hide-options');
-    } else {
-      dropdown.classList.remove('open');
-      options.classList.add('hide-options');
+    if (!dropdown.parentNode.classList.contains('disabled')) {
+      if (options.classList.contains('hide-options')) {
+        dropdown.classList.add('open');
+        options.classList.remove('hide-options');
+      } else {
+        dropdown.classList.remove('open');
+        options.classList.add('hide-options');
+      }
     }
   }
 }
@@ -71,6 +97,7 @@ function closeDropdowns() {
   const dropdowns = document.getElementsByClassName('dropdown-options');
   for (let dropdown of dropdowns) {
     if (!dropdown.classList.contains('hide-options')) {
+      dropdown.parentNode.classList.remove('open');
       dropdown.classList.add('hide-options');
     }
   }
@@ -101,9 +128,16 @@ function handleDropdownSelection(newSelection) {
   // Call the visualization
   const toStrip = 'dropdown--';
   const meal = dropdownContainer.classList[2].substring(toStrip.length);
-  dropdownContainer.classList[1].substring(toStrip.length) === 'meal' ?
-    addMeal(meal, currentSelection, newSelection.id) :
-    swapIngredient(meal);
+  if (dropdownContainer.classList[1].substring(toStrip.length) === 'meal') {
+    // Call viz
+    addMeal(meal, currentSelection, newSelection.id);
+    // Handle swap selector
+    const swapContainer = dropdownContainer.parentNode.parentNode.querySelector('.dropdown-container--swap--' + meal);
+    fillSwapDropdown(meal, newSelection.id, swapContainer);
+  } else {
+    // Update viz
+    swapIngredient(meal.substring(6), newSelection.id);
+  }
 }
 
 // Handle Select change
@@ -124,10 +158,67 @@ function handleSelectChange(selector) {
   // Add active class to selected option
   newSelection.classList.add('active');
 
-  // Call the visualization
+  // Call the visualization and handle the swap selector
   const toStrip = 'dropdown--';
   const meal = selector.id.substring(toStrip.length);
-  selector.classList[1].substring(toStrip.length) === 'meal' ?
-    addMeal(meal, currentSelection.value ? currentSelection.value : '', newSelection.value) :
-    swapIngredient(meal);
+  if (selector.classList[1].substring(toStrip.length) === 'meal') {
+    // Call viz
+    addMeal(meal, currentSelection.value ? currentSelection.value : '', newSelection.value);
+    // Handle swap selector
+    const swapContainer = selector.parentNode.parentNode.querySelector('.dropdown-container--swap--' + meal);
+    fillSwapSelect(meal, newSelection.value, swapContainer);
+  } else {
+    // Update viz
+    swapIngredient(meal.slice(0, -6), selector.value);
+  }
+}
+
+// Fill options of the swap selectors
+function fillSwapDropdown(meal, selection, swapContainer) {
+  const swaps = menusDetail[meal].find(menu => menu.key === selection).swaps;
+  let selector = d3.select('#dropdown--swap--' + meal + ' .dropdown-options');
+
+  // Reset selector
+  d3.select('#dropdown--swap--' + meal + ' .dropdown-selection').text('Select a swap');
+  selector.selectAll('.option').remove();
+
+  // Fill options
+  swaps.forEach(swap => {
+    selector.append('div')
+      .attr('class', 'option')
+      .attr('id', swap.key)
+      .attr('onclick', 'handleDropdownSelection(event.target)')
+      .text(swap.label);
+  });
+
+  // Enable swap selector
+  if (swapContainer.classList.contains('disabled')) {
+    swapContainer.classList.remove('disabled');
+  }
+}
+
+function fillSwapSelect(meal, selection, swapContainer) {
+  const swaps = menusDetail[meal].find(menu => menu.key === selection).swaps;
+  let selector = d3.select('#dropdown--' + meal + '--swap');
+
+  // Reset selector
+  const select = swapContainer.querySelector('.dropdown');
+  while (select.length > 1) {
+    select.remove(1);
+  }
+  select.selectedIndex = 0;
+
+  // Fill options
+  swaps.forEach(swap => {
+    selector.append('option')
+    .attr('class', 'option')
+    .attr('value', swap.key)
+    .text(swap.label);
+  });
+  
+  // Enable swap selector
+  if (swapContainer.classList.contains('disabled')) {
+    swapContainer.classList.remove('disabled');
+    swapContainer.querySelector('select').disabled = false;
+  }
 }

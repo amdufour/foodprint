@@ -49,15 +49,8 @@ Promise.all(promises).then(data => {
   appendSelectors();
 });
 
-function showActions() {
-  // let buttons = document.getElementsByClassName('hide');
-  // while (buttons.length > 0) {
-  //   buttons[0].classList.remove("hide");
-  // }
-}
-
 function appendSelectors() {
-  // Append meal selectors to the DOM
+  // Append meal and swap selectors to the DOM
   meals.forEach(meal => {
     let selectionList = [];
     menusDetail[meal].forEach(selection => {
@@ -78,39 +71,21 @@ function addMeal(meal, currentSelection, newSelection) {
     removedIngredients = getIngredients(meal, currentSelection);
   }
   const addedIngredients = getIngredients(meal, newSelection);
+
   updateNodes(meal, removedIngredients, addedIngredients);
 }
-function swapIngredient() {
 
+function swapIngredient(meal, swapId) {
+  let swap = {};
+  menusDetail[meal].forEach(menu => {
+    let obj = menu.swaps.find(obj => obj.key == swapId);
+    if (obj !== undefined) {
+      swap = obj;
+    }
+  });
+
+  updateNodes(meal, swap.removedIngredients, swap.addedIngredients);
 }
-
-// function addBreakfast() {
-//   const meal = "breakfast";
-//   const removedIngredients = [];
-//   const addedIngredients = getIngredients(meal, "eggs_and_bacon");
-//   updateNodes(meal, removedIngredients, addedIngredients);
-// }
-
-// function addLunch() {
-//   const meal = "lunch";
-//   const removedIngredients = [];
-//   const addedIngredients = getIngredients(meal, "chicken_salad");
-//   updateNodes(meal, removedIngredients, addedIngredients);
-// }
-
-// function swapBreakfast() {
-//   const meal = "breakfast";
-//   const removedIngredients = getIngredients(meal, "eggs_and_bacon");
-//   const addedIngredients = getIngredients(meal, "oatmeal_with_berries_and_nuts");
-//   updateNodes(meal, removedIngredients, addedIngredients);
-// }
-
-// function swapIngredient() {
-//   const meal = "lunch";
-//   const removedIngredients = [{ "id": "poultry_meat", "label": "Chicken" }];
-//   const addedIngredients = [{ "id": "tofu", "label": "Tofu" }];
-//   updateNodes(meal, removedIngredients, addedIngredients);
-// }
 
 function updateNodes(meal, removedIngredients, addedIngredients) {
 
@@ -145,6 +120,7 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
           label: ingredient.label,
           cluster: category.cluster,
           radius: radius,
+          // x: width/2,
           x: category.cluster * 200 + Math.random(),
           y: height/2 + Math.random()
         };
@@ -160,8 +136,8 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
 let svg = d3.select('#foodprint')
   .append('svg')
     .attr('class', 'foodprint-container')
-    .attr('width', width)
-    .attr('height', height);
+    .attr('width', '100vw')
+    .attr('height', '100vh');
 
 let node = svg.append('g')
   .selectAll('circle');
@@ -217,7 +193,8 @@ function layoutTick() {
   node
     .attr('cx', d => d.x)
     .attr('cy', d => d.y)
-    .attr('r', d => d.radius);
+    .attr('r', d => d.radius)
+    .attr('class', d => { return 'node node-' + d.meal + '-' + d.id; });
 }
 
 // Get list of ingredients of a selected meal
@@ -228,40 +205,4 @@ function getIngredients(meal, selection) {
 // Get detailed foodprint of an ingredient
 function getFoodprint(ingredient) {
   return dataFoodprint.find(item => item.id === ingredient);
-}
-
-// Show/hide tooltip
-function showTooltip(d) {
-  // Get position of the tooltip based on position of the mouse 
-  // on the page and the size of the hovered circle
-  const xpos = d3.event.pageX + d.radius;
-  const ypos = d3.event.pageY + 270;
-
-  // Get the foodprint detail of the hovered ingredient
-  const ingredientFoodprint = getFoodprint(d.id);
-
-  // Add text to the existing tooltip markup
-  d3.select('#tooltip .tooltip--meal span').text(d.meal);
-  d3.select('#tooltip .tooltip--ingredient').text(d.label);
-  d3.select('#tooltip .detail--land span').text(parseFloat(ingredientFoodprint.land_use_m2_per_kg).toFixed(2));
-  d3.select('#tooltip .detail--gas span').text(parseFloat(ingredientFoodprint.gas_emissions_kgCO2eq_per_kg).toFixed(2));
-  d3.select('#tooltip .detail--water span').text(parseFloat(ingredientFoodprint.water_liters_per_kg).toFixed(2));
-  d3.select('#tooltip .detail--eutro span').text(parseFloat(ingredientFoodprint.eutrophying_emissions_kgPO4eq_per_kg).toFixed(2));
-  d3.select('#tooltip .detail--cost span').text(parseFloat(ingredientFoodprint.cost_usd_per_kg).toFixed(2));
-
-  // Make the tooltip appear at the right location
-  d3.select('#tooltip')
-    .style('top', ypos + 'px')
-    .style('left', xpos + 'px')
-    .transition()
-    .duration(0)
-    .style('opacity', 1);
-}
-function hideTooltip() {
-  d3.select('#tooltip')
-    .style('top', '-1000px')
-    .style('left', '-1000px')
-    .transition()
-    .duration(100)
-    .style('opacity', 0);
 }

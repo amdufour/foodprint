@@ -115,7 +115,7 @@
         ],
         "swaps":[
            {
-              "key":"milk_to_soy_milk",
+              "key":"milk_to_soy_milk_oatmeal",
               "label":"Milk -> Soy milk",
               "removedIngredients":[
                  {
@@ -171,7 +171,7 @@
         ],
         "swaps":[
            {
-              "key":"milk_to_soy_milk",
+              "key":"milk_to_soy_milk_omelette",
               "label":"Milk -> Soy milk",
               "removedIngredients":[
                  {
@@ -200,7 +200,7 @@
               ]
            },
            {
-              "key":"milk_to_soy_milk",
+              "key":"omelette_to_tofu_scramble",
               "label":"Try a Country Tofu Scamble!",
               "removedIngredients":[
                  {
@@ -417,7 +417,7 @@
         ]
      },
      {
-        "key":"chicken_salad",
+        "key":"shimps_saute",
         "label":"Shrimps sautéed with Rice noodles and Vegetables",
         "ingredients":[
            {
@@ -651,7 +651,7 @@
               ]
            },
            {
-              "key":"beef_to_lentils",
+              "key":"beef_to_macaroni_chili",
               "label":"Make a Macaroni chili",
               "removedIngredients":[
                  {
@@ -667,7 +667,7 @@
               ]
            },
            {
-              "key":"beef_to_lentils",
+              "key":"beef_to_one_pot",
               "label":"Make a Sanity saving One pot Pasta",
               "removedIngredients":[
                  {
@@ -820,8 +820,8 @@
               ]
            },
            {
-              "key":"fish_to_poke",
-              "label":"Make a Bif comfy Sweet Potato",
+              "key":"fish_to_sweet_potatoe",
+              "label":"Make a Big comfy Sweet Potato",
               "removedIngredients":[
                  {
                     "id":"fish_farmed",

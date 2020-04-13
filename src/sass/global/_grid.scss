@@ -47,16 +47,16 @@ $xlGrid: $xl + $gap;
   }
 }
 @for $i from 1 through 12 {
-  @media (min-width: $mdGrid) {
-    .col-md-#{$i} {
+  @media (min-width: $smGrid) {
+    .col-sm-#{$i} {
       flex: 0 0 $i*100%/12;
       max-width: $i*100%/12;
     }
   }
 }
 @for $i from 1 through 12 {
-  @media (min-width: $smGrid) {
-    .col-sm-#{$i} {
+  @media (min-width: $mdGrid) {
+    .col-md-#{$i} {
       flex: 0 0 $i*100%/12;
       max-width: $i*100%/12;
     }

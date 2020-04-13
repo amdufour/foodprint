@@ -1,0 +1,33 @@
+select.dropdown {
+  max-width: none;
+  height: 40px;
+  background-color: #fff;
+  background-image: none;
+  color: $blue;
+  &:disabled {
+    cursor: default;
+  }
+}
+.dropdown-container--swap {
+  select.dropdown {
+    color: $orange;
+  }
+}
+@media (max-width: $md) {
+  .dropdown-container {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 33px;
+      right: 20px;
+      width: 30px;
+      height: 28px;
+      background-color: #fff;
+      background-image: url(../svg/arrow-blue.svg);
+      background-repeat: no-repeat;
+      background-size: 18px;
+      background-position: center;
+    }
+  }
+}
