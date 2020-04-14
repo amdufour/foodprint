@@ -9,6 +9,7 @@ function showTooltip(d) {
 
   // Add text to the existing tooltip markup
   d3.select('#tooltip .tooltip--meal span').text(d.meal);
+  d3.select('#tooltip .tooltip--portion span').text(ingredientFoodprint.portion_kg * 1000);
   d3.select('#tooltip .tooltip--ingredient').text(d.label);
   d3.select('#tooltip .detail--land span').text(parseFloat(ingredientFoodprint.land_use_m2_per_kg).toFixed(2));
   d3.select('#tooltip .detail--gas span').text(parseFloat(ingredientFoodprint.gas_emissions_kgCO2eq_per_kg).toFixed(2));

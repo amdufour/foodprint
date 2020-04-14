@@ -207,6 +207,22 @@ if (windowWidth > 768) {
         // .style('stroke', 'black')
         .style('transform', 'translate(' + xTranslation + 'px, ' + height + 'px)');
 
+    // Append path for total foodprint in each category
+    d3.select('.axis-circles--' + category.class)
+      .append('path')
+        .attr('id', 'category-label--path--result--' + category.class)
+        .attr('class', 'category-label--path')
+        .attr('d', d => {
+          return arc({
+            startAngle: degreeToRadian(-90),
+            endAngle: degreeToRadian(90),
+            innerRadius: axisRadius - 20,
+            outerRadius: axisRadius - 20
+          });
+        })
+        // .style('stroke', 'black')
+        .style('transform', 'translate(' + xTranslation + 'px, ' + height + 'px)');
+
     // Append category titles
     d3.select('.axis-circles--' + category.class)
         .append('text')
@@ -214,7 +230,7 @@ if (windowWidth > 768) {
           .append('textPath')
             .attr('xlink:href', '#category-label--path--' + category.class)
             .attr('startOffset', '25%')
-            .text(category.title)
+            .text(category.title + ' (' +category.unit + ')')
             .on('mouseover', d => {
               d3.event.stopPropagation();
               d3.select('.axis-circles--' + category.class)
@@ -233,6 +249,16 @@ if (windowWidth > 768) {
               d3.select('.axis-circles--' + category.class)
                 .classed('active', false);
             });
+
+    // Append total foodprint in each category
+    d3.select('.axis-circles--' + category.class)
+    .append('text')
+      .attr('class', 'foodprint-result')
+      .style('text-anchor', 'middle')
+      .append('textPath')
+        .attr('xlink:href', '#category-label--path--result--' + category.class)
+        .attr('startOffset', '25%')
+        .text(0);
   });
 }
 
@@ -298,13 +324,19 @@ function updateSimulation() {
   if (windowWidth > 768) {
     // Calculate the areas for the axis circles
     let areas = [0, 0, 0, 0, 0];
+    let foodprint = [0, 0, 0, 0, 0];
     nodes.forEach(node => {
       areas[node.cluster] += Math.PI * Math.pow(node.radius + paddingCircles, 2);
+      foodprint[node.cluster] += Math.PI * Math.pow(node.radius, 2) / categories[node.cluster].factor;
     });
     // Update radius of the axis circles
     d3.selectAll('.axis-circle')
       .attr('r', (d, i) => {
         return Math.sqrt(areas[i] / Math.PI);
+      });
+    d3.selectAll('.foodprint-result textPath')
+      .text((d, i) => {
+        return foodprint[i].toFixed(2);
       });
   }
 }
