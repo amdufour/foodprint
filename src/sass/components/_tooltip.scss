@@ -1,5 +1,7 @@
-#tooltip {
+#tooltip,
+#tooltip-category {
   position: absolute;
+  z-index: 100;
   opacity: 0;
   top: -1000px;
   left: -1000px;
@@ -38,6 +40,9 @@
       position: relative;
       padding-left: 15px;
       line-height: 1.6;
+      span {
+        font-weight: 700;
+      }
       sup,
       sub {
         font-size: .6rem;
@@ -45,7 +50,7 @@
       &:before {
         content: '';
         position: absolute;
-        top: 10px;
+        top: 8px;
         left: 3px;
         width: 5px;
         height: 5px;
@@ -68,5 +73,63 @@
         background: $cost;
       }
     }
+  }
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url(../svg/close-blue.svg);
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: center;
+    opacity: .6;
+    cursor: pointer;
+    transition: opacity 250ms ease;
+    &:hover, &:focus {
+      opacity: 1;
+    }
+  }
+}
+
+#tooltip-category {
+  .tooltip--container {
+    padding: 20px;
+  }
+  .tooltip--fact {
+    font-size: 1.2rem;
+  }
+  .quote {
+    position: relative;
+    color: $blue;
+    .quote-icon {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url(../svg/quote-land.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      opacity: 0.3;
+      &.quote-icon--left {
+        top: -14px;
+        left: -12px;
+      }
+      &.quote-icon--right {
+        bottom: -16px;
+        right: 0;
+        transform: rotateZ(180deg);
+      }
+    }
+    &.gas .quote-icon { background-image: url(../svg/quote-gas.svg); } 
+    &.water .quote-icon { background-image: url(../svg/quote-water.svg); } 
+    &.eutro .quote-icon { background-image: url(../svg/quote-eutro.svg); } 
+    &.cost .quote-icon { background-image: url(../svg/quote-cost.svg); } 
+  }
+  sup {
+    padding-left: 2px;
+    font-size: 1rem;
   }
 }

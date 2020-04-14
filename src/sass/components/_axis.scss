@@ -1,0 +1,66 @@
+.axis {
+  stroke: rgba($blue, 0.2);
+}
+
+.axis-circle,
+.axis-circle--delimiter {
+  fill: none;
+  stroke-opacity: 0.4;
+  transition: all 250ms ease;
+  &.axis-circle--land,
+  &.axis-circle--delimiter--land {
+    stroke: $land;
+  }
+  &.axis-circle--gas,
+  &.axis-circle--delimiter--gas {
+    stroke: $gas;
+  }
+  &.axis-circle--water,
+  &.axis-circle--delimiter--water {
+    stroke: $water;
+    stroke-opacity: 0.8;
+  }
+  &.axis-circle--eutro,
+  &.axis-circle--delimiter--eutro {
+    stroke: $eutro;
+  }
+  &.axis-circle--cost,
+  &.axis-circle--delimiter--cost {
+    stroke: $cost;
+  }
+}
+
+.axis-circles {
+  text {
+    fill: $blue;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 250ms ease;
+  }
+  .axis-circle--delimiter {
+    stroke-width: 1;
+    transition: all 250ms ease;
+  }
+  &.axis-circles--land text { fill: $land; }
+  &.axis-circles--gas text { fill: $gas; }
+  &.axis-circles--water text { fill: $water; }
+  &.axis-circles--eutro text { fill: $eutro; }
+  &.axis-circles--cost text { fill: $cost; }
+  &.active,
+  &.active-tooltip {
+    text {
+      font-size: 1.6rem;
+    }
+    .axis-circle--delimiter {
+      stroke-width: 2;
+      stroke-opacity: .8;
+      &.axis-circle--delimiter--water {
+        stroke-opacity: 1;
+      }
+    }
+  }
+}
+
+.category-label--path {
+  fill: none;
+}

@@ -1,6 +1,7 @@
 .node {
-  stroke-width: 3;
+  stroke-width: 2;
   stroke: transparent;
+  opacity: .8;
   transition: stroke 200ms ease-in;
   &.active {
     stroke: $blue;

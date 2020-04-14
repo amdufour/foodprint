@@ -90,6 +90,7 @@ document.addEventListener('click', (e) => {
   const parent = e.target.parentNode.parentNode;
   if (parent === null || parent.classList === undefined || !parent.classList.contains('dropdown')) {
     closeDropdowns();
+    closeTooltip(e.target);
   }
 });
 // Close open dropdowns
@@ -100,6 +101,13 @@ function closeDropdowns() {
       dropdown.parentNode.classList.remove('open');
       dropdown.classList.add('hide-options');
     }
+  }
+}
+// Close open tooltip
+function closeTooltip(target) {
+  const categoryTooltip = document.getElementById('tooltip-category');
+  if (!target.parentNode.classList.contains('tooltip') && categoryTooltip.classList.contains('visible')) {
+    hideCategoryTooltip();
   }
 }
 

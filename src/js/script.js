@@ -1,21 +1,15 @@
 const windowWidth = window.innerWidth;
 const container = 1200;
-const paddingLeft = windowWidth > (container + 30) ? (windowWidth - container)/2 : 15;
-const width = windowWidth > (container + 30) ? container : windowWidth - 30;
+const padding = 30;
+const paddingLeft = windowWidth > (container) ? (windowWidth - container + padding * 2)/2 : padding;
+const width = windowWidth > (container) ? container - padding * 2 : windowWidth - padding * 2;
 const height = (window.innerHeight - 350) / 2 + 100;
-const padding = 1.5; // Separation between same-color nodes
+const paddingCircles = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
 const radiusClustersCenters = 150; // Radius of the clusters centers
 
 const colors = ['#597322', '#BFA72C', '#CEDEF2', '#D97E8E', '#A68549'];
 const meals = ['breakfast', 'lunch', 'snack', 'dinner'];
-const categories = [
-    { cluster: 0, label: 'land_use_m2_per_kg', factor: 100 },
-    { cluster: 1, label: 'gas_emissions_kgCO2eq_per_kg', factor: 100 },
-    { cluster: 2, label: 'water_liters_per_kg', factor: 50 },
-    { cluster: 3, label: 'eutrophying_emissions_kgPO4eq_per_kg', factor: 100 },
-    { cluster: 4, label: 'cost_usd_per_kg', factor: 100 },
-  ];
 const m = categories.length; // number of distinct clusters
 
 const color = d3.scaleSequential(d3.interpolateRainbow)
@@ -129,6 +123,8 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
     });
   }
 
+  console.log(nodes);
+
   // Display the simulation with updated nodes
   updateSimulation();
 }
@@ -138,6 +134,107 @@ let svg = d3.select('#foodprint')
     .attr('class', 'foodprint-container')
     .attr('width', '100vw')
     .attr('height', '100vh');
+
+let horizontalAxis = svg.append('line')
+  .attr('x1', paddingLeft)
+  .attr('y1', height)
+  .attr('x2', paddingLeft + width)
+  .attr('y2', height)
+  .attr('class', 'axis');
+
+let arc = d3.arc();
+
+if (windowWidth > 768) {
+  let circleAxis = svg.append('g')
+    .attr('class', 'axis-circles--container')
+    .selectAll('.axis-circles')
+    .data(categories)
+    .enter()
+    .append('g')
+      .attr('class', d => { return 'axis-circles axis-circles--' + d.class; });
+
+  categories.forEach(category => {
+    let xTranslation = (category.cluster + 1) * (width/6) + paddingLeft;
+    let axisRadius;
+    switch (category.cluster) {
+      case 0:
+        axisRadius = 120;
+        break;
+      case 1:
+        axisRadius = 100;
+        break;
+      case 2:
+        axisRadius = 280;
+        break;
+      case 3:
+        axisRadius = 140;
+        break;
+      case 4:
+        axisRadius = 80;
+        break;
+    }
+
+    // Append circles shwing foodprint in each category
+    d3.select('.axis-circles--' + category.class)
+      .append('circle')
+        .attr('class', 'axis axis-circle axis-circle--' + category.class)
+        .attr('cx', xTranslation)
+        .attr('cy', height)
+        .attr('r', 0);
+
+    // Append delimiter circles for each category
+    d3.select('.axis-circles--' + category.class)
+      .append('circle')
+        .attr('class', 'axis axis-circle--delimiter axis-circle--delimiter--' + category.class)
+        .attr('cx', xTranslation)
+        .attr('cy', height)
+        .attr('r', axisRadius)
+        .attr('stroke-dasharray', '6');
+
+    // Append path for category titles
+    d3.select('.axis-circles--' + category.class)
+      .append('path')
+        .attr('id', 'category-label--path--' + category.class)
+        .attr('class', 'category-label--path')
+        .attr('d', d => {
+          return arc({
+            startAngle: degreeToRadian(-90),
+            endAngle: degreeToRadian(90),
+            innerRadius: axisRadius + 10,
+            outerRadius: axisRadius + 10
+          });
+        })
+        // .style('stroke', 'black')
+        .style('transform', 'translate(' + xTranslation + 'px, ' + height + 'px)');
+
+    // Append category titles
+    d3.select('.axis-circles--' + category.class)
+        .append('text')
+          .style('text-anchor', 'middle')
+          .append('textPath')
+            .attr('xlink:href', '#category-label--path--' + category.class)
+            .attr('startOffset', '25%')
+            .text(category.title)
+            .on('mouseover', d => {
+              d3.event.stopPropagation();
+              d3.select('.axis-circles--' + category.class)
+                .classed('active', true);
+            })
+            .on('click', d => {
+              d3.event.stopPropagation();
+              // Keep the hover styles
+              d3.select('.axis-circles--' + category.class)
+                .classed('active-tooltip', true);
+              // Show the tooltip
+              showCategoryTooltip(category.class, category.fact, category.source);
+            })
+            .on('mouseout', d => {
+              d3.event.stopPropagation();
+              d3.select('.axis-circles--' + category.class)
+                .classed('active', false);
+            });
+  });
+}
 
 let node = svg.append('g')
   .selectAll('circle');
@@ -164,7 +261,7 @@ simulation
   .force('y', d3.forceY().y(height)
     .strength(0.8))
   // Apply collision with padding
-  .force('collide', d3.forceCollide(d => (d.radius + padding) ))
+  .force('collide', d3.forceCollide(d => (d.radius + paddingCircles) ))
   .on('tick', layoutTick);
 
 function updateSimulation() {
@@ -176,6 +273,7 @@ function updateSimulation() {
     .style('fill', d => colors[d.cluster])
     .merge(node)
     .on('mouseover', d => {
+      d3.event.stopPropagation();
       // Add a blue stroke to the circles related to the hovered ingredient
       d3.selectAll('.node-' + d.meal + '-' + d.id)
         .classed('active', true);
@@ -194,8 +292,21 @@ function updateSimulation() {
 
   // Update and restart the simulation
   simulation.nodes(nodes);
-  simulation.alpha(0.2)
+  simulation.alpha(0.02)
     .restart(); // Re-heat the simulation
+
+  if (windowWidth > 768) {
+    // Calculate the areas for the axis circles
+    let areas = [0, 0, 0, 0, 0];
+    nodes.forEach(node => {
+      areas[node.cluster] += Math.PI * Math.pow(node.radius + paddingCircles, 2);
+    });
+    // Update radius of the axis circles
+    d3.selectAll('.axis-circle')
+      .attr('r', (d, i) => {
+        return Math.sqrt(areas[i] / Math.PI);
+      });
+  }
 }
 
 function layoutTick() {
@@ -214,4 +325,9 @@ function getIngredients(meal, selection) {
 // Get detailed foodprint of an ingredient
 function getFoodprint(ingredient) {
   return dataFoodprint.find(item => item.id === ingredient);
+}
+
+// Helper function - convert degress to radians
+function degreeToRadian(angle) {
+  return angle * Math.PI / 180;
 }
