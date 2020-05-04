@@ -2,7 +2,7 @@
 function showTooltip(d) {
   // Get position of the tooltip based on position of the mouse 
   // on the page and the size of the hovered circle
-  const ypos = d3.event.pageY + 300;
+  const ypos = d3.event.pageY + 350;
 
   // Get the foodprint detail of the hovered ingredient
   const ingredientFoodprint = getFoodprint(d.id);

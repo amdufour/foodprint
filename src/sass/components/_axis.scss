@@ -33,6 +33,7 @@
 .axis-circles {
   text {
     fill: $blue;
+    font-size: 1.3rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 250ms ease;
@@ -49,7 +50,7 @@
   &.active,
   &.active-tooltip {
     text {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
     .axis-circle--delimiter {
       stroke-width: 2;

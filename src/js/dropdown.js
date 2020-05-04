@@ -193,7 +193,7 @@ function fillSwapDropdown(meal, selection, swapContainer) {
   // Fill options
   swaps.forEach(swap => {
     selector.append('div')
-      .attr('class', 'option')
+      .attr('class', swap.key === 'reset' ? 'option reset' : 'option')
       .attr('id', swap.key)
       .attr('onclick', 'handleDropdownSelection(event.target)')
       .text(swap.label);

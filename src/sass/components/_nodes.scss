@@ -3,8 +3,28 @@
   stroke: transparent;
   opacity: .8;
   transition: stroke 200ms ease-in;
+  transition: r 500ms ease;
   &.active {
     stroke: $blue;
     transition: stroke 200ms ease-out;
+  }
+  &.appear {
+    animation: 5000ms pulse-node;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes pulse-node {
+  from {
+    stroke: transparent;
+  }
+  10% {
+    stroke: $blue;
+  }
+  50% {
+    stroke: $blue;
+  }
+  to {
+    stroke: transparent;
   }
 }

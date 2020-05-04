@@ -6,26 +6,57 @@
         "ingredients":[
            {
               "id":"eggs",
-              "label":"Eggs"
+              "label":"Eggs",
+              "active": true
            },
            {
               "id":"pig_meat",
-              "label":"Bacon"
+              "label":"Bacon",
+              "active": true
            },
            {
               "id":"wheat_and_rye",
-              "label":"Toats"
+              "label":"Toats",
+              "active": true
            },
            {
               "id":"butter",
-              "label":"Butter"
+              "label":"Butter",
+              "active": true
            },
            {
               "id":"tomatoes",
-              "label":"Slices of tomatoe"
+              "label":"Slices of tomatoe",
+              "active": true
+           },
+           {
+              "id":"cheese",
+              "label":"Cheese",
+              "active":false
+           },
+           {
+              "id":"nuts",
+              "label":"Nuts",
+              "active": false
+           },
+           {
+              "id":"margarine",
+              "label":"Margarine",
+              "active": false
+           },
+           {
+              "id":"oil_olive",
+              "label":"Olive oil",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"bacon_to_cheese",
               "label":"Bacon -> Cheese",
@@ -98,22 +129,42 @@
         "ingredients":[
            {
               "id":"oatmeal",
-              "label":"Oatmeal"
+              "label":"Oatmeal",
+              "active": true
            },
            {
               "id":"milk",
-              "label":"Milk"
+              "label":"Milk",
+              "active": true
            },
            {
               "id":"berries_and_grapes",
-              "label":"Berries"
+              "label":"Berries",
+              "active": true
            },
            {
               "id":"nuts",
-              "label":"Nuts"
+              "label":"Nuts",
+              "active": true
+           },
+           {
+              "id":"soymilk",
+              "label":"Soy milk",
+              "active": false
+           },
+           {
+              "id":"bananas",
+              "label":"Bananas",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"milk_to_soy_milk_oatmeal",
               "label":"Milk -> Soy milk",
@@ -154,22 +205,57 @@
         "ingredients":[
            {
               "id":"eggs",
-              "label":"Eggs"
+              "label":"Eggs",
+              "active": true
            },
            {
               "id":"milk",
-              "label":"Milk"
+              "label":"Milk",
+              "active": true
            },
            {
               "id":"cheese",
-              "label":"Cheese"
+              "label":"Cheese",
+              "active": true
            },
            {
               "id":"vegetables_other",
-              "label":"Mixed vegetables"
+              "label":"Mixed vegetables",
+              "active": true
+           },
+           {
+              "id":"wheat_and_rye",
+              "label":"Bread",
+              "active": true
+           },
+           {
+              "id":"soymilk",
+              "label":"Soy milk",
+              "active": false
+           },
+           {
+              "id":"tofu",
+              "label":"Tofu",
+              "active": false
+           },
+           {
+              "id":"root_vegetables",
+              "label":"Sweet potatoes",
+              "active": false
+           },
+           {
+              "id":"peas",
+              "label":"Peas",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"milk_to_soy_milk_omelette",
               "label":"Milk -> Soy milk",
@@ -222,8 +308,12 @@
                     "label":"Tofu"
                  },
                  {
-                    "id":"tomatoes",
-                    "label":"Tomatoes"
+                    "id":"root_vegetables",
+                    "label":"Sweet potatoes"
+                 },
+                 {
+                    "id":"peas",
+                    "label":"Peas"
                  }
               ]
            }
@@ -237,22 +327,57 @@
         "ingredients":[
            {
               "id":"beef_beef_herd",
-              "label":"Beef (from beef herd)"
+              "label":"Beef (from beef herd)",
+              "active": true
            },
            {
               "id":"wheat_and_rye",
-              "label":"Bread"
+              "label":"Bread",
+              "active": true
            },
            {
               "id":"cheese",
-              "label":"Cheese"
+              "label":"Cheese",
+              "active": true
            },
            {
               "id":"potatoes",
-              "label":"Potatoes"
+              "label":"Potatoes",
+              "active": true
+           },
+           {
+              "id":"poultry_meat",
+              "label":"Chicken",
+              "active": false
+           },
+           {
+              "id":"legumes_other",
+              "label":"Chickpeas",
+              "active": false
+           },
+           {
+              "id":"vegetables_other",
+              "label":"Vegetables",
+              "active": false
+           },
+           {
+              "id":"nuts",
+              "label":"Sunflower seeds & Cashew",
+              "active": false
+           },
+           {
+              "id":"tofu",
+              "label":"Tofu",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"beef_to_chicken",
               "label":"Beef -> Chicken",
@@ -270,8 +395,8 @@
               ]
            },
            {
-              "key":"beef_to_chickpeas",
-              "label":"Make a Chickpea sunflower sandwich",
+              "key":"beef_to_mushrooms_lentils",
+              "label":"Make a Wild Mushroom Lentil burger",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -288,8 +413,12 @@
                     "label":"Chickpeas"
                  },
                  {
+                    "id":"vegetables_other",
+                    "label":"Vegetables"
+                 },
+                 {
                     "id":"nuts",
-                    "label":"Sunflower seeds"
+                    "label":"Sunflower seeds & Cashew"
                  }
               ]
            },
@@ -334,22 +463,52 @@
         "ingredients":[
            {
               "id":"poultry_meat",
-              "label":"Chicken"
+              "label":"Chicken",
+              "active": true
            },
            {
               "id":"vegetables_other",
-              "label":"Lettuce and other vegetables"
+              "label":"Lettuce and other vegetables",
+              "active": true
            },
            {
               "id":"cheese",
-              "label":"Cheese"
+              "label":"Cheese",
+              "active": true
            },
            {
               "id":"oil_rapeseed",
-              "label":"Rapeseed oil based dressing"
+              "label":"Rapeseed oil based dressing",
+              "active": true
+           },
+           {
+              "id":"eggs",
+              "label":"Eggs",
+              "active": false
+           },
+           {
+              "id":"legumes_other",
+              "label":"Lentils",
+              "active": false
+           },
+           {
+              "id":"nuts",
+              "label":"Nuts",
+              "active": false
+           },
+           {
+              "id":"oil_olive",
+              "label":"Olive oil",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"chicken_to_eggs",
               "label":"Chicken -> Eggs",
@@ -368,11 +527,16 @@
            },
            {
               "key":"chicken_to_lentils",
-              "label":"Chicken -> Lentils",
+              "label":"Make the best lentils salad ever",
               "removedIngredients":[
                  {
                     "id":"poultry_meat",
                     "label":"Chicken"
+                 },
+                 {
+                    "id":"cheese",
+                    "label":"Cheese",
+                    "active": true
                  }
               ],
               "addedIngredients":[
@@ -422,22 +586,57 @@
         "ingredients":[
            {
               "id":"prawns _farmed",
-              "label":"Shrimps"
+              "label":"Shrimps",
+              "active": true
            },
            {
               "id":"rice",
-              "label":"Rice"
+              "label":"Rice",
+              "active": true
            },
            {
               "id":"cruciferous_vegetables_and_cabbages",
-              "label":"Broccoli"
+              "label":"Broccoli",
+              "active": true
            },
            {
               "id":"onions_and_leeks",
-              "label":"Onions"
+              "label":"Onions",
+              "active": true
+           },
+           {
+              "id":"peas",
+              "label":"Green peas",
+              "active": false
+           },
+           {
+              "id":"tofu",
+              "label":"Tofu",
+              "active": false
+           },
+           {
+              "id":"legumes_other",
+              "label":"Chickpeas",
+              "active": false
+           },
+           {
+              "id":"groundnuts",
+              "label":"PB sauce",
+              "active": false
+           },
+           {
+              "id":"wheat_and_rye",
+              "label":"Wheat noodles",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"shrimps_to_peas",
               "label":"Shrimps -> Green peas",
@@ -456,7 +655,7 @@
            },
            {
               "key":"shrimps_to_tofu_chickpeas",
-              "label":"Shrimps -> Tofu & Chickpeas",
+              "label":"Try a high protein lettuce wrap with creamy PB sauce",
               "removedIngredients":[
                  {
                     "id":"prawns _farmed",
@@ -471,6 +670,10 @@
                  {
                     "id":"legumes_other",
                     "label":"Chickpeas"
+                 },
+                 {
+                    "id":"groundnuts",
+                    "label":"PB sauce"
                  }
               ]
            },
@@ -500,10 +703,22 @@
         "ingredients":[
            {
               "id":"beef_beef_herd",
-              "label":"Beef (from beef herd)"
+              "label":"Beef (from beef herd)",
+              "active": true
+           },
+           {
+              "id":"eggs",
+              "label":"Eggs",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"beef_jerky_to_eggs",
               "label":"Beek jerky -> 2 Boiled eggs",
@@ -528,14 +743,32 @@
         "ingredients":[
            {
               "id":"cheese",
-              "label":"Cheese"
+              "label":"Cheese",
+              "active": true
            },
            {
               "id":"berries_and_grapes",
-              "label":"Grapes"
+              "label":"Grapes",
+              "active": true
+           },
+           {
+              "id":"tofu",
+              "label":"Edamames",
+              "active": false
+           },
+           {
+              "id":"citrus_fruit",
+              "label":"Oranges",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"cheese_to_edamame",
               "label":"Cheese -> Edamame",
@@ -576,25 +809,44 @@
         "ingredients":[
            {
               "id":"bananas",
-              "label":"Bananas"
+              "label":"Bananas",
+              "active": true
            },
            {
               "id":"groundnuts",
-              "label":"Peanut butter"
+              "label":"Peanut butter",
+              "active": true
            },
            {
               "id":"chocolate_dark",
-              "label":"Dark chocolate"
+              "label":"Dark chocolate",
+              "active": true
+           },
+           {
+              "id":"nuts",
+              "label":"Nuts",
+              "active": false
+           },
+           {
+              "id":"apples",
+              "label":"Apples",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
-              "key":"pb_to_ab",
-              "label":"Peanut butter -> Almond butter",
+              "key":"pb_to_onb",
+              "label":"Peanut butter -> Other nut butter",
               "removedIngredients":[
                  {
                     "id":"groundnuts",
-                    "label":"Peanut butter"
+                    "label":"Peanuts"
                  }
               ],
               "addedIngredients":[
@@ -630,26 +882,57 @@
         "ingredients":[
            {
               "id":"beef_beef_herd",
-              "label":"Beef (from beef herd)"
+              "label":"Beef (from beef herd)",
+              "active": true
            },
            {
               "id":"wheat_and_rye",
-              "label":"Wheat pasta"
+              "label":"Wheat pasta",
+              "active": true
            },
            {
               "id":"tomatoes",
-              "label":"Tomatoes"
+              "label":"Tomatoes",
+              "active": true
            },
            {
               "id":"onions_and_leeks",
-              "label":"Onions"
+              "label":"Onions",
+              "active": true
            },
            {
               "id":"cheese",
-              "label":"Cheese"
+              "label":"Cheese",
+              "active": true
+           },
+           {
+              "id":"pig_meat",
+              "label":"Pork",
+              "active": false
+           },
+           {
+              "id":"legumes_other",
+              "label":"Black beans",
+              "active": false
+           },
+           {
+              "id":"peas",
+              "label":"Peas",
+              "active": false
+           },
+           {
+              "id":"vegetables_other",
+              "label":"Vegetables",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"beef_to_pork",
               "label":"Beef -> Pork",
@@ -693,6 +976,10 @@
                  {
                     "id":"tomatoes",
                     "label":"Tomatoes"
+                 },
+                 {
+                    "id":"cheese",
+                    "label":"cheese"
                  }
               ],
               "addedIngredients":[
@@ -727,22 +1014,52 @@
         "ingredients":[
            {
               "id":"poultry_meat",
-              "label":"Chicken"
+              "label":"Chicken",
+              "active": true
            },
            {
               "id":"onions_and_leeks",
-              "label":"Onions"
+              "label":"Onions",
+              "active": true
            },
            {
               "id":"vegetables_other",
-              "label":"Vegetables"
+              "label":"Vegetables",
+              "active": true
            },
            {
               "id":"rice",
-              "label":"Rice"
+              "label":"Rice",
+              "active": true
+           },
+           {
+              "id":"barley",
+              "label":"Barley",
+              "active": false
+           },
+           {
+              "id":"legumes_other",
+              "label":"Lentils",
+              "active": false
+           },
+           {
+              "id":"peas",
+              "label":"Peas",
+              "active": false
+           },
+           {
+              "id":"potatoes",
+              "label":"Potatoes",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"rice_to_barley",
               "label":"Rice -> Barley",
@@ -803,18 +1120,57 @@
         "ingredients":[
            {
               "id":"fish_farmed",
-              "label":"Fish (farmed)"
+              "label":"Fish (farmed)",
+              "active": true
            },
            {
               "id":"vegetables_other",
-              "label":"Vegetables"
+              "label":"Vegetables",
+              "active": true
            },
            {
               "id":"rice",
-              "label":"Rice"
+              "label":"Rice",
+              "active": true
+           },
+           {
+              "id":"tofu",
+              "label":"Edamame",
+              "active": false
+           },
+           {
+              "id":"root_vegetables",
+              "label":"Root vegetables",
+              "active": false
+           },
+           {
+              "id":"tofu",
+              "label":"Edamame",
+              "active": false
+           },
+           {
+              "id":"root_vegetables",
+              "label":"Root vegetables",
+              "active": false
+           },
+           {
+              "id":"tomatoes",
+              "label":"tomatoes",
+              "active": false
+           },
+           {
+              "id":"corn",
+              "label":"Corn",
+              "active": false
            }
         ],
         "swaps":[
+            {
+               "key":"reset",
+               "label":"Reset to original recipe",
+               "removedIngredients":[],
+               "addedIngredients":[]
+            },
            {
               "key":"fish_to_poke",
               "label":"Make a Poke-inspired beet bowl",

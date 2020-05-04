@@ -130,14 +130,27 @@
   .dropdown-header .dropdown-selection,
   .dropdown-options .option {
     color: $pink;
+    &.reset {
+      color: rgba($textPale, 0.6);
+    }
   }
   .dropdown-options .option {
     &:hover, &:focus {
       background-color: $pink;
     }
+    &.reset {
+      &:hover, &:focus {
+        color: #fff;
+        background-color: rgba($textPale, 0.6);
+      }
+    }
     &.active {
       color: $pink;
       background-color: transparent;
+      &.reset {
+        color: rgba($textPale, 0.6);
+        background-color: transparent;
+      }
     }
   }
   .dropdown-arrow--container .dropdown-arrow {

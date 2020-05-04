@@ -15,6 +15,11 @@ const m = categories.length; // number of distinct clusters
 const color = d3.scaleSequential(d3.interpolateRainbow)
   .domain(d3.range(m));
 
+let currentBreakfast = '';
+let currentLunch = '';
+let currentSnack = '';
+let currentDinner = '';
+
 // Generate clusters and initialize nodes arrays
 let clusters = d3.range(m).map((category, i) => {
   const d = {
@@ -60,6 +65,21 @@ function appendSelectors() {
 
 // Prep data for node generation
 function addMeal(meal, currentSelection, newSelection) {
+  switch (meal) {
+    case 'breakfast':
+      currentBreakfast = newSelection;
+      break;
+    case 'lunch':
+      currentLunch = newSelection;
+      break;
+    case 'snack':
+      currentSnack = newSelection;
+      break;
+    case 'dinner':
+      currentDinner = newSelection;
+      break;
+  }
+  
   let removedIngredients = [];
   if (currentSelection !== '') {
     removedIngredients = getIngredients(meal, currentSelection);
@@ -77,8 +97,7 @@ function swapIngredient(meal, swapId) {
       swap = obj;
     }
   });
-
-  updateNodes(meal, swap.removedIngredients, swap.addedIngredients);
+  swapNodes(meal, swap);
 }
 
 function updateNodes(meal, removedIngredients, addedIngredients) {
@@ -113,10 +132,10 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
           id: ingredient.id,
           label: ingredient.label,
           cluster: category.cluster,
-          radius: radius,
-          // x: width/2,
+          radius: ingredient.active ? radius : 0,
           x: (i+1) * (width/6) + paddingLeft + Math.random(),
-          y: height + Math.random()
+          y: height + Math.random(),
+          appear: false
         };
         nodes.push(d);
       });
@@ -126,6 +145,66 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
   console.log(nodes);
 
   // Display the simulation with updated nodes
+  updateSimulation();
+}
+
+function swapNodes(meal, swap) {
+  // Reset state of possible swaps
+  let menu = '';
+  switch (meal) {
+    case 'breakfast':
+      menu = currentBreakfast;
+      break;
+    case 'lunch':
+      menu = currentLunch;
+      break;
+    case 'snack':
+      menu = currentSnack;
+      break;
+    case 'dinner':
+      menu = currentDinner;
+      break;
+  }
+  const ingredients = menusDetail[meal].filter(obj => obj.key === menu)[0].ingredients;
+  ingredients.forEach(ingredient => {
+    const ingredientFoodprint = getFoodprint(ingredient.id);
+    nodes.forEach(node => {
+      if (node.meal === meal && node.id === ingredient.id) {
+        if (!ingredient.active && node.radius !== 0) {
+          node.radius = 0;
+          node.appear = false;
+        } else if (ingredient.active && node.radius === 0) {
+          const category = categories.filter(category => category.cluster === node.cluster)[0];
+          node.radius = Math.sqrt((parseFloat(ingredientFoodprint[category.label]) * parseFloat(ingredientFoodprint.portion_kg) * category.factor) / Math.PI);
+          node.appear = true;
+        }
+      }
+    });
+  });
+
+  // Hide removed ingredients
+  swap.removedIngredients.forEach(ingredient => {
+    nodes.forEach(node => {
+      if (node.meal === meal && node.id === ingredient.id) {
+        node.radius = 0;
+        node.appear = false;
+      }
+    });
+  });
+
+  // Show added ingredients
+  swap.addedIngredients.forEach(ingredient => {
+    const ingredientFoodprint = getFoodprint(ingredient.id);
+    nodes.forEach(node => {
+      if (node.meal === meal && node.id === ingredient.id) {
+        const category = categories.filter(category => category.cluster === node.cluster)[0];
+        node.radius = Math.sqrt((parseFloat(ingredientFoodprint[category.label]) * parseFloat(ingredientFoodprint.portion_kg) * category.factor) / Math.PI);
+        node.appear = true;
+      }
+    });
+  });
+
+  console.log(nodes);
   updateSimulation();
 }
 
@@ -144,8 +223,81 @@ let horizontalAxis = svg.append('line')
 
 let arc = d3.arc();
 
+// Append foodprint index circle
+let circlesIndex = svg.append('g');
+circlesIndex.append('circle')
+  .attr('class', 'index-circle')
+  .attr('cx', width/2 + paddingLeft)
+  .attr('cy', height)
+  .attr('r', 0);
+circlesIndex.append('circle')
+  .attr('class', 'index-circle--external')
+  .attr('cx', width/2 + paddingLeft)
+  .attr('cy', height)
+  .attr('r', 250);
+circlesIndex.append('path')
+  .attr('id', 'index-circle--path')
+  .attr('d', d => {
+    return arc({
+      startAngle: degreeToRadian(-90),
+      endAngle: degreeToRadian(90),
+      innerRadius: 260,
+      outerRadius: 260
+    });
+  })
+  // .style('stroke', 'black')
+  .style('transform', 'translate(' + (width/2 + paddingLeft) + 'px, ' + height + 'px)');
+circlesIndex.append('path')
+  .attr('id', 'index-circle--path--result')
+  .attr('d', d => {
+    return arc({
+      startAngle: degreeToRadian(90),
+      endAngle: degreeToRadian(270),
+      innerRadius: 240,
+      outerRadius: 240
+    });
+  })
+  // .style('stroke', 'black')
+  .style('transform', 'translate(' + (width/2 + paddingLeft) + 'px, ' + height + 'px)');
+circlesIndex.append('text')
+  .attr('class', 'foodprint-index--label')
+  .style('text-anchor', 'middle')
+  .append('textPath')
+    .attr('xlink:href', '#index-circle--path')
+    .attr('startOffset', '25%')
+    .text('Foodprint Index')
+  .on('mouseover', d => {
+    d3.event.stopPropagation();
+    d3.selectAll('.foodprint-index--label')
+      .classed('active', true);
+    d3.select('.index-circle--external')
+      .classed('active', true);
+  })
+  .on('click', d => {
+    d3.event.stopPropagation();
+    // Keep the hover styles
+    // d3.select('.axis-circles--' + category.class)
+    //   .classed('active-tooltip', true);
+    // Show the tooltip
+    // showCategoryTooltip(category.class, category.fact, category.source);
+  })
+  .on('mouseout', d => {
+    d3.event.stopPropagation();
+    d3.selectAll('.foodprint-index--label')
+      .classed('active', false);
+    d3.select('.index-circle--external')
+      .classed('active', false);
+  });
+circlesIndex.append('text')
+  .attr('class', 'foodprint-index--label foodprint-index--label--result')
+  .style('text-anchor', 'middle')
+  .append('textPath')
+    .attr('xlink:href', '#index-circle--path--result')
+    .attr('startOffset', '75%')
+    .text(0);
+
 if (windowWidth > 768) {
-  let circleAxis = svg.append('g')
+  svg.append('g')
     .attr('class', 'axis-circles--container')
     .selectAll('.axis-circles')
     .data(categories)
@@ -164,7 +316,7 @@ if (windowWidth > 768) {
         axisRadius = 100;
         break;
       case 2:
-        axisRadius = 280;
+        axisRadius = 180;
         break;
       case 3:
         axisRadius = 140;
@@ -189,7 +341,7 @@ if (windowWidth > 768) {
         .attr('cx', xTranslation)
         .attr('cy', height)
         .attr('r', axisRadius)
-        .attr('stroke-dasharray', '6');
+        .attr('stroke-dasharray', '6 8');
 
     // Append path for category titles
     d3.select('.axis-circles--' + category.class)
@@ -214,10 +366,10 @@ if (windowWidth > 768) {
         .attr('class', 'category-label--path')
         .attr('d', d => {
           return arc({
-            startAngle: degreeToRadian(-90),
-            endAngle: degreeToRadian(90),
-            innerRadius: axisRadius - 20,
-            outerRadius: axisRadius - 20
+            startAngle: degreeToRadian(90),
+            endAngle: degreeToRadian(270),
+            innerRadius: axisRadius - 10,
+            outerRadius: axisRadius - 10
           });
         })
         // .style('stroke', 'black')
@@ -257,13 +409,14 @@ if (windowWidth > 768) {
       .style('text-anchor', 'middle')
       .append('textPath')
         .attr('xlink:href', '#category-label--path--result--' + category.class)
-        .attr('startOffset', '25%')
+        .attr('startOffset', '75%')
         .text(0);
   });
 }
 
 let node = svg.append('g')
-  .selectAll('circle');
+  .selectAll('circle')
+  .attr('r', 0);
 
 let simulation = d3.forceSimulation();
 if (windowWidth <= 768) {
@@ -295,7 +448,6 @@ function updateSimulation() {
   node = node.data(nodes);
   node.exit().remove();
   node = node.enter().append('circle')
-    .attr('class', d => { return 'node node-' + d.meal + '-' + d.id; })
     .style('fill', d => colors[d.cluster])
     .merge(node)
     .on('mouseover', d => {
@@ -321,14 +473,25 @@ function updateSimulation() {
   simulation.alpha(0.02)
     .restart(); // Re-heat the simulation
 
+  // Calculate the areas for the axis circles
+  let areas = [0, 0, 0, 0, 0];
+  let foodprint = [0, 0, 0, 0, 0];
+  nodes.forEach(node => {
+    areas[node.cluster] += Math.PI * Math.pow(node.radius, 2);
+    foodprint[node.cluster] += Math.PI * Math.pow(node.radius, 2) / categories[node.cluster].factor;
+  });
+  updateFoodprint(foodprint);
+
+  // Update foodprint index circle and text
+  const foodprintAreaFactor = 100;
+  let foodprintIndex = parseFloat(getFoodprintIndex());
+  let radiusIndex = Math.sqrt(foodprintIndex / Math.PI);
+  d3.select('.index-circle')
+    .attr('r', radiusIndex * foodprintAreaFactor);
+  d3.select('.foodprint-index--label--result textPath')
+    .text(foodprintIndex);
+
   if (windowWidth > 768) {
-    // Calculate the areas for the axis circles
-    let areas = [0, 0, 0, 0, 0];
-    let foodprint = [0, 0, 0, 0, 0];
-    nodes.forEach(node => {
-      areas[node.cluster] += Math.PI * Math.pow(node.radius + paddingCircles, 2);
-      foodprint[node.cluster] += Math.PI * Math.pow(node.radius, 2) / categories[node.cluster].factor;
-    });
     // Update radius of the axis circles
     d3.selectAll('.axis-circle')
       .attr('r', (d, i) => {
@@ -346,7 +509,10 @@ function layoutTick() {
     .attr('cx', d => d.x)
     .attr('cy', d => d.y)
     .attr('r', d => d.radius)
-    .attr('class', d => { return 'node node-' + d.meal + '-' + d.id; });
+    .attr('class', d => {
+      const actionClass = d.appear ? ' appear' : '';
+      return 'node node-' + d.meal + '-' + d.id + actionClass; 
+    });
 }
 
 // Get list of ingredients of a selected meal
