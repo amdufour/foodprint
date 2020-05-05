@@ -27,7 +27,7 @@ const categories = [
     title: 'Water use',
     fact: 'Agriculture is by far the largest consumer of the Earth\’s available freshwater: 70% of “blue water” withdrawals from watercourses and groundwater are for agricultural usage, three times more than 50 years ago.',
     source: '2',
-    factor: 30
+    factor: 20
   },
   {
     cluster: 3,

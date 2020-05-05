@@ -1,9 +1,10 @@
 const windowWidth = window.innerWidth;
 const container = 1200;
 const padding = 30;
-const paddingLeft = windowWidth > (container) ? (windowWidth - container + padding * 2)/2 : padding;
-const width = windowWidth > (container) ? container - padding * 2 : windowWidth - padding * 2;
-const height = (window.innerHeight - 350) / 2 + 100;
+const paddingLeft = windowWidth > container ? (windowWidth - container + padding * 2)/2 : padding;
+const width = windowWidth > container ? container - padding * 2 : windowWidth - padding * 2;
+const maxHeight = (window.innerHeight - 326) / 2;
+const height = maxHeight > 250 ? 250 : maxHeight;
 const paddingCircles = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
 const radiusClustersCenters = 150; // Radius of the clusters centers
@@ -211,8 +212,7 @@ function swapNodes(meal, swap) {
 let svg = d3.select('#foodprint')
   .append('svg')
     .attr('class', 'foodprint-container')
-    .attr('width', '100vw')
-    .attr('height', '100vh');
+    .attr('height', height * 2);
 
 let horizontalAxis = svg.append('line')
   .attr('x1', paddingLeft)
@@ -234,15 +234,15 @@ circlesIndex.append('circle')
   .attr('class', 'index-circle--external')
   .attr('cx', width/2 + paddingLeft)
   .attr('cy', height)
-  .attr('r', 250);
+  .attr('r', height - 25);
 circlesIndex.append('path')
   .attr('id', 'index-circle--path')
   .attr('d', d => {
     return arc({
       startAngle: degreeToRadian(-90),
       endAngle: degreeToRadian(90),
-      innerRadius: 260,
-      outerRadius: 260
+      innerRadius: height - 15,
+      outerRadius: height - 15
     });
   })
   // .style('stroke', 'black')
@@ -253,8 +253,8 @@ circlesIndex.append('path')
     return arc({
       startAngle: degreeToRadian(90),
       endAngle: degreeToRadian(270),
-      innerRadius: 240,
-      outerRadius: 240
+      innerRadius: 245,
+      outerRadius: 245
     });
   })
   // .style('stroke', 'black')
@@ -310,19 +310,19 @@ if (windowWidth > 768) {
     let axisRadius;
     switch (category.cluster) {
       case 0:
-        axisRadius = 120;
+        axisRadius = height - 130;
         break;
       case 1:
-        axisRadius = 100;
+        axisRadius = height - 165;
         break;
       case 2:
-        axisRadius = 180;
+        axisRadius = height - 70;
         break;
       case 3:
-        axisRadius = 140;
+        axisRadius = height - 130;
         break;
       case 4:
-        axisRadius = 80;
+        axisRadius = height - 190;
         break;
     }
 
@@ -382,7 +382,7 @@ if (windowWidth > 768) {
           .append('textPath')
             .attr('xlink:href', '#category-label--path--' + category.class)
             .attr('startOffset', '25%')
-            .text(category.title + ' (' +category.unit + ')')
+            .text(category.title)
             .on('mouseover', d => {
               d3.event.stopPropagation();
               d3.select('.axis-circles--' + category.class)
@@ -487,7 +487,7 @@ function updateSimulation() {
   let foodprintIndex = parseFloat(getFoodprintIndex());
   let radiusIndex = Math.sqrt(foodprintIndex / Math.PI);
   d3.select('.index-circle')
-    .attr('r', radiusIndex * foodprintAreaFactor);
+    .attr('r', radiusIndex * foodprintAreaFactor * 0.9);
   d3.select('.foodprint-index--label--result textPath')
     .text(foodprintIndex);
 

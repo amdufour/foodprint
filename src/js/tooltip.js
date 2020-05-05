@@ -42,7 +42,10 @@ function showCategoryTooltip(category, fact, source) {
   const xpos = d3.event.pageX;
   const ypos = d3.event.pageY + 150;
 
+  console.log(category, fact, source);
+
   // Add text to the existing tooltip markup
+  d3.select('#tooltip-category .category-title .' + category).classed('hidden', false);
   d3.select('#tooltip-category .quote').attr('class', 'tooltip quote');
   d3.select('#tooltip-category .quote').classed(category, true);
   d3.select('#tooltip-category .tooltip--fact').text(fact);
@@ -73,6 +76,9 @@ function hideCategoryTooltip() {
     .transition()
     .duration(100)
     .style('opacity', 0);
+
+  // Hide back the title
+  d3.select('#tooltip-category .category-title .' + category).classed('hidden', true);
 
   // Remove hover styles from the circle axis and label
   d3.select('.axis-circles--' + category)

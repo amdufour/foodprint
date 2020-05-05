@@ -98,6 +98,24 @@
   .tooltip--container {
     padding: 20px;
   }
+  
+  // Title
+  .category-title {
+    .category-detail {
+      margin-bottom: 12px;
+      font-weight: 700;
+      &.land { color: $land; }
+      &.gas { color: $gas; }
+      &.water { color: $water; }
+      &.eutro { color: $eutro; }
+      &.cost { color: $cost; }
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+
+  // Fact
   .tooltip--fact {
     font-size: 1.2rem;
   }
@@ -107,19 +125,19 @@
     .quote-icon {
       content: '';
       position: absolute;
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       background-image: url(../svg/quote-land.svg);
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
       opacity: 0.3;
       &.quote-icon--left {
-        top: -14px;
-        left: -12px;
+        top: -11px;
+        left: -10px;
       }
       &.quote-icon--right {
-        bottom: -16px;
+        bottom: -12px;
         right: 0;
         transform: rotateZ(180deg);
       }

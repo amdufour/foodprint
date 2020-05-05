@@ -1,6 +1,18 @@
 // Dropdowns container
 .dropdowns-container {
-  margin-top: calc(100vh - 200px - 150px);
+  position: absolute;
+  bottom: 0;
+  left: calc((100vw - 1200px) / 2 + 30px);
+  right: calc((100vw - 1200px) / 2 + 30px);
+  margin-bottom: 20px;
+  @media (min-height: 826px) {
+    bottom: auto;
+    top: 666px;
+  }
+  @media (max-width: $container) {
+    left: $gutter;
+    right: $gutter;
+  }
 }
 
 // Labels
