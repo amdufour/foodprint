@@ -52,12 +52,19 @@
     text {
       font-size: 1.5rem;
     }
+    &.axis-circles--land text { fill: darken($land, 5%); }
+    &.axis-circles--gas text { fill: darken($gas, 10%); }
+    &.axis-circles--water text { fill: darken($water, 10%); }
+    &.axis-circles--eutro text { fill: darken($eutro, 10%); }
+    &.axis-circles--cost text { fill: darken($cost, 10%); }
     .axis-circle--delimiter {
       stroke-width: 2;
       stroke-opacity: .8;
-      &.axis-circle--delimiter--water {
-        stroke-opacity: 1;
-      }
+      &.axis-circle--delimiter--land { stroke: darken($land, 5%); }
+      &.axis-circle--delimiter--gas { stroke: darken($gas, 5%); }
+      &.axis-circle--delimiter--water { stroke: darken($water, 5%); stroke-opacity: 1;}
+      &.axis-circle--delimiter--eutro { stroke: darken($eutro, 5%); }
+      &.axis-circle--delimiter--cost { stroke: darken($cost, 5%); }
     }
   }
 }

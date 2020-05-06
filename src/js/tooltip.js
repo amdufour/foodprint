@@ -42,8 +42,6 @@ function showCategoryTooltip(category, fact, source) {
   const xpos = d3.event.pageX;
   const ypos = d3.event.pageY + 150;
 
-  console.log(category, fact, source);
-
   // Add text to the existing tooltip markup
   d3.select('#tooltip-category .category-title .' + category).classed('hidden', false);
   d3.select('#tooltip-category .quote').attr('class', 'tooltip quote');
@@ -55,7 +53,16 @@ function showCategoryTooltip(category, fact, source) {
   d3.select('#tooltip-category')
     .classed('visible', true)
     .style('top', ypos + 'px')
-    .style('left', xpos + 'px')
+    .style('left', () => {
+      switch (category) {
+        case 'land':
+          return xpos + 50 + 'px';
+        case 'cost':
+          return xpos - 50 + 'px';
+        default:
+          return xpos + 'px';
+      }
+    })
     .transition()
     .duration(0)
     .style('opacity', 1);

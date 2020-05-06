@@ -1,8 +1,17 @@
-.foodprint-title {
+.foodprint-title,
+.foodprint-subtitle {
   position: relative;
   z-index: 10;
-  margin: 60px 0;
-  font-size: 3rem;
   text-align: center;
   color: $blue;
+}
+.foodprint-title {
+  margin: 50px 0 5px;
+  font-size: 3rem;
+}
+.foodprint-subtitle {
+  font-size: 1.6rem;
+  .emphasis {
+    font-weight: 700;
+  }
 }

@@ -253,8 +253,8 @@ circlesIndex.append('path')
     return arc({
       startAngle: degreeToRadian(90),
       endAngle: degreeToRadian(270),
-      innerRadius: 245,
-      outerRadius: 245
+      innerRadius: height - 5,
+      outerRadius: height - 5
     });
   })
   // .style('stroke', 'black')
@@ -310,19 +310,19 @@ if (windowWidth > 768) {
     let axisRadius;
     switch (category.cluster) {
       case 0:
-        axisRadius = height - 130;
+        axisRadius = height - 115;
         break;
       case 1:
-        axisRadius = height - 165;
+        axisRadius = height - 150;
         break;
       case 2:
         axisRadius = height - 70;
         break;
       case 3:
-        axisRadius = height - 130;
+        axisRadius = height - 120;
         break;
       case 4:
-        axisRadius = height - 190;
+        axisRadius = height - 170;
         break;
     }
 
