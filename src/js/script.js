@@ -322,7 +322,7 @@ if (windowWidth > 768) {
         axisRadius = height - 120;
         break;
       case 4:
-        axisRadius = height - 170;
+        axisRadius = height - 150;
         break;
     }
 

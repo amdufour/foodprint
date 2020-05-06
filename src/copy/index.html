@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.min.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container visualization-screen">
 		<h1 class="foodprint-title">Your Daily Foodprint</h1>
 		<div class="foodprint-subtitle">How small changes can have a <span class="emphasis">BIG</span> impact</div>
 
@@ -115,12 +115,26 @@
 		</div>
 	</div>
 
+	<!-- Instructions -->
+	<div class="instructions--container">
+		<div class="instruction-box instruction-one">
+			<div class="instruction">Start by selecting a breakfast.</div>
+			<div class="close"></div>
+		</div>
+		<div class="instruction-box instruction-two">
+			<div class="instruction">After choosing a meal, play with the available swaps and observe how they affect your daily foodprint.</div>
+			<div class="close"></div>
+		</div>
+		<div class="instruction-hole"></div>
+	</div>
+
 	<!-- Scripts -->
 	<script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://unpkg.com/d3-force-attract@latest"></script>
 	<script src="https://unpkg.com/d3-force-cluster@latest"></script>
 	<script src="js/categories.js"></script>
 	<script src="js/dropdown.js"></script>
+	<script src="js/instructions.js"></script>
 	<script src="js/tooltip.js"></script>
 	<script src="js/foodprint_index.js"></script>
 	<!-- <script src="js/script.min.js"></script> -->
