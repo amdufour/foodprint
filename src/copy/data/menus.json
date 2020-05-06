@@ -585,7 +585,7 @@
         "label":"Shrimps sautéed with Rice noodles and Vegetables",
         "ingredients":[
            {
-              "id":"prawns _farmed",
+              "id":"prawns_farmed",
               "label":"Shrimps",
               "active": true
            },
