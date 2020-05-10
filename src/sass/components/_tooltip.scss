@@ -1,4 +1,5 @@
 #tooltip,
+#tooltip-swap-impact,
 #tooltip-category {
   position: absolute;
   z-index: 100;
@@ -77,6 +78,7 @@
   }
 }
 #tooltip,
+#tooltip-swap-impact,
 #tooltip-category,
 .instructions--container {
   .close {
@@ -98,6 +100,42 @@
   }
 }
 
+// Swap impact tooltip
+#tooltip-swap-impact {
+  .swap-title {
+    font-size: 2rem;
+    font-weight: 700;
+    .swap-title--icon {
+      margin: 0 auto 2px;
+      width: 55px;
+      height: 55px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .swap-title--text {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  }
+
+  .swap-summary {
+    margin-bottom: 5px;
+    line-height: 1.3;
+    .summary-swap {
+      text-decoration: underline;
+    }
+    .summary-result {
+      font-weight: 700;
+    }
+  }
+
+  .tooltip--details {
+    font-size: 1.3rem;
+  }
+}
+
+// Category tooltips
 #tooltip-category {
   .tooltip--container {
     padding: 20px;

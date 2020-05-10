@@ -107,8 +107,11 @@ function closeDropdowns() {
 // Close open tooltip
 function closeTooltip(target) {
   const categoryTooltip = document.getElementById('tooltip-category');
+  const swapImpactTooltip = document.getElementById('tooltip-swap-impact');
   if (!target.parentNode.classList.contains('tooltip') && categoryTooltip.classList.contains('visible')) {
     hideCategoryTooltip();
+  } else if (!target.parentNode.classList.contains('tooltip') && swapImpactTooltip.classList.contains('visible')) {
+    hideSwapImpactTooltip();
   }
 }
 

@@ -91,3 +91,67 @@ function hideCategoryTooltip() {
   d3.select('.axis-circles--' + category)
     .classed('active-tooltip', false);
 }
+
+// Show swap impact
+const swapIconsPos = ['earth-happy_01', 'earth-happy_02', 'earth-happy_03'];
+const swapIconsNeg = ['earth-sad_01', 'earth-sad_02'];
+const swapTitlePos = ['Good job!', 'Way to go!', 'You made it look easy!'];
+const swapTitleNeg = ['Womp Womp...', 'Let\'s take a deeper look'];
+function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) {
+  console.log(swap);
+  console.log(currentFoodprint, newFoodprint, currentFI, newFI);
+
+  let impactIsReduced;
+  newFI < currentFI ? impactIsReduced = true : impactIsReduced = false;
+  const iconMax = impactIsReduced ? swapIconsPos.length : swapIconsNeg.length;
+  const iconRandomNumber = Math.floor(Math.random() * (iconMax));
+  const titleRandomNumber = Math.floor(Math.random() * (iconMax));
+  const icon = impactIsReduced ? swapIconsPos[iconRandomNumber] : swapIconsNeg[iconRandomNumber];
+  const title = impactIsReduced ? swapTitlePos[titleRandomNumber] : swapTitleNeg[titleRandomNumber];
+  console.log(titleRandomNumber);
+  const impactSummary = impactIsReduced ? 'reduces' : 'increases';
+
+  const FIDiff = Math.ceil((Math.abs(currentFI -  newFI) / currentFI * 100));
+
+  d3.select('#tooltip-swap-impact .swap-title--icon')
+    .style('background-image', 'url(../svg/' + icon + '.svg)');
+  d3.select('#tooltip-swap-impact .swap-title--text').text(title);
+  d3.select('#tooltip-swap-impact .summary-swap').text(swap);
+  d3.select('#tooltip-swap-impact .summary-impact').text(impactSummary);
+  d3.select('#tooltip-swap-impact .summary-result').text(FIDiff);
+
+  currentFoodprint.forEach((foodprint, index) => {
+    const diff = (Math.abs(newFoodprint[index] - foodprint) / foodprint * 100).toFixed(2);
+    const sign = (newFoodprint[index] - foodprint) > 0 ? '+' : '-';
+    d3.select('#tooltip-swap-impact .detail--' + categories[index].class + ' .detail-impact').text(sign + diff);
+  });
+
+  // Make the tooltip appear
+  setTimeout( function () {
+    d3.select('#tooltip-swap-impact')
+      .classed('visible', true)
+      .style('top', '450px')
+      .style('left', 'auto')
+      .style('right', '250px')
+      .transition()
+      .duration(100)
+      .style('opacity', 1);
+  }, 1000);
+}
+
+// Hide the swap impact tooltip
+d3.select('#tooltip-swap-impact .close')
+  .on('click', d => {
+    hideSwapImpactTooltip();
+  });
+function hideSwapImpactTooltip() {
+  // Hide the tooltip
+  d3.select('#tooltip-swap-impact')
+    .classed('visible', false)
+    .style('top', '-1000px')
+    .style('left', '-1000px')
+    .style('right', 'auto')
+    .transition()
+    .duration(100)
+    .style('opacity', 0);
+}

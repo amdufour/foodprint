@@ -20,6 +20,8 @@ let currentBreakfast = '';
 let currentLunch = '';
 let currentSnack = '';
 let currentDinner = '';
+let isSwap = false;
+let currentSwap = '';
 
 // Generate clusters and initialize nodes arrays
 let clusters = d3.range(m).map((category, i) => {
@@ -143,13 +145,14 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
     });
   }
 
-  console.log(nodes);
-
   // Display the simulation with updated nodes
+  isSwap = false;
   updateSimulation();
 }
 
 function swapNodes(meal, swap) {
+  currentSwap = swap.label;
+
   // Reset state of possible swaps
   let menu = '';
   switch (meal) {
@@ -209,7 +212,7 @@ function swapNodes(meal, swap) {
     });
   });
 
-  console.log(nodes);
+  isSwap = true;
   updateSimulation();
 }
 
@@ -454,6 +457,7 @@ simulation
 
 const counters = document.querySelectorAll('.foodprint-result--number');
 const indexCounter = document.getElementById('foodprint-result--number--index');
+let currentFoodprintIndex = 0;
 function updateSimulation() {
   // Apply the general update pattern to the nodes
   node = node.data(nodes);
@@ -491,6 +495,7 @@ function updateSimulation() {
     areas[node.cluster] += Math.PI * Math.pow(node.radius, 2);
     foodprint[node.cluster] += Math.PI * Math.pow(node.radius, 2) / categories[node.cluster].factor;
   });
+
   updateFoodprint(foodprint);
 
   // Update foodprint index circle and text
@@ -500,6 +505,11 @@ function updateSimulation() {
   d3.select('.index-circle')
     .attr('r', radiusIndex * foodprintAreaFactor * 0.9);
   animateNumber('foodprint-result--number--index', +indexCounter.innerHTML, foodprintIndex);
+
+  // If swap, show swap impact tooltip
+  if (isSwap) {
+    showSwapImpact(currentFoodprint, newFoodprint, currentFoodprintIndex, foodprintIndex, currentSwap);
+  }
 
   if (windowWidth > 768) {
     // Update radius of the axis circles
@@ -513,6 +523,8 @@ function updateSimulation() {
       animateNumber(counter.id, +counter.innerHTML, +foodprint[i].toFixed(2));
     });
   }
+
+  currentFoodprintIndex = foodprintIndex;
 }
 
 function layoutTick() {
