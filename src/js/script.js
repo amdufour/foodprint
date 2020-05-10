@@ -267,6 +267,7 @@ circlesIndex.append('text')
   .attr('class', 'foodprint-index--label')
   .style('text-anchor', 'middle')
   .append('textPath')
+
     .attr('xlink:href', '#index-circle--path')
     .attr('startOffset', '25%')
     .text('Foodprint Index')
@@ -296,6 +297,8 @@ circlesIndex.append('text')
   .attr('class', 'foodprint-index--label foodprint-index--label--result')
   .style('text-anchor', 'middle')
   .append('textPath')
+    .attr('id', 'foodprint-result--number--index')
+    .attr('class', 'foodprint-result--number--index')
     .attr('xlink:href', '#index-circle--path--result')
     .attr('startOffset', '75%')
     .text(0);
@@ -412,6 +415,8 @@ if (windowWidth > 768) {
       .attr('class', 'foodprint-result')
       .style('text-anchor', 'middle')
       .append('textPath')
+        .attr('id', 'foodprint-result--number--' + category.class)
+        .attr('class', 'foodprint-result--number')
         .attr('xlink:href', '#category-label--path--result--' + category.class)
         .attr('startOffset', '75%')
         .text(0);
@@ -447,6 +452,8 @@ simulation
   .force('collide', d3.forceCollide(d => (d.radius + paddingCircles) ))
   .on('tick', layoutTick);
 
+const counters = document.querySelectorAll('.foodprint-result--number');
+const indexCounter = document.getElementById('foodprint-result--number--index');
 function updateSimulation() {
   // Apply the general update pattern to the nodes
   node = node.data(nodes);
@@ -492,8 +499,7 @@ function updateSimulation() {
   let radiusIndex = Math.sqrt(foodprintIndex / Math.PI);
   d3.select('.index-circle')
     .attr('r', radiusIndex * foodprintAreaFactor * 0.9);
-  d3.select('.foodprint-index--label--result textPath')
-    .text(foodprintIndex);
+  animateNumber('foodprint-result--number--index', +indexCounter.innerHTML, foodprintIndex);
 
   if (windowWidth > 768) {
     // Update radius of the axis circles
@@ -501,10 +507,11 @@ function updateSimulation() {
       .attr('r', (d, i) => {
         return Math.sqrt(areas[i] / Math.PI);
       });
-    d3.selectAll('.foodprint-result textPath')
-      .text((d, i) => {
-        return foodprint[i].toFixed(2);
-      });
+
+    // Update foodprint counters
+    counters.forEach((counter, i) => {
+      animateNumber(counter.id, +counter.innerHTML, +foodprint[i].toFixed(2));
+    });
   }
 }
 
