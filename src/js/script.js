@@ -177,7 +177,11 @@ function swapNodes(meal, swap) {
         } else if (ingredient.active && node.radius === 0) {
           const category = categories.filter(category => category.cluster === node.cluster)[0];
           node.radius = Math.sqrt((parseFloat(ingredientFoodprint[category.label]) * parseFloat(ingredientFoodprint.portion_kg) * category.factor) / Math.PI);
-          node.appear = true;
+          
+          // If the new ingredient was not already present in the original recipe, change it's appear state
+          if (swap.addedIngredients.some(addition => addition.id === ingredient.id)) {
+            node.appear = true;
+          }
         }
       }
     });
