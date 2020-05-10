@@ -45,7 +45,7 @@ const categories = [
     label: 'cost_usd_per_kg',
     unit: 'USD',
     title: 'Average cost',
-    fact: 'Meat production is expansive. Adding more vegetables, grains and legumes to our diet is an easy way to lower your food cost!',
+    fact: 'Meat production is expensive. Adding more vegetables, grains and legumes to our diet is an easy way to lower your food cost!',
     source: '',
     factor: 100 },
 ];
