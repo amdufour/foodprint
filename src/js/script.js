@@ -188,7 +188,7 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
 }
 
 function swapNodes(meal, swap) {
-  currentSwap = swap.label;
+  currentSwap = swap.impactLabel;
 
   // Reset state of possible swaps
   let menu = '';

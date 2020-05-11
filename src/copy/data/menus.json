@@ -54,12 +54,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"bacon_to_cheese",
               "label":"Bacon -> Cheese",
+              "impactLabel":"Swaping bacon for cheese",
               "removedIngredients":[
                  {
                     "id":"pig_meat",
@@ -76,6 +78,7 @@
            {
               "key":"bacon_to_nuts",
               "label":"Bacon -> Nuts",
+              "impactLabel":"Swaping bacon for nuts",
               "removedIngredients":[
                  {
                     "id":"pig_meat",
@@ -92,6 +95,7 @@
            {
               "key":"butter_to_margarine",
               "label":"Butter -> Margarine",
+              "impactLabel":"Swaping butter for margarine",
               "removedIngredients":[
                  {
                     "id":"butter",
@@ -108,6 +112,7 @@
            {
               "key":"butter_to_olive_oil",
               "label":"Butter -> Olive oil",
+              "impactLabel":"Swaping butter for olive oil",
               "removedIngredients":[
                  {
                     "id":"butter",
@@ -162,12 +167,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"milk_to_soy_milk_oatmeal",
               "label":"Milk -> Soy milk",
+              "impactLabel":"Swaping milk for soy milk",
               "removedIngredients":[
                  {
                     "id":"milk",
@@ -184,6 +191,7 @@
            {
               "key":"berries_to_bananas",
               "label":"Berries -> Bananas",
+              "impactLabel":"Swaping berries for bananas",
               "removedIngredients":[
                  {
                     "id":"berries_and_grapes",
@@ -253,12 +261,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"milk_to_soy_milk_omelette",
               "label":"Milk -> Soy milk",
+              "impactLabel":"Swaping milk for soy milk",
               "removedIngredients":[
                  {
                     "id":"milk",
@@ -275,6 +285,7 @@
            {
               "key":"remove_cheese",
               "label":"Omit cheese",
+              "impactLabel":"Omitting cheese in your omelette",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -288,6 +299,7 @@
            {
               "key":"omelette_to_tofu_scramble",
               "label":"Try a Country Tofu Scamble!",
+              "impactLabel":"Making a Country Tofu Scramble instead of a traditional omelette",
               "removedIngredients":[
                  {
                     "id":"eggs",
@@ -375,12 +387,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"beef_to_chicken",
               "label":"Beef -> Chicken",
+              "impactLabel":"Swaping beef for chicken",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -397,6 +411,7 @@
            {
               "key":"beef_to_mushrooms_lentils",
               "label":"Make a Wild Mushroom Lentil burger",
+              "impactLabel":"Making a Wild Mushroom Lentil burger",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -425,6 +440,7 @@
            {
               "key":"beef_to_tofu_vietnamese",
               "label":"Make a Tofu vietnamese sub",
+              "impactLabel":"Making a tofu vietnamese sub",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -445,6 +461,7 @@
            {
               "key":"omit_cheese",
               "label":"Omit cheese",
+              "impactLabel":"Omitting cheese in your burger",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -506,6 +523,7 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
@@ -528,6 +546,7 @@
            {
               "key":"chicken_to_lentils",
               "label":"Make the best lentils salad ever",
+              "impactLabel":"Making the best lentils salad ever",
               "removedIngredients":[
                  {
                     "id":"poultry_meat",
@@ -549,6 +568,7 @@
            {
               "key":"cheese_to_nuts",
               "label":"Cheese -> Nuts",
+              "impactLabel":"Swaping cheese for nuts",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -565,6 +585,7 @@
            {
               "key":"rapeseedoil_to_oliveoil",
               "label":"Rapeseed oil",
+              "impactLabel":"Swaping rapeseed oil for olive oil",
               "removedIngredients":[
                  {
                     "id":"oil_rapeseed",
@@ -634,12 +655,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"shrimps_to_peas",
               "label":"Shrimps -> Green peas",
+              "impactLabel":"Swaping shrimps for green peas",
               "removedIngredients":[
                  {
                     "id":"prawns _farmed",
@@ -656,6 +679,7 @@
            {
               "key":"shrimps_to_tofu_chickpeas",
               "label":"Try a high protein lettuce wrap with creamy PB sauce",
+              "impactLabel":"Making a high protein lettuce wrap with creamy PB sauce",
               "removedIngredients":[
                  {
                     "id":"prawns _farmed",
@@ -680,6 +704,7 @@
            {
               "key":"rice_to_wheat_noodles",
               "label":"Rice noodles -> Wheat noodles",
+              "impactLabel":"Swaping rice for wheat",
               "removedIngredients":[
                  {
                     "id":"rice",
@@ -716,12 +741,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"beef_jerky_to_eggs",
               "label":"Beek jerky -> 2 Boiled eggs",
+              "impactLabel":"Swaping beef for eggs",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -766,12 +793,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"cheese_to_edamame",
               "label":"Cheese -> Edamame",
+              "impactLabel":"Swaping cheese for edamame",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -788,6 +817,7 @@
            {
               "key":"grapes_to_citrus",
               "label":"Grapes -> Oranges",
+              "impactLabel":"Swaping grapes for oranges",
               "removedIngredients":[
                  {
                     "id":"berries_and_grapes",
@@ -804,7 +834,7 @@
         ]
      },
      {
-        "key":"cheese_and_fruits",
+        "key":"pb_banana_chocolate",
         "label":"PB & Banana with Dark chocolate",
         "ingredients":[
            {
@@ -837,12 +867,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"pb_to_onb",
               "label":"Peanut butter -> Other nut butter",
+              "impactLabel":"Swaping peanuts for almonds",
               "removedIngredients":[
                  {
                     "id":"groundnuts",
@@ -859,6 +891,7 @@
            {
               "key":"bananas_to_apples",
               "label":"Bananas -> Apples",
+              "impactLabel":"Swaping bananas for apples",
               "removedIngredients":[
                  {
                     "id":"bananas",
@@ -930,12 +963,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"beef_to_pork",
               "label":"Beef -> Pork",
+              "impactLabel":"Swaping beef for pork",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -952,6 +987,7 @@
            {
               "key":"beef_to_macaroni_chili",
               "label":"Make a Macaroni chili",
+              "impactLabel":"Making a Macaroni chili",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -968,6 +1004,7 @@
            {
               "key":"beef_to_one_pot",
               "label":"Make a Sanity saving One pot Pasta",
+              "impactLabel":"Making a Sanity saving One pot Pasta",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -996,6 +1033,7 @@
            {
               "key":"remove_cheese",
               "label":"Omit cheese",
+              "impactLabel":"Omitting cheese",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -1057,12 +1095,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"rice_to_barley",
               "label":"Rice -> Barley",
+              "impactLabel":"Swaping rice for barley",
               "removedIngredients":[
                  {
                     "id":"rice",
@@ -1079,6 +1119,7 @@
            {
               "key":"chicken_to_lentils",
               "label":"Make a Red Lentils soup",
+              "impactLabel":"Making a Red Lentils soup",
               "removedIngredients":[
                  {
                     "id":"poultry_meat",
@@ -1095,6 +1136,7 @@
            {
               "key":"chicken_to_peas",
               "label":"Make a Potatoes & Peas curry",
+              "impactLabel":"Making a Potatoes & Peas curry",
               "removedIngredients":[
                  {
                     "id":"poultry_meat",
@@ -1168,12 +1210,14 @@
             {
                "key":"reset",
                "label":"Reset to original recipe",
+               "impactLabel":"Going back to the original recipe",
                "removedIngredients":[],
                "addedIngredients":[]
             },
            {
               "key":"fish_to_poke",
               "label":"Make a Poke-inspired beet bowl",
+              "impactLabel":"Making a Poke-inspired beet bowl",
               "removedIngredients":[
                  {
                     "id":"fish_farmed",
@@ -1194,6 +1238,7 @@
            {
               "key":"fish_to_sweet_potatoe",
               "label":"Make a Big comfy Sweet Potato",
+              "impactabel":"Making a Big comfy Sweet Potato",
               "removedIngredients":[
                  {
                     "id":"fish_farmed",
@@ -1222,6 +1267,7 @@
            {
               "key":"rice_to_corn",
               "label":"Rice -> Corn",
+              "impactLabel":"Swaping rice for corn",
               "removedIngredients":[
                  {
                     "id":"rice",
