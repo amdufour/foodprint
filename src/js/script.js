@@ -495,6 +495,11 @@ function updateSimulation() {
     .merge(node)
     .on('mouseover', d => {
       d3.event.stopPropagation();
+      // Close swap impact if open
+      if (document.querySelector('#tooltip-swap-impact.visible') !== null) {
+        d3.select('#tooltip-swap-impact')
+          .classed('visible', false);
+      }
       // Add a blue stroke to the circles related to the hovered ingredient
       d3.selectAll('.node-' + d.meal + '-' + d.id)
         .classed('active', true);

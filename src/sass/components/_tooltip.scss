@@ -1,16 +1,7 @@
 #tooltip,
 #tooltip-swap-impact,
 #tooltip-category {
-  position: absolute;
-  z-index: 100;
-  opacity: 0;
-  top: -1000px;
-  left: -1000px;
   .tooltip--container {
-    position: absolute;
-    bottom: 0;
-    left: -200px;
-    width: 400px;
     padding: 30px $gutter/2;
     background: rgba(255, 255, 255, 0.95);
     border-radius: $radius;
@@ -101,17 +92,18 @@
 }
 
 // Nodes tooltip
-#tooltip {
+#tooltip,
+#tooltip-swap-impact {
   position: static;
   width: 100%;
-  min-height: 0;
+  max-height: 0;
   opacity: 0;
   .tooltip--container {
     position: static;
     width: 100%;
   }
   &.visible {
-    min-height: auto;
+    max-height: auto;
     opacity: 1;
     transition: opacity 100ms ease;
   }
@@ -154,7 +146,16 @@
 
 // Category tooltips
 #tooltip-category {
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  top: -1000px;
+  left: -1000px;
   .tooltip--container {
+    position: absolute;
+    bottom: 0;
+    left: -200px;
+    width: 400px;
     padding: 20px;
   }
   

@@ -95,7 +95,6 @@ function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) 
   const titleRandomNumber = Math.floor(Math.random() * (iconMax));
   const icon = impactIsReduced ? swapIconsPos[iconRandomNumber] : swapIconsNeg[iconRandomNumber];
   const title = impactIsReduced ? swapTitlePos[titleRandomNumber] : swapTitleNeg[titleRandomNumber];
-  console.log(titleRandomNumber);
   const impactSummary = impactIsReduced ? 'reduces' : 'increases';
 
   const FIDiff = Math.ceil((Math.abs(currentFI -  newFI) / currentFI * 100));
@@ -114,16 +113,8 @@ function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) 
   });
 
   // Make the tooltip appear
-  setTimeout( function () {
-    d3.select('#tooltip-swap-impact')
-      .classed('visible', true)
-      .style('top', '450px')
-      .style('left', 'auto')
-      .style('right', '250px')
-      .transition()
-      .duration(100)
-      .style('opacity', 1);
-  }, 1000);
+  d3.select('#tooltip-swap-impact')
+    .classed('visible', true);
 }
 
 // Hide the swap impact tooltip
@@ -134,11 +125,5 @@ d3.select('#tooltip-swap-impact .close')
 function hideSwapImpactTooltip() {
   // Hide the tooltip
   d3.select('#tooltip-swap-impact')
-    .classed('visible', false)
-    .style('top', '-1000px')
-    .style('left', '-1000px')
-    .style('right', 'auto')
-    .transition()
-    .duration(100)
-    .style('opacity', 0);
+    .classed('visible', false);
 }
