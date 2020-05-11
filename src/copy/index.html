@@ -9,8 +9,42 @@
 		<h1 class="foodprint-title">Your Daily Foodprint</h1>
 		<div class="foodprint-subtitle">How small changes can have a <span class="emphasis">BIG</span> impact</div>
 
-		<!-- Foodprint visualization -->
-		<div id="foodprint"></div>
+		<div class="row">
+			<div class="col-12 col-lg-8">
+				<!-- Foodprint visualization -->
+				<div id="foodprint"></div>
+			</div>
+			<div class="col-12 col-lg-4 right-col">
+
+				<!-- Swap impact and related informations -->
+				<div class="swap-impact--container">
+					<div class="impact-index">
+						<div class="index-text">Your current foodprint index is</div>
+						<div id="impact-index--number" class="index-number">0</div>
+					</div>
+
+					<!-- Circles tooltip -->
+					<div id="tooltip">
+						<div class="tooltip--container">
+							<div class="tooltip--ingredient">Bacon</div>
+							<div class="tooltip--meal">Meal: <span></span></div>
+							<div class="tooltip--portion">Portion: <span></span>g</div>
+							<div class="tooltip--details">
+									<div class="tooltip--foodprint-index">Foodprint detail (per kg of food)<span></span></div>
+									<div class="tooltip--foodprint-detail">
+											<div class="detail detail--land">Land use : <span></span>m<sup>2</sup></div>
+											<div class="detail detail--gas">Greenhouse gas emissions : <span></span>kgCO<sub>2eq</sub></div>
+											<div class="detail detail--water">Freshwater withdrawal : <span></span>L</div>
+											<div class="detail detail--eutro">Eutrophying emissions : <span></span>kgPO<sub>4eq</sub></div>
+											<div class="detail detail--cost">Average cost : <span></span>USD</div>
+									</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
 
 		<!-- Selectors -->
 		<div class="row dropdowns-container">
@@ -72,25 +106,6 @@
 					<select disabled id="dropdown--dinner--swap" class="dropdown dropdown--swap dropdown--swap--dinner" onchange="handleSelectChange(event.target)">
 						<option disabled selected value class="option default">Select a swap</option>
 					</select>
-				</div>
-			</div>
-		</div>
-
-		<!-- Circles tooltip -->
-		<div id="tooltip">
-			<div class="tooltip--container">
-				<div class="tooltip--ingredient">Bacon</div>
-				<div class="tooltip--meal">Meal: <span></span></div>
-				<div class="tooltip--portion">Portion: <span></span>g</div>
-				<div class="tooltip--details">
-						<div class="tooltip--foodprint-index">Foodprint detail (per kg of food)<span></span></div>
-						<div class="tooltip--foodprint-detail">
-								<div class="detail detail--land">Land use : <span></span>m<sup>2</sup></div>
-								<div class="detail detail--gas">Greenhouse gas emissions : <span></span>kgCO<sub>2eq</sub></div>
-								<div class="detail detail--water">Freshwater withdrawal : <span></span>L</div>
-								<div class="detail detail--eutro">Eutrophying emissions : <span></span>kgPO<sub>4eq</sub></div>
-								<div class="detail detail--cost">Average cost : <span></span>USD</div>
-						</div>
 				</div>
 			</div>
 		</div>

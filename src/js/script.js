@@ -1,9 +1,9 @@
 const windowWidth = window.innerWidth;
 const container = 1200;
 const padding = 30;
-const paddingLeft = windowWidth > container ? (windowWidth - container + padding * 2)/2 : padding;
-const width = windowWidth > container ? container - padding * 2 : windowWidth - padding * 2;
-const maxHeight = (window.innerHeight - 326) / 2;
+const paddingLeft = 0;
+const width = windowWidth > container ? (container - padding * 2) * 2/3 : (windowWidth - padding * 2) * 2/3;
+const maxHeight = (window.innerHeight - 336) / 2;
 const height = maxHeight > 250 ? 250 : maxHeight;
 const paddingCircles = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
@@ -25,11 +25,37 @@ let currentSwap = '';
 
 // Generate clusters and initialize nodes arrays
 let clusters = d3.range(m).map((category, i) => {
+  let xTranslation = 0;
+  let yTranslation = 0;
+
+  switch (i) {
+    case 0:
+      xTranslation = width / 5;
+      yTranslation = 3 * height / 2;
+      break;
+    case 1:
+      xTranslation = 1.5 * width / 6;
+      yTranslation = 2.8 * height / 5;
+      break;
+    case 2:
+      xTranslation = width / 2;
+      yTranslation = height;
+      break;
+    case 3:
+      xTranslation = 4 * width / 5;
+      yTranslation = 2.9 * height / 2;
+      break;
+    case 4:
+      xTranslation = 4.5 * width / 6;
+      yTranslation = 2.8 * height / 5;
+      break;
+  }
+  
   const d = {
     cluster: i,
     radius: maxRadius,
-    x: (i+1) * (width/6) + paddingLeft,
-    y: height
+    x: xTranslation,
+    y: yTranslation
   };
   return d;
 });
@@ -221,13 +247,6 @@ let svg = d3.select('#foodprint')
     .attr('class', 'foodprint-container')
     .attr('height', height * 2);
 
-let horizontalAxis = svg.append('line')
-  .attr('x1', paddingLeft)
-  .attr('y1', height)
-  .attr('x2', paddingLeft + width)
-  .attr('y2', height)
-  .attr('class', 'axis');
-
 let arc = d3.arc();
 
 // Append foodprint index circle
@@ -270,7 +289,6 @@ circlesIndex.append('text')
   .attr('class', 'foodprint-index--label')
   .style('text-anchor', 'middle')
   .append('textPath')
-
     .attr('xlink:href', '#index-circle--path')
     .attr('startOffset', '25%')
     .text('Foodprint Index')
@@ -315,41 +333,40 @@ if (windowWidth > 768) {
     .append('g')
       .attr('class', d => { return 'axis-circles axis-circles--' + d.class; });
 
-  categories.forEach(category => {
-    let xTranslation = (category.cluster + 1) * (width/6) + paddingLeft;
+  categories.forEach((category, i) => {
     let axisRadius;
     switch (category.cluster) {
       case 0:
-        axisRadius = height - 115;
+        axisRadius = height - 125;
         break;
       case 1:
         axisRadius = height - 150;
         break;
       case 2:
-        axisRadius = height - 70;
+        axisRadius = height - 80;
         break;
       case 3:
-        axisRadius = height - 120;
+        axisRadius = height - 125;
         break;
       case 4:
-        axisRadius = height - 150;
+        axisRadius = height - 160;
         break;
     }
 
-    // Append circles shwing foodprint in each category
+    // Append circles showing foodprint in each category
     d3.select('.axis-circles--' + category.class)
       .append('circle')
         .attr('class', 'axis axis-circle axis-circle--' + category.class)
-        .attr('cx', xTranslation)
-        .attr('cy', height)
+        .attr('cx', clusters[category.cluster].x)
+        .attr('cy', clusters[category.cluster].y)
         .attr('r', 0);
 
     // Append delimiter circles for each category
     d3.select('.axis-circles--' + category.class)
       .append('circle')
         .attr('class', 'axis axis-circle--delimiter axis-circle--delimiter--' + category.class)
-        .attr('cx', xTranslation)
-        .attr('cy', height)
+        .attr('cx', clusters[category.cluster].x)
+        .attr('cy', clusters[category.cluster].y)
         .attr('r', axisRadius)
         .attr('stroke-dasharray', '6 8');
 
@@ -360,14 +377,14 @@ if (windowWidth > 768) {
         .attr('class', 'category-label--path')
         .attr('d', d => {
           return arc({
-            startAngle: degreeToRadian(-90),
-            endAngle: degreeToRadian(90),
+            startAngle: degreeToRadian(-120),
+            endAngle: degreeToRadian(120),
             innerRadius: axisRadius + 10,
             outerRadius: axisRadius + 10
           });
         })
         // .style('stroke', 'black')
-        .style('transform', 'translate(' + xTranslation + 'px, ' + height + 'px)');
+        .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
 
     // Append path for total foodprint in each category
     d3.select('.axis-circles--' + category.class)
@@ -383,7 +400,7 @@ if (windowWidth > 768) {
           });
         })
         // .style('stroke', 'black')
-        .style('transform', 'translate(' + xTranslation + 'px, ' + height + 'px)');
+        .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
 
     // Append category titles
     d3.select('.axis-circles--' + category.class)
@@ -391,7 +408,18 @@ if (windowWidth > 768) {
           .style('text-anchor', 'middle')
           .append('textPath')
             .attr('xlink:href', '#category-label--path--' + category.class)
-            .attr('startOffset', '25%')
+            .attr('startOffset', (d) => {
+              switch (category.cluster) {
+                case 0:
+                case 1:
+                  return '18%';
+                case 2:
+                  return '25%';
+                case 3:
+                case 4:
+                  return '32%';
+              }
+            })
             .text(category.title)
             .on('mouseover', d => {
               d3.event.stopPropagation();
@@ -435,22 +463,22 @@ if (windowWidth <= 768) {
   simulation
     // Attract clusters toward the horizontal center
     .force('x', d3.forceX().x(width/2 + paddingLeft)
-    .strength(0.8));
+    .strength(1));
 } else {
   simulation
     // Attract clusters toward specific x positions
-    .force('x', d3.forceX().x(d => (d.cluster+1) * (width/6) + paddingLeft)
-      .strength(0.8))
+    .force('x', d3.forceX().x(d => clusters[d.cluster].x)
+      .strength(3))
     // Cluster nodes by section
     .force('cluster', d3.forceCluster()
       .centers(d => clusters[d.cluster])
-      .strength(0.5));
+      .strength(1));
 }
 
 simulation
   // Attract clusters toward a specific y position
-  .force('y', d3.forceY().y(height)
-    .strength(0.8))
+  .force('y', d3.forceY().y(d => clusters[d.cluster].y)
+    .strength(3))
   // Apply collision with padding
   .force('collide', d3.forceCollide(d => (d.radius + paddingCircles) ))
   .on('tick', layoutTick);
@@ -505,6 +533,7 @@ function updateSimulation() {
   d3.select('.index-circle')
     .attr('r', radiusIndex * foodprintAreaFactor * 0.9);
   animateNumber('foodprint-result--number--index', +indexCounter.innerHTML, foodprintIndex);
+  animateNumber('impact-index--number', +indexCounter.innerHTML, foodprintIndex);
 
   // If swap, show swap impact tooltip
   if (isSwap) {

@@ -1,9 +1,5 @@
 // Show the nodes tooltip
 function showTooltip(d) {
-  // Get position of the tooltip based on position of the mouse 
-  // on the page and the size of the hovered circle
-  const ypos = d3.event.pageY + 350;
-
   // Get the foodprint detail of the hovered ingredient
   const ingredientFoodprint = getFoodprint(d.id);
 
@@ -19,22 +15,13 @@ function showTooltip(d) {
 
   // Make the tooltip appear at the right location
   d3.select('#tooltip')
-    .style('top', ypos + 'px')
-    .style('left', '50%')
-    .style('transform', 'translateX(50%)')
-    .transition()
-    .duration(0)
-    .style('opacity', 1);
+    .classed('visible', true);
 }
 
 // Hide the nodes tooltip
 function hideTooltip() {
   d3.select('#tooltip')
-    .style('top', '-1000px')
-    .style('left', '-1000px')
-    .transition()
-    .duration(100)
-    .style('opacity', 0);
+    .classed('visible', false);
 }
 
 // Show the category tooltip

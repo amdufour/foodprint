@@ -1,0 +1,21 @@
+.right-col {
+  border-left: 2px solid rgba($blue, .8);
+}
+.swap-impact--container {
+  padding: 20px 0;
+  width: 100%;
+  height: 100%;
+  
+  .impact-index {
+    margin-bottom: 20px;
+    text-align: center;
+    .index-text {
+      font-size: 1.8rem;
+    }
+    .index-number {
+      margin-top: 2px;
+      font-size: 2.3rem;
+      font-weight: 700;
+    }
+  }
+}
