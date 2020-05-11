@@ -69,10 +69,15 @@ function appendDropdown(windowWidth, meal, menuList) {
 
 // Open/Close dropdown
 function toggleDropdownDisplay(target) {
-  // console.log(target);
+  // Open/Close dropdown
   if (target.parentNode.parentNode.classList.contains('dropdown')) {
     const dropdown = target.parentNode.parentNode;
     const options = dropdown.querySelector('.dropdown-options');
+    
+    // Close swap impact if open
+    if (dropdown.classList.contains('dropdown--meal') && document.querySelector('#tooltip-swap-impact.visible') !== null) {
+      hideSwapImpactTooltip();
+    }
   
     if (!dropdown.parentNode.classList.contains('disabled')) {
       if (options.classList.contains('hide-options')) {
