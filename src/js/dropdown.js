@@ -148,7 +148,7 @@ function handleDropdownSelection(newSelection) {
       setTimeout(function() {
         showInstruction('two');
         secondInstructionShown = true;
-      }, 3000);
+      }, 2000);
     }
     // Handle swap selector
     const swapContainer = dropdownContainer.parentNode.parentNode.querySelector('.dropdown-container--swap--' + meal);
