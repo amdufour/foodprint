@@ -145,6 +145,9 @@
     color: $pink;
     &.reset {
       color: rgba($textPale, 0.6);
+      &.hidden {
+        display: none;
+      }
     }
   }
   .dropdown-options .option {

@@ -127,6 +127,17 @@ function swapIngredient(meal, swapId) {
     }
   });
   swapNodes(meal, swap);
+
+  if (document.querySelector('#dropdown--swap--' + meal + ' .option.reset.hidden') !== null) {
+    // If first swap selection, show reset option in dropdown
+    d3.select('#dropdown--swap--' + meal + ' .option.reset.hidden')
+      .classed('hidden', false);
+  } else if (swapId === 'reset') {
+    // If recipe reset, hide reset in options
+    d3.select('#dropdown--swap--' + meal + ' .option.reset')
+      .classed('hidden', true);
+  }
+  
 }
 
 function updateNodes(meal, removedIngredients, addedIngredients) {
