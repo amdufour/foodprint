@@ -7,8 +7,8 @@
 .index-circle--external {
   fill: transparent;
   stroke: $orange;
-  stroke-opacity: 0.1;
-  stroke-width: 2;
+  stroke-opacity: 0.3;
+  stroke-width: 1;
   transition: all 250ms ease;
   &.active,
   &.active-tooltip {
@@ -18,7 +18,7 @@
 }
 
 .foodprint-index--label {
-  fill: rgba($blue, 0.8);
+  fill: $blue;
   font-weight: 700;
   cursor: pointer;
   transition: all 250ms ease;

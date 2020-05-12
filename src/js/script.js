@@ -9,7 +9,7 @@ const paddingCircles = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
 const radiusClustersCenters = 150; // Radius of the clusters centers
 
-const colors = ['#597322', '#BFA72C', '#CEDEF2', '#D97E8E', '#A68549'];
+const colors = ['#608C03', '#E0BD0E', '#64A0E8', '#E6627A', '#AF7711'];
 const meals = ['breakfast', 'lunch', 'snack', 'dinner'];
 const m = categories.length; // number of distinct clusters
 
@@ -271,7 +271,8 @@ circlesIndex.append('circle')
   .attr('class', 'index-circle--external')
   .attr('cx', width/2 + paddingLeft)
   .attr('cy', height)
-  .attr('r', height - 25);
+  .attr('r', height - 25)
+  .attr('stroke-dasharray', '6 8');
 circlesIndex.append('path')
   .attr('id', 'index-circle--path')
   .attr('d', d => {
