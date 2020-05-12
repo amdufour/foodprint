@@ -29,6 +29,14 @@ function showCategoryTooltip(category, fact, source) {
   const xpos = d3.event.pageX;
   const ypos = d3.event.pageY + 150;
 
+  // Ensure to empty info from previously selected categories
+  const detailsElements = document.querySelectorAll('.category-detail');
+  detailsElements.forEach(detail => {
+    if (!detail.classList.contains('hidden')) {
+      detail.classList.add('hidden');
+    }
+  });
+
   // Add text to the existing tooltip markup
   d3.select('#tooltip-category .category-title .' + category).classed('hidden', false);
   d3.select('#tooltip-category .quote').attr('class', 'tooltip quote');
@@ -43,9 +51,13 @@ function showCategoryTooltip(category, fact, source) {
     .style('left', () => {
       switch (category) {
         case 'land':
-          return xpos + 50 + 'px';
+          return xpos + 150 + 'px';
+        case 'gas':
+          return xpos + 100 + 'px';
+        case 'eutro':
+          return xpos - 150 + 'px';
         case 'cost':
-          return xpos - 50 + 'px';
+          return xpos - 100 + 'px';
         default:
           return xpos + 'px';
       }
