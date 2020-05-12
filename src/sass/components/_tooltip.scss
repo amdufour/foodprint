@@ -118,7 +118,7 @@
     left: -200px;
     width: 400px;
     padding: 20px;
-    padding: 30px $gutter/2;
+    padding: 20px $gutter/2;
     background: rgba(255, 255, 255, 0.95);
     border-radius: $radius;
     box-shadow: 0px 1px 5px rgba(36, 36, 36, 0.5);
@@ -127,7 +127,7 @@
   // Title
   .category-title {
     .category-detail {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       font-weight: 700;
       &.land { color: $land; }
       &.gas { color: $gas; }
@@ -143,34 +143,12 @@
   // Fact
   .tooltip--fact {
     font-size: 1.2rem;
+    font-style: italic;
   }
   .quote {
     position: relative;
     color: $blue;
-    .quote-icon {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-image: url(../svg/quote-land.svg);
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-      opacity: 0.3;
-      &.quote-icon--left {
-        top: -11px;
-        left: -10px;
-      }
-      &.quote-icon--right {
-        bottom: -12px;
-        right: 0;
-        transform: rotateZ(180deg);
-      }
-    }
-    &.gas .quote-icon { background-image: url(../svg/quote-gas.svg); } 
-    &.water .quote-icon { background-image: url(../svg/quote-water.svg); } 
-    &.eutro .quote-icon { background-image: url(../svg/quote-eutro.svg); } 
-    &.cost .quote-icon { background-image: url(../svg/quote-cost.svg); } 
+    font-style: italic;
   }
   sup {
     padding-left: 2px;
