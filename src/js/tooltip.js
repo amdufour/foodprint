@@ -100,6 +100,10 @@ function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) 
   console.log(swap);
   console.log(currentFoodprint, newFoodprint, currentFI, newFI);
 
+  // Reset the swap impact tooltip
+  d3.select('#tooltip-swap-impact .tooltip--fact').classed('hidden', true);
+  d3.select('#tooltip-swap-impact .tooltip--recipe').classed('hidden', true);
+
   let impactIsReduced;
   newFI < currentFI ? impactIsReduced = true : impactIsReduced = false;
   const iconMax = impactIsReduced ? swapIconsPos.length : swapIconsNeg.length;
@@ -144,12 +148,7 @@ function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) 
 }
 
 // Hide the swap impact tooltip
-d3.select('#tooltip-swap-impact .close')
-  .on('click', d => {
-    hideSwapImpactTooltip();
-  });
 function hideSwapImpactTooltip() {
-  // Hide the tooltip
   d3.select('#tooltip-swap-impact')
     .classed('visible', false);
   d3.select('#tooltip-swap-impact .tooltip--fact')
