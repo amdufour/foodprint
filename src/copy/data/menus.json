@@ -96,6 +96,8 @@
               "key":"butter_to_margarine",
               "label":"Butter -> Margarine",
               "impactLabel":"Swaping butter for margarine",
+              "funFact": "Butter might have one of the highest emission footprints to make, behind beef and lamb. But the only area butter has a smaller environmental impact compared to margarine is in it’s photochemical ozone creation potential.",
+              "funFactSource": "3, 4",
               "removedIngredients":[
                  {
                     "id":"butter",
@@ -113,6 +115,8 @@
               "key":"butter_to_olive_oil",
               "label":"Butter -> Olive oil",
               "impactLabel":"Swaping butter for olive oil",
+              "funFact": "Yes, using olive oil on toast is a real thing! Try to keep a small container of olive oil in your fridge. It will become semi-solide and spreadable.",
+              "funFactSource": "",
               "removedIngredients":[
                  {
                     "id":"butter",
@@ -286,6 +290,8 @@
               "key":"remove_cheese",
               "label":"Omit cheese",
               "impactLabel":"Omitting cheese in your omelette",
+              "funFact": "There are several reasons for the relatively large carbon footprint of cheese. First, one kilogram of cheese requires up to 10 kilograms of milk due to the maturing process that cheese usually undergoes. The milk, in turn, comes from a dairy cow. Cows are ruminants that emit large amounts of methane which is about 25 times more damaging to the climate than carbon dioxide and mainly responsible for the comparatively high GHG emissions associated with producing cheese.",
+              "funFactSource": "4",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -300,6 +306,10 @@
               "key":"omelette_to_tofu_scramble",
               "label":"Try a Country Tofu Scamble!",
               "impactLabel":"Making a Country Tofu Scramble instead of a traditional omelette",
+              "recipeLabel": "Samosa Sweet Potatoes Breakfast Wraps with Tofu Scramble",
+              "recipeUrl": "https://www.pickuplimes.com/single-post/2019/05/08/Samosa-Sweet-Potatoes-Breakfast-Wraps-With-Tofu-Scramble",
+              "recipeCreator": "Pick Up Limes",
+              "recipeCreatorUrl": "https://www.pickuplimes.com",
               "removedIngredients":[
                  {
                     "id":"eggs",
@@ -395,6 +405,8 @@
               "key":"beef_to_chicken",
               "label":"Beef -> Chicken",
               "impactLabel":"Swaping beef for chicken",
+              "funFact": "The greenhouse gas production per serving of chicken or pork is about 20 percent that of a serving of beef.",
+              "funFactSource": "8",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -412,6 +424,10 @@
               "key":"beef_to_mushrooms_lentils",
               "label":"Make a Wild Mushroom Lentil burger",
               "impactLabel":"Making a Wild Mushroom Lentil burger",
+              "recipeLabel": "Wild Mushroom Lentil Burgers with Cashew Garlic Sauce",
+              "recipeUrl": "https://www.mynewroots.org/site/2012/11/wild-mushroom-lentil-burgers-with-cashew-garlic-sauce-at-whole-living/",
+              "recipeCreator": "My New Roots",
+              "recipeCreatorUrl": "https://www.mynewroots.org",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -441,6 +457,10 @@
               "key":"beef_to_tofu_vietnamese",
               "label":"Make a Tofu vietnamese sub",
               "impactLabel":"Making a tofu vietnamese sub",
+              "recipeLabel": "Tofu Vietnamese Sub (Bánh Mì)",
+              "recipeUrl": "https://www.pickuplimes.com/single-post/2020/01/23/TOFU-VIETNAMESE-SUB-B%C3%81NH-M%C3%8C",
+              "recipeCreator": "Pick Up Limes",
+              "recipeCreatorUrl": "https://www.pickuplimes.com",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -462,6 +482,8 @@
               "key":"omit_cheese",
               "label":"Omit cheese",
               "impactLabel":"Omitting cheese in your burger",
+              "funFact": "One kilogram of cheese requires up to 10 kilograms of milk due to the maturing process that cheese usually undergoes. The milk, in turn, comes from a dairy cow. Cows are ruminants that emit large amounts of methane which is about 25 times more damaging to the climate than carbon dioxide and mainly responsible for the comparatively high GHG emissions associated with producing cheese.",
+              "funFactSource": "4",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -547,6 +569,10 @@
               "key":"chicken_to_lentils",
               "label":"Make the best lentils salad ever",
               "impactLabel":"Making the best lentils salad ever",
+              "recipeLabel": "The Best Lentil Salad, Ever",
+              "recipeUrl": "https://www.mynewroots.org/site/2010/06/the-best-lentil-salad-ever-2/",
+              "recipeCreator": "My New Roots",
+              "recipeCreatorUrl": "https://www.mynewroots.org",
               "removedIngredients":[
                  {
                     "id":"poultry_meat",
@@ -579,23 +605,6 @@
                  {
                     "id":"nuts",
                     "label":"Nuts"
-                 }
-              ]
-           },
-           {
-              "key":"rapeseedoil_to_oliveoil",
-              "label":"Rapeseed oil",
-              "impactLabel":"Swaping rapeseed oil for olive oil",
-              "removedIngredients":[
-                 {
-                    "id":"oil_rapeseed",
-                    "label":"Rapeseed oil"
-                 }
-              ],
-              "addedIngredients":[
-                 {
-                    "id":"oil_olive",
-                    "label":"Olive oil"
                  }
               ]
            }
@@ -661,8 +670,10 @@
             },
            {
               "key":"shrimps_to_peas",
-              "label":"Shrimps -> Green peas",
+              "label":"Shrimps (farmed) -> Green peas",
               "impactLabel":"Swaping shrimps for green peas",
+              "funFact": "There are significant environmental problems associated with current farming methods: deforestation, erosion, rapid land subsidence, and rising salinity levels are threatening the stability of the entire Mekong region (Vietnam), and while shrimp farming does not take the blame alone for these issues, it is a substantial part of the problem.",
+              "funFactSource": "6",
               "removedIngredients":[
                  {
                     "id":"prawns _farmed",
@@ -680,6 +691,10 @@
               "key":"shrimps_to_tofu_chickpeas",
               "label":"Try a high protein lettuce wrap with creamy PB sauce",
               "impactLabel":"Making a high protein lettuce wrap with creamy PB sauce",
+              "recipeLabel": "High Protein Lettuce Wraps with Creamy Peanut Sauce",
+              "recipeUrl": "https://www.pickuplimes.com/single-post/2020/03/02/High-Protein-Lettuce-Wraps-with-Creamy-Peanut-Sauce",
+              "recipeCreator": "Pick Up Limes",
+              "recipeCreatorUrl": "https://www.pickuplimes.com",
               "removedIngredients":[
                  {
                     "id":"prawns _farmed",
@@ -705,6 +720,8 @@
               "key":"rice_to_wheat_noodles",
               "label":"Rice noodles -> Wheat noodles",
               "impactLabel":"Swaping rice for wheat",
+              "funFact": "Rice is a key cereal and provides more calories to people around the world than any other crop. However, cultivation of rice requires a large amount of land and water and has the highest climate impact of any crop per unit calorie, according to an analysis released by the Environmental Defense Fund.",
+              "funFactSource": "7",
               "removedIngredients":[
                  {
                     "id":"rice",
@@ -749,6 +766,8 @@
               "key":"beef_jerky_to_eggs",
               "label":"Beek jerky -> 2 Boiled eggs",
               "impactLabel":"Swaping beef for eggs",
+              "funFact": "Almost 30 percent of the world’s ice-free land is used to raise livestock. We grow a lot of crops to feed animals, and we cut down a lot of forests to do that. But beef, far more than pork or chicken, contributes to environmental harm, in part because it requires much more land.",
+              "funFactSource": "8",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -971,6 +990,8 @@
               "key":"beef_to_pork",
               "label":"Beef -> Pork",
               "impactLabel":"Swaping beef for pork",
+              "funFact": "The greenhouse gas production per serving of chicken or pork is about 20 percent that of a serving of beef. Cows also put out an enormous amount of methane, causing almost 10 percent of anthropogenic greenhouse gas emissions and contributing to climate change.",
+              "funFactSource": "8",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -988,6 +1009,10 @@
               "key":"beef_to_macaroni_chili",
               "label":"Make a Macaroni chili",
               "impactLabel":"Making a Macaroni chili",
+              "recipeLabel": "Macaroni Chili",
+              "recipeUrl": "https://www.pickuplimes.com/single-post/2020/01/23/Macaroni-Chili",
+              "recipeCreator": "Pick Up Limes",
+              "recipeCreatorUrl": "https://www.pickuplimes.com",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -1005,6 +1030,10 @@
               "key":"beef_to_one_pot",
               "label":"Make a Sanity saving One pot Pasta",
               "impactLabel":"Making a Sanity saving One pot Pasta",
+              "recipeLabel": "Sanity-Saving One Pot Pasta",
+              "recipeUrl": "https://www.mynewroots.org/site/2016/05/sanity-saving-one-pot-pasta/",
+              "recipeCreator": "My New Roots",
+              "recipeCreatorUrl": "https://www.mynewroots.org",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -1120,6 +1149,10 @@
               "key":"chicken_to_lentils",
               "label":"Make a Red Lentils soup",
               "impactLabel":"Making a Red Lentils soup",
+              "recipeLabel": "Four Corners Lentil Soup",
+              "recipeUrl": "https://www.mynewroots.org/site/2009/10/reader-request-my-favorite-recipe-four-corners-lentil-soup-2/",
+              "recipeCreator": "My New Roots",
+              "recipeCreatorUrl": "https://www.mynewroots.org",
               "removedIngredients":[
                  {
                     "id":"poultry_meat",
@@ -1137,6 +1170,10 @@
               "key":"chicken_to_peas",
               "label":"Make a Potatoes & Peas curry",
               "impactLabel":"Making a Potatoes & Peas curry",
+              "recipeLabel": "Potato & Green Pea Curry",
+              "recipeUrl": "https://www.pickuplimes.com/single-post/2020/03/30/Potato-Green-Pea-Curry",
+              "recipeCreator": "Pick Up Limes",
+              "recipeCreatorUrl": "https://www.pickuplimes.com",
               "removedIngredients":[
                  {
                     "id":"poultry_meat",
@@ -1218,6 +1255,10 @@
               "key":"fish_to_poke",
               "label":"Make a Poke-inspired beet bowl",
               "impactLabel":"Making a Poke-inspired beet bowl",
+              "recipeLabel": "Poke-Inspired Beet Bowl",
+              "recipeUrl": "https://www.mynewroots.org/site/2017/03/poke-inspired-beet-bowl/",
+              "recipeCreator": "My New Roots",
+              "recipeCreatorUrl": "https://www.mynewroots.org",
               "removedIngredients":[
                  {
                     "id":"fish_farmed",
@@ -1239,6 +1280,10 @@
               "key":"fish_to_sweet_potatoe",
               "label":"Make a Big comfy Sweet Potato",
               "impactabel":"Making a Big comfy Sweet Potato",
+              "recipeLabel": "Big Comfy Sweet Potato",
+              "recipeUrl": "https://www.mynewroots.org/site/2014/01/big-comfy-sweet-potato/",
+              "recipeCreator": "My New Roots",
+              "recipeCreatorUrl": "https://www.mynewroots.org",
               "removedIngredients":[
                  {
                     "id":"fish_farmed",

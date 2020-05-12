@@ -1,10 +1,6 @@
 // Dropdowns container
 .dropdowns-container {
-  position: absolute;
-  bottom: 0;
-  left: calc((100vw - 1200px) / 2 + 30px);
-  right: calc((100vw - 1200px) / 2 + 30px);
-  margin-bottom: 20px;
+  margin: 20px 0;
   @media (min-height: 826px) {
     bottom: auto;
     top: 666px;

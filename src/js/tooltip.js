@@ -94,7 +94,7 @@ function hideCategoryTooltip() {
 // Show swap impact
 const swapIconsPos = ['earth-happy_01', 'earth-happy_02', 'earth-happy_03'];
 const swapIconsNeg = ['earth-sad_01', 'earth-sad_02'];
-const swapTitlePos = ['Good job!', 'Way to go!', 'You made it look easy!'];
+const swapTitlePos = ['Good job !', 'Way to go !', 'You made it look easy !'];
 const swapTitleNeg = ['Womp Womp...', 'Let\'s take a deeper look'];
 function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) {
   console.log(swap);
@@ -114,9 +114,23 @@ function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) 
   d3.select('#tooltip-swap-impact .swap-title--icon')
     .style('background-image', 'url(../svg/' + icon + '.svg)');
   d3.select('#tooltip-swap-impact .swap-title--text').text(title);
-  d3.select('#tooltip-swap-impact .summary-swap').text(swap);
+  d3.select('#tooltip-swap-impact .summary-swap').text(swap.impactLabel);
   d3.select('#tooltip-swap-impact .summary-impact').text(impactSummary);
   d3.select('#tooltip-swap-impact .summary-result').text(FIDiff);
+
+  if (swap.funFact !== undefined) {
+    d3.select('#tooltip-swap-impact .tooltip--fact').classed('hidden', false);
+    d3.select('#tooltip-swap-impact .fact').text(swap.funFact);
+    d3.select('#tooltip-swap-impact .source').text(swap.funFactSource);
+  }
+
+  if (swap.recipeLabel !== undefined) {
+    d3.select('#tooltip-swap-impact .tooltip--recipe').classed('hidden', false);
+    d3.select('#tooltip-swap-impact .recipe a').attr('href', swap.recipeUrl);
+    d3.select('#tooltip-swap-impact .recipe a').text(swap.recipeLabel);
+    d3.select('#tooltip-swap-impact .recipe-source a').attr('href', swap.recipeCreatorUrl);
+    d3.select('#tooltip-swap-impact .recipe-source a').text(swap.recipeCreator);
+  }
 
   currentFoodprint.forEach((foodprint, index) => {
     const diff = (Math.abs(newFoodprint[index] - foodprint) / foodprint * 100).toFixed(2);
@@ -138,4 +152,8 @@ function hideSwapImpactTooltip() {
   // Hide the tooltip
   d3.select('#tooltip-swap-impact')
     .classed('visible', false);
+  d3.select('#tooltip-swap-impact .tooltip--fact')
+    .classed('hidden', true);
+  d3.select('#tooltip-swap-impact .tooltip--recipe')
+    .classed('hidden', true);
 }
