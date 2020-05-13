@@ -70,8 +70,8 @@ function appendDropdown(windowWidth, meal, menuList) {
 // Open/Close dropdown
 function toggleDropdownDisplay(target) {
   // Open/Close dropdown
-  if (target.parentNode.parentNode.classList.contains('dropdown')) {
-    const dropdown = target.parentNode.parentNode;
+  if (target.parentNode.parentNode.classList.contains('dropdown') || target.parentNode.parentNode.parentNode.classList.contains('dropdown')) {
+    const dropdown = target.closest('.dropdown');
     const options = dropdown.querySelector('.dropdown-options');
     
     // Close swap impact if open
@@ -92,8 +92,12 @@ function toggleDropdownDisplay(target) {
 }
 // If click anywhere else on the page, close open dropdowns
 document.addEventListener('click', (e) => {
+  let isDropdown = false;
+  if (e.target.classList.contains('dropdown-selection') || e.target.classList.contains('dropdown-arrow--container') || e.target.classList.contains('swap-child')) {
+    isDropdown = true;
+  }
   const parent = e.target.parentNode.parentNode;
-  if (parent === null || parent.classList === undefined || !parent.classList.contains('dropdown')) {
+  if (parent === null || parent.classList === undefined || !isDropdown) {
     closeDropdowns();
     closeTooltip(e.target);
     hideInstructions();
@@ -115,13 +119,26 @@ function closeTooltip(target) {
   const swapImpactTooltip = document.getElementById('tooltip-swap-impact');
   if (!target.parentNode.classList.contains('tooltip') && categoryTooltip.classList.contains('visible')) {
     hideCategoryTooltip();
-  } else if (!target.parentNode.classList.contains('tooltip') && swapImpactTooltip.classList.contains('visible')) {
+  } else if (!target.parentNode.classList.contains('tooltip') && swapImpactTooltip.classList.contains('visible') && (!target.classList.contains('option') && !target.classList.contains('child-label'))) {
     hideSwapImpactTooltip();
   }
 }
 
 // Handle dropdown selection
 function handleDropdownSelection(newSelection) {
+  let childLabels = [];
+  if (newSelection.classList.contains('child-label')) {
+    newSelection = newSelection.parentNode;
+    getChildLabels();
+  } else if (newSelection.childNodes.length === 3) {
+    getChildLabels();
+  }
+
+  function getChildLabels() {
+    childLabels[0] = newSelection.childNodes[0].innerText;
+    childLabels[1] = newSelection.childNodes[2].innerText;
+  }
+
   let currentSelection = '';
 
   // Remove active class from other options
@@ -140,7 +157,15 @@ function handleDropdownSelection(newSelection) {
   // Add label of the selected option to the dropdown header
   const dropdownContainer = newSelection.parentNode.parentNode;
   const dropdownHeader = dropdownContainer.querySelector('.dropdown-selection');
-  dropdownHeader.textContent = newSelection.innerText;
+  if (childLabels.length !== 0) {
+    const header = d3.select('#' + dropdownContainer.id + ' .dropdown-selection');
+    header.text('');
+    header.append('span').classed('swap-child', true).text(childLabels[0]);
+    header.append('span').classed('swap-child icon-swap', true);
+    header.append('span').classed('swap-child', true).text(childLabels[1]);
+  } else {
+    dropdownHeader.textContent = newSelection.innerText;
+  }
 
   // Call the visualization
   const toStrip = 'dropdown--';
@@ -211,8 +236,19 @@ function fillSwapDropdown(meal, selection, swapContainer) {
     selector.append('div')
       .attr('class', swap.key === 'reset' ? 'option reset hidden' : 'option')
       .attr('id', swap.key)
-      .attr('onclick', 'handleDropdownSelection(event.target)')
-      .text(swap.label);
+      .attr('onclick', 'handleDropdownSelection(event.target)');
+    
+    if (swap.label !== undefined) {
+      d3.select('#' + swap.key)
+        .text(swap.label);
+    } else {
+      d3.select('#' + swap.key)
+        .append('span').attr('class', 'child-label label1').text(swap.label1);
+      d3.select('#' + swap.key)
+        .append('span').attr('class', 'child-label icon-swap');
+      d3.select('#' + swap.key)
+        .append('span').attr('class', 'child-label label2').text(swap.label2);
+    }
   });
 
   // Enable swap selector

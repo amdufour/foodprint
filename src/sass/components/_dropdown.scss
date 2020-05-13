@@ -51,6 +51,12 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      span {
+        height: 34px;
+        &.icon-swap {
+          margin-top: -16px;
+        }
+      }
     }
   }
 
@@ -139,6 +145,19 @@
   .dropdown-header .dropdown-selection,
   .dropdown-options .option {
     color: $pink;
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .icon-swap {
+      margin: 0 8px;
+      width: 20px;
+      height: 20px;
+      background-image: url(../svg/swap-pink.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
     &.reset {
       color: rgba($textPale, 0.6);
       &.hidden {
@@ -149,6 +168,9 @@
   .dropdown-options .option {
     &:hover, &:focus {
       background-color: $pink;
+      .icon-swap {
+        background-image: url(../svg/swap-white.svg);
+      }
     }
     &.reset {
       &:hover, &:focus {
@@ -159,6 +181,9 @@
     &.active {
       color: $pink;
       background-color: transparent;
+      .icon-swap {
+        background-image: url(../svg/swap-pink.svg);
+      }
       &.reset {
         color: rgba($textPale, 0.6);
         background-color: transparent;

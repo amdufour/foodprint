@@ -60,7 +60,8 @@
             },
            {
               "key":"bacon_to_cheese",
-              "label":"Bacon -> Cheese",
+              "label1":"Bacon",
+              "label2":"Cheese",
               "impactLabel":"Swaping bacon for cheese",
               "removedIngredients":[
                  {
@@ -77,7 +78,8 @@
            },
            {
               "key":"bacon_to_nuts",
-              "label":"Bacon -> Nuts",
+              "label1":"Bacon",
+              "label2":"Nuts",
               "impactLabel":"Swaping bacon for nuts",
               "removedIngredients":[
                  {
@@ -94,7 +96,8 @@
            },
            {
               "key":"butter_to_margarine",
-              "label":"Butter -> Margarine",
+              "label1":"Butter",
+              "label2":"Margarine",
               "impactLabel":"Swaping butter for margarine",
               "funFact": "Butter might have one of the highest emission footprints to make, behind beef and lamb. But the only area butter has a smaller environmental impact compared to margarine is in it’s photochemical ozone creation potential.",
               "funFactSource": "3, 4",
@@ -113,7 +116,8 @@
            },
            {
               "key":"butter_to_olive_oil",
-              "label":"Butter -> Olive oil",
+              "label1":"Butter",
+              "label2":"Olive oil",
               "impactLabel":"Swaping butter for olive oil",
               "funFact": "Yes, using olive oil on toast is a real thing! Try to keep a small container of olive oil in your fridge. It will become semi-solide and spreadable.",
               "funFactSource": "",
@@ -177,7 +181,8 @@
             },
            {
               "key":"milk_to_soy_milk_oatmeal",
-              "label":"Milk -> Soy milk",
+              "label1":"Milk",
+              "label2":"Soy milk",
               "impactLabel":"Swaping milk for soy milk",
               "removedIngredients":[
                  {
@@ -194,7 +199,8 @@
            },
            {
               "key":"berries_to_bananas",
-              "label":"Berries -> Bananas",
+              "label1":"Berries",
+              "label2":"Bananas",
               "impactLabel":"Swaping berries for bananas",
               "removedIngredients":[
                  {
@@ -271,7 +277,8 @@
             },
            {
               "key":"milk_to_soy_milk_omelette",
-              "label":"Milk -> Soy milk",
+              "label1":"Milk",
+              "label2":"Soy milk",
               "impactLabel":"Swaping milk for soy milk",
               "removedIngredients":[
                  {
@@ -403,7 +410,8 @@
             },
            {
               "key":"beef_to_chicken",
-              "label":"Beef -> Chicken",
+              "label1":"Beef",
+              "label2":"Chicken",
               "impactLabel":"Swaping beef for chicken",
               "funFact": "The greenhouse gas production per serving of chicken or pork is about 20 percent that of a serving of beef.",
               "funFactSource": "8",
@@ -551,7 +559,8 @@
             },
            {
               "key":"chicken_to_eggs",
-              "label":"Chicken -> Eggs",
+              "label1":"Chicken",
+              "label2":"Eggs",
               "removedIngredients":[
                  {
                     "id":"poultry_meat",
@@ -593,7 +602,8 @@
            },
            {
               "key":"cheese_to_nuts",
-              "label":"Cheese -> Nuts",
+              "label1":"Cheese",
+              "label2":"Nuts",
               "impactLabel":"Swaping cheese for nuts",
               "removedIngredients":[
                  {
@@ -670,7 +680,8 @@
             },
            {
               "key":"shrimps_to_peas",
-              "label":"Shrimps (farmed) -> Green peas",
+              "label1":"Shrimps",
+              "label2":"Green peas",
               "impactLabel":"Swaping shrimps for green peas",
               "funFact": "There are significant environmental problems associated with current farming methods: deforestation, erosion, rapid land subsidence, and rising salinity levels are threatening the stability of the entire Mekong region (Vietnam), and while shrimp farming does not take the blame alone for these issues, it is a substantial part of the problem.",
               "funFactSource": "6",
@@ -718,7 +729,8 @@
            },
            {
               "key":"rice_to_wheat_noodles",
-              "label":"Rice noodles -> Wheat noodles",
+              "label1":"Rice noodles",
+              "label2":"Wheat pasta",
               "impactLabel":"Swaping rice for wheat",
               "funFact": "Rice is a key cereal and provides more calories to people around the world than any other crop. However, cultivation of rice requires a large amount of land and water and has the highest climate impact of any crop per unit calorie, according to an analysis released by the Environmental Defense Fund.",
               "funFactSource": "7",
@@ -764,7 +776,8 @@
             },
            {
               "key":"beef_jerky_to_eggs",
-              "label":"Beek jerky -> 2 Boiled eggs",
+              "label1":"Beef",
+              "label2":"2 boiled eggs",
               "impactLabel":"Swaping beef for eggs",
               "funFact": "Almost 30 percent of the world’s ice-free land is used to raise livestock. We grow a lot of crops to feed animals, and we cut down a lot of forests to do that. But beef, far more than pork or chicken, contributes to environmental harm, in part because it requires much more land.",
               "funFactSource": "8",
@@ -818,7 +831,8 @@
             },
            {
               "key":"cheese_to_edamame",
-              "label":"Cheese -> Edamame",
+              "label1":"Cheese",
+              "label2":"Edamame",
               "impactLabel":"Swaping cheese for edamame",
               "removedIngredients":[
                  {
@@ -835,7 +849,8 @@
            },
            {
               "key":"grapes_to_citrus",
-              "label":"Grapes -> Oranges",
+              "label1":"Grapes",
+              "label2":"Oranges",
               "impactLabel":"Swaping grapes for oranges",
               "removedIngredients":[
                  {
@@ -892,7 +907,8 @@
             },
            {
               "key":"pb_to_onb",
-              "label":"Peanut butter -> Other nut butter",
+              "label1":"Peanut butter",
+              "label2":"Other nut butter",
               "impactLabel":"Swaping peanuts for almonds",
               "removedIngredients":[
                  {
@@ -909,7 +925,8 @@
            },
            {
               "key":"bananas_to_apples",
-              "label":"Bananas -> Apples",
+              "label1":"Bananas",
+              "label2":"Apples",
               "impactLabel":"Swaping bananas for apples",
               "removedIngredients":[
                  {
@@ -988,7 +1005,8 @@
             },
            {
               "key":"beef_to_pork",
-              "label":"Beef -> Pork",
+              "label1":"Beef",
+              "label2":"Pork",
               "impactLabel":"Swaping beef for pork",
               "funFact": "The greenhouse gas production per serving of chicken or pork is about 20 percent that of a serving of beef. Cows also put out an enormous amount of methane, causing almost 10 percent of anthropogenic greenhouse gas emissions and contributing to climate change.",
               "funFactSource": "8",
@@ -1130,7 +1148,8 @@
             },
            {
               "key":"rice_to_barley",
-              "label":"Rice -> Barley",
+              "label1":"Rice",
+              "label2":"Barley",
               "impactLabel":"Swaping rice for barley",
               "removedIngredients":[
                  {
@@ -1311,7 +1330,8 @@
            },
            {
               "key":"rice_to_corn",
-              "label":"Rice -> Corn",
+              "label1":"Rice",
+              "label2":"Corn",
               "impactLabel":"Swaping rice for corn",
               "removedIngredients":[
                  {
