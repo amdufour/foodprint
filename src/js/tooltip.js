@@ -97,9 +97,6 @@ const swapIconsNeg = ['earth-sad_01', 'earth-sad_02'];
 const swapTitlePos = ['Good job !', 'Way to go !', 'You made it look easy !'];
 const swapTitleNeg = ['Womp Womp...', 'Let\'s take a deeper look'];
 function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) {
-  console.log(swap);
-  console.log(currentFoodprint, newFoodprint, currentFI, newFI);
-
   // Reset the swap impact tooltip
   d3.select('#tooltip-swap-impact .tooltip--fact').classed('hidden', true);
   d3.select('#tooltip-swap-impact .tooltip--recipe').classed('hidden', true);

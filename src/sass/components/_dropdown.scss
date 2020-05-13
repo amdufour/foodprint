@@ -52,10 +52,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       span {
-        height: 34px;
-        &.icon-swap {
-          margin-top: -16px;
-        }
+        margin-top: -3px;
       }
     }
   }
