@@ -20,11 +20,6 @@
               "active": true
            },
            {
-              "id":"butter",
-              "label":"Butter",
-              "active": true
-           },
-           {
               "id":"tomatoes",
               "label":"Slices of tomatoe",
               "active": true
@@ -91,46 +86,6 @@
                  {
                     "id":"nuts",
                     "label":"Nuts"
-                 }
-              ]
-           },
-           {
-              "key":"butter_to_margarine",
-              "label1":"Butter",
-              "label2":"Margarine",
-              "impactLabel":"Swaping butter for margarine",
-              "funFact": "Butter might have one of the highest emission footprints to make, behind beef and lamb. But the only area butter has a smaller environmental impact compared to margarine is in it’s photochemical ozone creation potential.",
-              "funFactSource": "3, 4",
-              "removedIngredients":[
-                 {
-                    "id":"butter",
-                    "label":"Butter"
-                 }
-              ],
-              "addedIngredients":[
-                 {
-                    "id":"margarine",
-                    "label":"Margarine"
-                 }
-              ]
-           },
-           {
-              "key":"butter_to_olive_oil",
-              "label1":"Butter",
-              "label2":"Olive oil",
-              "impactLabel":"Swaping butter for olive oil",
-              "funFact": "Yes, using olive oil on toast is a real thing! Try to keep a small container of olive oil in your fridge. It will become semi-solide and spreadable.",
-              "funFactSource": "",
-              "removedIngredients":[
-                 {
-                    "id":"butter",
-                    "label":"Butter"
-                 }
-              ],
-              "addedIngredients":[
-                 {
-                    "id":"oil_olive",
-                    "label":"Olive oil"
                  }
               ]
            }
@@ -298,7 +253,7 @@
               "label":"Omit cheese",
               "impactLabel":"Omitting cheese in your omelette",
               "funFact": "There are several reasons for the relatively large carbon footprint of cheese. First, one kilogram of cheese requires up to 10 kilograms of milk due to the maturing process that cheese usually undergoes. The milk, in turn, comes from a dairy cow. Cows are ruminants that emit large amounts of methane which is about 25 times more damaging to the climate than carbon dioxide and mainly responsible for the comparatively high GHG emissions associated with producing cheese.",
-              "funFactSource": "4",
+              "funFactSource": "3",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -414,7 +369,7 @@
               "label2":"Chicken",
               "impactLabel":"Swaping beef for chicken",
               "funFact": "The greenhouse gas production per serving of chicken or pork is about 20 percent that of a serving of beef.",
-              "funFactSource": "8",
+              "funFactSource": "6",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -491,7 +446,7 @@
               "label":"Omit cheese",
               "impactLabel":"Omitting cheese in your burger",
               "funFact": "One kilogram of cheese requires up to 10 kilograms of milk due to the maturing process that cheese usually undergoes. The milk, in turn, comes from a dairy cow. Cows are ruminants that emit large amounts of methane which is about 25 times more damaging to the climate than carbon dioxide and mainly responsible for the comparatively high GHG emissions associated with producing cheese.",
-              "funFactSource": "4",
+              "funFactSource": "3",
               "removedIngredients":[
                  {
                     "id":"cheese",
@@ -684,7 +639,7 @@
               "label2":"Green peas",
               "impactLabel":"Swaping shrimps for green peas",
               "funFact": "There are significant environmental problems associated with current farming methods: deforestation, erosion, rapid land subsidence, and rising salinity levels are threatening the stability of the entire Mekong region (Vietnam), and while shrimp farming does not take the blame alone for these issues, it is a substantial part of the problem.",
-              "funFactSource": "6",
+              "funFactSource": "4",
               "removedIngredients":[
                  {
                     "id":"prawns _farmed",
@@ -733,7 +688,7 @@
               "label2":"Wheat pasta",
               "impactLabel":"Swaping rice for wheat",
               "funFact": "Rice is a key cereal and provides more calories to people around the world than any other crop. However, cultivation of rice requires a large amount of land and water and has the highest climate impact of any crop per unit calorie, according to an analysis released by the Environmental Defense Fund.",
-              "funFactSource": "7",
+              "funFactSource": "5",
               "removedIngredients":[
                  {
                     "id":"rice",
@@ -780,7 +735,7 @@
               "label2":"2 boiled eggs",
               "impactLabel":"Swaping beef for eggs",
               "funFact": "Almost 30 percent of the world’s ice-free land is used to raise livestock. We grow a lot of crops to feed animals, and we cut down a lot of forests to do that. But beef, far more than pork or chicken, contributes to environmental harm, in part because it requires much more land.",
-              "funFactSource": "8",
+              "funFactSource": "6",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",
@@ -1009,7 +964,7 @@
               "label2":"Pork",
               "impactLabel":"Swaping beef for pork",
               "funFact": "The greenhouse gas production per serving of chicken or pork is about 20 percent that of a serving of beef. Cows also put out an enormous amount of methane, causing almost 10 percent of anthropogenic greenhouse gas emissions and contributing to climate change.",
-              "funFactSource": "8",
+              "funFactSource": "6",
               "removedIngredients":[
                  {
                     "id":"beef_beef_herd",

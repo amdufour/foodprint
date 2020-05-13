@@ -1,5 +1,5 @@
 // Max foodprint in each category
-const maxFoodprint = [110.65, 32.45, 1610.19, 113.59];
+const maxFoodprint = [110.48, 32.08, 1599.31, 109.51];
 
 // Foodprint in each category
 let currentFoodprint = [0, 0, 0, 0, 0];
