@@ -1,0 +1,16 @@
+.btn {
+  display: inline-block;
+  padding: 12px 17px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: none;
+  border: 1px solid #fff;
+  transition: all 200ms ease;
+  &:hover, &:focus {
+    background: #fff;
+    color: $pink;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,19 @@
+.footnotes-container {
+  margin-top: 30px;
+  color: $blue;
+  .footnote-title {
+    margin-top: 30px;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  .footnote-body {
+    line-height: 1.3;
+  }
+  .sources-list {
+    padding-left: 15px;
+    font-size: 1.2rem;
+    li {
+      margin: 10px 0;
+    }
+  }
+}

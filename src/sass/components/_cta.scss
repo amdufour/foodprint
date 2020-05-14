@@ -1,0 +1,29 @@
+.cta-container {
+  margin-top: 30px;
+  padding: 30px;
+  background: linear-gradient(150deg, rgba($pink,1) 0%, rgba($pink,1) 50%, rgba($pink,.85) 100%);
+  color: #fff;
+  .cta {
+    .tagline {
+      margin: 20px 0;
+      font-family: $fontSecondary;
+      font-size: 3.6rem;
+      line-height: 4.5rem;
+    }
+    p {
+      max-width: 180px;
+      font-size: 1.6rem;
+      line-height: 2.6;
+    }
+    .btn {
+      margin: 23px 0 25px;
+    }
+  }
+}
+
+.sticky {
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  height: auto;
+}
