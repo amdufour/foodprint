@@ -4,29 +4,29 @@
 
 .axis-circle,
 .axis-circle--delimiter {
-  fill: none;
-  stroke-opacity: 0.4;
+  transition: all 250ms ease;
+  fill-opacity: .2;
+  stroke: none;
   transition: all 250ms ease;
   &.axis-circle--land,
   &.axis-circle--delimiter--land {
-    stroke: $land;
+    fill: $land;
   }
   &.axis-circle--gas,
   &.axis-circle--delimiter--gas {
-    stroke: $gas;
+    fill: $gas;
   }
   &.axis-circle--water,
   &.axis-circle--delimiter--water {
-    stroke: $water;
-    stroke-opacity: 0.8;
+    fill: $water;
   }
   &.axis-circle--eutro,
   &.axis-circle--delimiter--eutro {
-    stroke: $eutro;
+    fill: $eutro;
   }
   &.axis-circle--cost,
   &.axis-circle--delimiter--cost {
-    stroke: $cost;
+    fill: $cost;
   }
 }
 

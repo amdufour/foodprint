@@ -5,10 +5,8 @@
 }
 
 .index-circle--external {
-  fill: transparent;
-  stroke: $orange;
-  stroke-opacity: 0.3;
-  stroke-width: 1;
+  fill: $orange;
+  fill-opacity: .05;
   transition: all 250ms ease;
   &.active,
   &.active-tooltip {

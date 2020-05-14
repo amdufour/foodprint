@@ -271,8 +271,7 @@ circlesIndex.append('circle')
   .attr('class', 'index-circle--external')
   .attr('cx', width/2 + paddingLeft)
   .attr('cy', height)
-  .attr('r', height - 25)
-  .attr('stroke-dasharray', '6 8');
+  .attr('r', height - 25);
 circlesIndex.append('path')
   .attr('id', 'index-circle--path')
   .attr('d', d => {
@@ -379,8 +378,7 @@ if (windowWidth > 768) {
         .attr('class', 'axis axis-circle--delimiter axis-circle--delimiter--' + category.class)
         .attr('cx', clusters[category.cluster].x)
         .attr('cy', clusters[category.cluster].y)
-        .attr('r', axisRadius)
-        .attr('stroke-dasharray', '6 8');
+        .attr('r', axisRadius);
 
     // Append path for category titles
     d3.select('.axis-circles--' + category.class)

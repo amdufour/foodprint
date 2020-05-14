@@ -1,7 +1,6 @@
 .node {
   stroke-width: 2;
   stroke: transparent;
-  opacity: .8;
   transition: stroke 200ms ease-in;
   transition: r 500ms ease;
   &.active {
