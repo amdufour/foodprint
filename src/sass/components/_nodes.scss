@@ -4,7 +4,7 @@
   transition: stroke 200ms ease-in;
   transition: r 500ms ease;
   &.active {
-    stroke: $text;
+    stroke: $textDark;
     transition: stroke 200ms ease-out;
   }
   &.appear {
@@ -18,10 +18,10 @@
     stroke: transparent;
   }
   10% {
-    stroke: $text;
+    stroke: $textDark;
   }
   50% {
-    stroke: text;
+    stroke: textDark;
   }
   to {
     stroke: transparent;

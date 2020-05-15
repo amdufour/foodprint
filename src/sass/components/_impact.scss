@@ -21,7 +21,6 @@
     margin-bottom: 10px;
     font-family: $fontSecondary;
     font-size: 2.3rem;
-    font-weight: 700;
     color: $textDark;
     .swap-title--icon,
     .swap-title--text,
@@ -50,6 +49,7 @@
   }
 
   .tooltip--details {
+    padding-left: 3px;
     font-size: 1.3rem;
   }
 

@@ -3,11 +3,11 @@
 #tooltip-category {
   .tooltip--ingredient {
     display: inline-block;
-    margin-bottom: 12px;
-    padding-bottom: 3px;
-    border-bottom: 1px solid $text;
-    font-size: 1.8rem;
-    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: $fontSecondary;
+    font-size: 2.3rem;
+    color: $textDark;
+    border-bottom: 1px solid $textDark;
   }
   .tooltip--meal,
   .tooltip--portion {
@@ -15,18 +15,21 @@
     padding-left: 3px;
     font-size: 1.3rem;
   }
+  .tooltip--foodprint-index {
+    margin-top: 5px;
+    padding-left: 3px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: $textDark;
+  }
   .tooltip--details {
-    .tooltip--foodprint-index {
-      padding-left: 3px;
-      font-weight: 700;
-      line-height: 1.6;
-    }
     .detail {
       position: relative;
       padding-left: 15px;
       line-height: 1.6;
       span {
-        font-weight: 700;
+        font-weight: 600;
+        color: $textDark;
       }
       sup,
       sub {
