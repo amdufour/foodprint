@@ -102,7 +102,7 @@ function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) 
   d3.select('#tooltip-swap-impact .tooltip--recipe').classed('hidden', true);
 
   let impactIsReduced;
-  newFI < currentFI ? impactIsReduced = true : impactIsReduced = false;
+  impactIsReduced = newFI < currentFI ? true : false;
   const iconMax = impactIsReduced ? swapIconsPos.length : swapIconsNeg.length;
   const iconRandomNumber = Math.floor(Math.random() * (iconMax));
   const titleRandomNumber = Math.floor(Math.random() * (iconMax));

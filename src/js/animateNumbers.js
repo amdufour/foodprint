@@ -3,7 +3,7 @@ const speed = 100;
 function animateNumber(id, count, target) {
   const counter = document.getElementById(id);
   let factor;
-  count < target ? factor = 1 : factor = -1;
+  factor = count < target ? 1 : -1;
 
   const updateCount = () => {
     const increment = factor * target / speed;
