@@ -92,9 +92,7 @@ function hideCategoryTooltip() {
 }
 
 // Show swap impact
-const swapIconsPos = ['earth-happy_01', 'earth-happy_02', 'earth-happy_03'];
 const swapIconsNeg = ['earth-sad_01', 'earth-sad_02'];
-const swapTitlePos = ['Good job !', 'Way to go !', 'You made it look easy !'];
 const swapTitleNeg = ['Womp Womp...', 'Let\'s take a deeper look'];
 function showSwapImpact(swap) {
   // Reset the swap impact tooltip
@@ -124,6 +122,8 @@ function showSwapImpact(swap) {
     d3.select('#tooltip-swap-impact .detail--' + categories[i].class + ' .detail-impact').text(sign + Math.abs(impacts[i]));
   });
 
+  const funFactsSavings = getFunFacts(impacts);
+
   let FIMeals = 0;
   let FISwap = 0;
   let indexMeals = 0;
@@ -136,18 +136,36 @@ function showSwapImpact(swap) {
   FISwap = (indexSwap * 5).toFixed(2);
 
   const impactIsReduced = FISwap < FIMeals ? true : false;
-  const iconMax = impactIsReduced ? swapIconsPos.length : swapIconsNeg.length;
-  const iconRandomNumber = Math.floor(Math.random() * (iconMax));
-  const titleRandomNumber = Math.floor(Math.random() * (iconMax));
-  const icon = impactIsReduced ? swapIconsPos[iconRandomNumber] : swapIconsNeg[iconRandomNumber];
-  const title = impactIsReduced ? swapTitlePos[titleRandomNumber] : swapTitleNeg[titleRandomNumber];
-  const impactSummary = impactIsReduced ? 'reduces' : 'increases';
+  let icon = '';
+  const impactSummary = impactIsReduced ? 'decreases' : 'increases';
+
+  if (impactIsReduced) {
+    const funFactRandomNumber = Math.floor(Math.random() * funFactsSavings.length);
+    const funFact = funFactsSavings[funFactRandomNumber];
+    icon = funFact.icon;
+    const text = funFact.title1 + Math.abs(funFact.funFactNumber) + funFact.title2;
+    d3.select('#tooltip-swap-impact').classed('positive-impact', true)
+    d3.select('#tooltip-swap-impact .swap-title--text').text(text);
+    if (funFact.footnote !== '') {
+      d3.select('.impact-footnote').classed('hidden', false);
+      d3.select('.impact-footnote-text').text(funFact.footnote);
+      d3.select('.impact-footnote-source').text(funFact.source);
+    } else {
+      d3.select('.impact-footnote').classed('hidden', true);
+    }
+  } else {
+    const iconRandomNumber = Math.floor(Math.random() * 2);
+    const titleRandomNumber = Math.floor(Math.random() * 2);
+    icon = swapIconsNeg[iconRandomNumber];
+    d3.select('#tooltip-swap-impact').classed('positive-impact', false)
+    d3.select('#tooltip-swap-impact .swap-title--text').text(swapTitleNeg[titleRandomNumber]);
+    d3.select('.impact-footnote').classed('hidden', true);
+  }
 
   const FIDiff = Math.ceil((Math.abs(FIMeals -  FISwap) / FIMeals * 100));
 
   d3.select('#tooltip-swap-impact .swap-title--icon')
     .style('background-image', 'url(../svg/' + icon + '.svg)');
-  d3.select('#tooltip-swap-impact .swap-title--text').text(title);
   d3.select('#tooltip-swap-impact .summary-swap').text(swap.impactLabel);
   d3.select('#tooltip-swap-impact .summary-impact').text(impactSummary);
   d3.select('#tooltip-swap-impact .summary-result').text(FIDiff);
@@ -179,4 +197,58 @@ function hideSwapImpactTooltip() {
     .classed('hidden', true);
   d3.select('#tooltip-swap-impact .tooltip--recipe')
     .classed('hidden', true);
+}
+
+// Calculate fun facts for swap impacts
+function getFunFacts(impacts) {
+  const funFactFactors = [16, 75, 261, (1/3984), 1];
+  let funFactsSavings = [
+    { 
+      key: 'shower',
+      icon: 'shower',
+      funFactNumber: Math.round(impacts[2] / funFactFactors[0] * 52),
+      title1: 'With this swap, you preserved the equivalent of ',
+      title2: ' showers in water. And you made it look easy!',
+      footnote: 'Calculation based on a 4 minutes shower and a shower head delivering 4L per minute.',
+      source: '7'
+    },
+    {
+      key: 'bath',
+      icon: 'bath',
+      funFactNumber: Math.round(impacts[2] / funFactFactors[1] * 52),
+      title1: 'Look at you! You just saved the water of ',
+      title2: ' luxurious baths.',
+      footnote: 'Calculation based on an average bath filled with 75L of water.',
+      source: '7'
+    },
+    {
+      key: 'land',
+      icon: 'tennis',
+      funFactNumber: Math.round(impacts[0] / funFactFactors[2] * 52),
+      title1: 'Believe it or not, this swap helped you protect a land surface comparable to ',
+      title2: ' tennis courts.',
+      footnote: 'Dimensions of a tennis court: 23.77 x 11 meters.',
+      source: ''
+    },
+    {
+      key: 'car',
+      icon: 'car',
+      funFactNumber: Math.round(impacts[1] / funFactFactors[3] * 52),
+      title1: 'Your greenhouse gas emission reduction corresponds to a car traveling ',
+      title2: 'km. Go on rockstar!',
+      footnote: 'Given that a typical passenger car vehicle has a fuel economy of 9.35 km/L and emits 2.348 grams of CO2 per Litre.',
+      source: '8'
+    },
+    {
+      key: 'money',
+      icon: 'piggy-bank',
+      funFactNumber: Math.round(impacts[4] / funFactFactors[4] * 52),
+      title1: 'This swap is not only good for the planet, it makes your wallet thicker with ',
+      title2: ' $ !',
+      footnote: '',
+      source: ''
+    },
+  ];
+  
+  return funFactsSavings;
 }
