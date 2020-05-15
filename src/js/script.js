@@ -20,8 +20,17 @@ let currentBreakfast = '';
 let currentLunch = '';
 let currentSnack = '';
 let currentDinner = '';
+let updatedMeal = '';
+let currentMenu = '';
 let isSwap = false;
 let currentSwap = '';
+let currentSwapedMeal = '';
+
+let foodprintMeals = [0, 0, 0, 0, 0];
+let foodprintBreakfast = [0, 0, 0, 0, 0];
+let foodprintLunch = [0, 0, 0, 0, 0];
+let foodprintSnack = [0, 0, 0, 0, 0];
+let foodprintDinner = [0, 0, 0, 0, 0];
 
 // Generate clusters and initialize nodes arrays
 let clusters = d3.range(m).map((category, i) => {
@@ -94,6 +103,9 @@ function appendSelectors() {
 
 // Prep data for node generation
 function addMeal(meal, currentSelection, newSelection) {
+  updatedMeal = meal;
+  currentMenu = newSelection;
+
   switch (meal) {
     case 'breakfast':
       currentBreakfast = newSelection;
@@ -189,6 +201,7 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
 
 function swapNodes(meal, swap) {
   currentSwap = swap;
+  currentSwapedMeal = meal;
 
   // Reset state of possible swaps
   let menu = '';
@@ -541,6 +554,33 @@ function updateSimulation() {
 
   updateFoodprint(foodprint);
 
+  if (!isSwap) {
+    // Update foodprint for each meal
+    let newFoodprint = [0, 0, 0, 0, 0];
+    const menuIngredients = menusDetail[updatedMeal].find(meal => meal.key === currentMenu).ingredients.filter(ingredient => ingredient.active);
+    menuIngredients.forEach(ingredient => {
+      const ingredientFoodprint = getFoodprint(ingredient.id);
+      newFoodprint.forEach((factor, i) => {
+        newFoodprint[i] += +(ingredientFoodprint[categories[i].label] * ingredientFoodprint.portion_kg);
+      });
+    });
+
+    switch (updatedMeal) {
+      case 'breakfast':
+        foodprintBreakfast = newFoodprint;
+        break;
+      case 'lunch':
+        foodprintLunch = newFoodprint;
+        break;
+      case 'snack':
+        foodprintSnack = newFoodprint;
+        break;
+      case 'dinner':
+        foodprintDinner = newFoodprint;
+        break;
+    }
+  }
+
   // Update foodprint index circle and text
   const foodprintAreaFactor = 100;
   let foodprintIndex = parseFloat(getFoodprintIndex());
@@ -551,8 +591,10 @@ function updateSimulation() {
   animateNumber('impact-index--number', +indexCounter.innerHTML, foodprintIndex);
 
   // If swap, show swap impact tooltip
-  if (isSwap) {
-    showSwapImpact(currentFoodprint, newFoodprint, currentFoodprintIndex, foodprintIndex, currentSwap);
+  if (isSwap && currentSwap.key !== 'reset') {
+    showSwapImpact(currentSwap);
+  } else if (isSwap && currentSwap.key === 'reset') {
+    hideSwapImpactTooltip();
   }
 
   if (windowWidth > 768) {

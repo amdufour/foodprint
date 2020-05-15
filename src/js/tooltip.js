@@ -96,13 +96,46 @@ const swapIconsPos = ['earth-happy_01', 'earth-happy_02', 'earth-happy_03'];
 const swapIconsNeg = ['earth-sad_01', 'earth-sad_02'];
 const swapTitlePos = ['Good job !', 'Way to go !', 'You made it look easy !'];
 const swapTitleNeg = ['Womp Womp...', 'Let\'s take a deeper look'];
-function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) {
+function showSwapImpact(swap) {
   // Reset the swap impact tooltip
   d3.select('#tooltip-swap-impact .tooltip--fact').classed('hidden', true);
   d3.select('#tooltip-swap-impact .tooltip--recipe').classed('hidden', true);
 
-  let impactIsReduced;
-  impactIsReduced = newFI < currentFI ? true : false;
+  // Calculate the difference made by the swap
+  let swapDiff = [0, 0, 0, 0, 0];
+  let foodprintWithSwap = [0, 0, 0, 0, 0];
+  let impacts = [0, 0, 0, 0, 0];
+  currentSwap.removedIngredients.forEach(ingredient => {
+    const ingredientFoodprint = getFoodprint(ingredient.id);
+    swapDiff.forEach((diff, i) => {
+      swapDiff[i] -= +(ingredientFoodprint[categories[i].label] * ingredientFoodprint.portion_kg);
+    });
+  });
+  currentSwap.addedIngredients.forEach(ingredient => {
+    const ingredientFoodprint = getFoodprint(ingredient.id);
+    swapDiff.forEach((diff, i) => {
+      swapDiff[i] += +(ingredientFoodprint[categories[i].label] * ingredientFoodprint.portion_kg);
+    });
+  });
+  impacts.forEach((impact, i) => {
+    foodprintWithSwap[i] = foodprintMeals[i] + swapDiff[i];
+    impacts[i] = +(swapDiff[i] / foodprintMeals[i] * 100).toFixed(2);
+    const sign = impacts[i] > 0 ? '+' : '-';
+    d3.select('#tooltip-swap-impact .detail--' + categories[i].class + ' .detail-impact').text(sign + Math.abs(impacts[i]));
+  });
+
+  let FIMeals = 0;
+  let FISwap = 0;
+  let indexMeals = 0;
+  let indexSwap = 0;
+  maxFoodprint.forEach((foodprint, i) => {
+   indexMeals += foodprintMeals[i] / maxFoodprint[i];
+   indexSwap += foodprintWithSwap[i] / maxFoodprint[i];
+  });
+  FIMeals = (indexMeals * 5).toFixed(2);
+  FISwap = (indexSwap * 5).toFixed(2);
+
+  const impactIsReduced = FISwap < FIMeals ? true : false;
   const iconMax = impactIsReduced ? swapIconsPos.length : swapIconsNeg.length;
   const iconRandomNumber = Math.floor(Math.random() * (iconMax));
   const titleRandomNumber = Math.floor(Math.random() * (iconMax));
@@ -110,7 +143,7 @@ function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) 
   const title = impactIsReduced ? swapTitlePos[titleRandomNumber] : swapTitleNeg[titleRandomNumber];
   const impactSummary = impactIsReduced ? 'reduces' : 'increases';
 
-  const FIDiff = Math.ceil((Math.abs(currentFI -  newFI) / currentFI * 100));
+  const FIDiff = Math.ceil((Math.abs(FIMeals -  FISwap) / FIMeals * 100));
 
   d3.select('#tooltip-swap-impact .swap-title--icon')
     .style('background-image', 'url(../svg/' + icon + '.svg)');
@@ -132,12 +165,6 @@ function showSwapImpact(currentFoodprint, newFoodprint, currentFI, newFI, swap) 
     d3.select('#tooltip-swap-impact .recipe-source a').attr('href', swap.recipeCreatorUrl);
     d3.select('#tooltip-swap-impact .recipe-source a').text(swap.recipeCreator);
   }
-
-  currentFoodprint.forEach((foodprint, index) => {
-    const diff = (Math.abs(newFoodprint[index] - foodprint) / foodprint * 100).toFixed(2);
-    const sign = (newFoodprint[index] - foodprint) > 0 ? '+' : '-';
-    d3.select('#tooltip-swap-impact .detail--' + categories[index].class + ' .detail-impact').text(sign + diff);
-  });
 
   // Make the tooltip appear
   d3.select('#tooltip-swap-impact')
