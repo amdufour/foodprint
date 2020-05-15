@@ -5,22 +5,19 @@
     display: inline-block;
     margin-bottom: 12px;
     padding-bottom: 3px;
-    border-bottom: 1px solid $blue;
+    border-bottom: 1px solid $text;
     font-size: 1.8rem;
     font-weight: 700;
-    color: $blue;
   }
   .tooltip--meal,
   .tooltip--portion {
     margin-bottom: 4px;
     padding-left: 3px;
     font-size: 1.3rem;
-    color: $blue;
   }
   .tooltip--details {
     .tooltip--foodprint-index {
       padding-left: 3px;
-      color: $blue;
       font-weight: 700;
       line-height: 1.6;
     }
@@ -42,7 +39,7 @@
         left: 3px;
         width: 5px;
         height: 5px;
-        background: $blue;
+        background: $text;
         border-radius: 50%;
       }
       &.detail--land::before {
@@ -73,7 +70,7 @@
     right: 0;
     width: 32px;
     height: 32px;
-    background-image: url(../svg/close-blue.svg);
+    background-image: url(../svg/close.svg);
     background-repeat: no-repeat;
     background-size: 12px 12px;
     background-position: center;
@@ -147,7 +144,6 @@
   }
   .quote {
     position: relative;
-    color: $blue;
     font-style: italic;
   }
   sup {

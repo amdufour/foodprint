@@ -2,16 +2,11 @@ select.dropdown {
   height: 34px;
   background-color: #fff;
   background-image: none;
-  color: $blue;
   &:disabled {
     cursor: default;
   }
 }
-.dropdown-container--swap {
-  select.dropdown {
-    color: $pink;
-  }
-}
+
 // @media (max-width: $md) {
 //   .dropdown-container {
 //     position: relative;
@@ -23,15 +18,10 @@ select.dropdown {
 //       width: 30px;
 //       height: 28px;
 //       background-color: #fff;
-//       background-image: url(../svg/arrow-blue.svg);
+//       background-image: url(../svg/arrow.svg);
 //       background-repeat: no-repeat;
 //       background-size: 18px;
 //       background-position: center;
-//     }
-//     &.dropdown-container--swap {
-//       &:after {
-//         background-image: url(../svg/arrow-pink.svg);
-//       }
 //     }
 //   }
 // }

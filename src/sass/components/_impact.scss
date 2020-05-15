@@ -5,24 +5,29 @@
   
   .impact-index {
     margin-bottom: 30px;
-    font-size: 1.6rem;
+    max-width: 250px;
+    font-family: $fontSecondary;
+    font-size: 2.3rem;
+    color: $textDark;
     .index-number {
       position: relative;
       top: 1px;
-      font-size: 2.1rem;
-      font-weight: 700;
+      font-family: $fontPrimary;
     }
   }
 
   // Swap impact
-  .swap-title {
+  .impact-title {
     margin-bottom: 10px;
-    font-size: 2rem;
+    font-family: $fontSecondary;
+    font-size: 2.3rem;
     font-weight: 700;
+    color: $textDark;
     .swap-title--icon,
-    .swap-title--text {
+    .swap-title--text,
+    span {
       display: inline-block;
-      vertical-align: middle;
+      vertical-align: bottom;
     }
     .swap-title--icon {
       width: 45px;
@@ -70,13 +75,6 @@
   .tooltip--recipe {
     margin-top: 30px;
     .tooltip--recipe-title {
-      margin-bottom: 10px;
-      font-size: 2rem;
-      font-weight: 700;
-      span {
-        display: inline-block;
-        vertical-align: middle;
-      }
       .icon {
         margin-right: 10px;
         width: 45px;

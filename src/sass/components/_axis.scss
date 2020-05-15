@@ -1,7 +1,3 @@
-.axis {
-  stroke: rgba($blue, 0.2);
-}
-
 .axis-circle,
 .axis-circle--delimiter {
   transition: all 250ms ease;
@@ -32,11 +28,14 @@
 
 .axis-circles {
   text {
-    fill: $blue;
+    fill: $text;
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     transition: all 250ms ease;
+    &.foodprint-result {
+      font-size: 1.5rem;
+    }
   }
   .axis-circle--delimiter {
     stroke-width: 1;

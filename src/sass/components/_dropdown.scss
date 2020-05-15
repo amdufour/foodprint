@@ -17,7 +17,6 @@
   margin-bottom: 6px;
   font-size: 1.6rem;
   font-weight: 700;
-  color: $blue;
   @media (max-width: $md) {
     margin-top: 10px;
   }
@@ -25,7 +24,6 @@
 .dropdown-label {
   display: block;
   margin-bottom: 5px;
-  color: $blue;
 }
 
 // Dropdowns
@@ -34,7 +32,7 @@
   margin-bottom: 10px;
   width: 100%;
   max-width: 250px;
-  border: 1px solid $blue;
+  border: 1px solid $text;
   border-radius: $radius;
   cursor: pointer;
   @media (max-width: $md) {
@@ -48,7 +46,6 @@
     .dropdown-selection {
       padding: 10px 40px 10px 10px;
       height: 34px;
-      color: $blue;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -72,7 +69,7 @@
       right: 15px;
       width: 15px;
       height: 15px;
-      background-image: url(../svg/arrow-blue.svg);
+      background-image: url(../svg/arrow.svg);
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -93,7 +90,7 @@
     padding: 10px 0;
     background-color: #fff;
     border-radius: $radius;
-    box-shadow: 0px 1px 5px rgba($blue, 0.6);
+    box-shadow: 0px 1px 5px rgba($text, 0.6);
     transition: all 150ms ease-out;
     &.hide-options {
       max-height: 0 !important;
@@ -102,19 +99,20 @@
     }
     .option {
       padding: 8px 10px;
-      color: $blue;
       background-color: transparent;
       transition: all 100ms ease-in;
       &:hover, &:focus {
-        background-color: $blue;
+        background-color: $text;
         color: #fff;
         transition: all 100ms ease-out;
       }
       &.active {
         font-weight: 700;
-        color: $blue;
         background-color: transparent;
         cursor: default;
+        &:hover, &:focus {
+          color: $text;
+        }
       }
     }
   }
@@ -136,13 +134,9 @@
 
 // Swap dropdowns
 .dropdown-container--swap {
-  .dropdown {
-    border-color: $pink;
-  }
   .dropdown-label,
   .dropdown-header .dropdown-selection,
   .dropdown-options .option {
-    color: $pink;
     span {
       display: inline-block;
       vertical-align: middle;
@@ -151,7 +145,7 @@
       margin: 0 8px;
       width: 20px;
       height: 20px;
-      background-image: url(../svg/swap-pink.svg);
+      background-image: url(../svg/swap-grey.svg);
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -165,7 +159,6 @@
   }
   .dropdown-options .option {
     &:hover, &:focus {
-      background-color: $pink;
       .icon-swap {
         background-image: url(../svg/swap-white.svg);
       }
@@ -177,19 +170,15 @@
       }
     }
     &.active {
-      color: $pink;
       background-color: transparent;
       .icon-swap {
-        background-image: url(../svg/swap-pink.svg);
+        background-image: url(../svg/swap-grey.svg);
       }
       &.reset {
         color: rgba($textPale, 0.6);
         background-color: transparent;
       }
     }
-  }
-  .dropdown-arrow--container .dropdown-arrow {
-    background-image: url(../svg/arrow-pink.svg);
   }
 }
 
