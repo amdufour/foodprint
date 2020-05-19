@@ -144,8 +144,9 @@ function showSwapImpact(swap) {
     const funFact = funFactsSavings[funFactRandomNumber];
     icon = funFact.icon;
     const text = funFact.title1 + Math.abs(funFact.funFactNumber) + funFact.title2;
-    d3.select('#tooltip-swap-impact').classed('positive-impact', true)
-    d3.select('#tooltip-swap-impact .swap-title--text').text(text);
+    d3.select('#tooltip-swap-impact').classed('positive-impact', true);
+    d3.select('#tooltip-swap-impact .swap-title--text').text(funFact.titleShort);
+    d3.select('#tooltip-swap-impact .swap-title--subtext').text(text);
     if (funFact.footnote !== '') {
       d3.select('.impact-footnote').classed('hidden', false);
       d3.select('.impact-footnote-text').text(funFact.footnote);
@@ -157,7 +158,7 @@ function showSwapImpact(swap) {
     const iconRandomNumber = Math.floor(Math.random() * 2);
     const titleRandomNumber = Math.floor(Math.random() * 2);
     icon = swapIconsNeg[iconRandomNumber];
-    d3.select('#tooltip-swap-impact').classed('positive-impact', false)
+    d3.select('#tooltip-swap-impact').classed('positive-impact', false);
     d3.select('#tooltip-swap-impact .swap-title--text').text(swapTitleNeg[titleRandomNumber]);
     d3.select('.impact-footnote').classed('hidden', true);
   }
@@ -207,45 +208,50 @@ function getFunFacts(impacts) {
       key: 'shower',
       icon: 'shower',
       funFactNumber: Math.round(impacts[2] / funFactFactors[0] * 52),
+      titleShort: 'You made it look easy !',
       title1: 'With this swap, you preserved the equivalent of ',
-      title2: ' showers in water. And you made it look easy!',
-      footnote: 'Calculation based on a 4 minutes shower and a shower head delivering 4L per minute.',
+      title2: ' showers in water.*',
+      footnote: ' and assuming a 4 minutes shower with an average shower head delivering 4L per minute.',
       source: '7'
     },
     {
       key: 'bath',
       icon: 'bath',
       funFactNumber: Math.round(impacts[2] / funFactFactors[1] * 52),
-      title1: 'Look at you! You just saved the water of ',
-      title2: ' luxurious baths.',
-      footnote: 'Calculation based on an average bath filled with 75L of water.',
+      titleShort: 'Look at you !',
+      title1: 'You just saved the water of ',
+      title2: ' luxurious baths.*',
+      footnote: ' and that the bath is filled with 75L of water.',
       source: '7'
     },
     {
       key: 'land',
       icon: 'tennis',
       funFactNumber: Math.round(impacts[0] / funFactFactors[2] * 52),
-      title1: 'Believe it or not, this swap helped you protect a land surface comparable to ',
-      title2: ' tennis courts.',
-      footnote: 'Dimensions of a tennis court: 23.77 x 11 meters.',
+      titleShort: 'Go on rockstar !',
+      title1: 'This swap helped you protect a land surface comparable to ',
+      title2: ' tennis courts.*',
+      footnote: ' and knowing that the dimensions of a tennis court are 23.77 x 11 meters.',
       source: ''
     },
     {
       key: 'car',
       icon: 'car',
       funFactNumber: Math.round(impacts[1] / funFactFactors[3] * 52),
+      titleShort: 'Can you believe this ?',
       title1: 'Your greenhouse gas emission reduction corresponds to a car traveling ',
-      title2: 'km. Go on rockstar!',
-      footnote: 'Given that a typical passenger car vehicle has a fuel economy of 9.35 km/L and emits 2.348 grams of CO2 per Litre.',
+      title2: 'km.*',
+      footnote: ' and knowing that a typical passenger car vehicle has a fuel economy of 9.35 km/L and emits 2.348 grams of CO2 per Litre.',
       source: '8'
     },
     {
       key: 'money',
       icon: 'piggy-bank',
       funFactNumber: Math.round(impacts[4] / funFactFactors[4] * 52),
+      titleShort: 'Double win !',
       title1: 'This swap is not only good for the planet, it makes your wallet thicker with ',
-      title2: ' $ !',
-      footnote: '',
+      title2: '$ !*',
+      footnote: '.',
       source: ''
     },
   ];

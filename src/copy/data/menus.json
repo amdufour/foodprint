@@ -642,7 +642,7 @@
               "funFactSource": "4",
               "removedIngredients":[
                  {
-                    "id":"prawns _farmed",
+                    "id":"prawns_farmed",
                     "label":"Shrimps"
                  }
               ],
@@ -663,7 +663,7 @@
               "recipeCreatorUrl": "https://www.pickuplimes.com",
               "removedIngredients":[
                  {
-                    "id":"prawns _farmed",
+                    "id":"prawns_farmed",
                     "label":"Shrimps"
                  }
               ],
