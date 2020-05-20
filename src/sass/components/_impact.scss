@@ -33,6 +33,11 @@
         color: $textDark;
       }
     }
+    .swap-title--subtext {
+      &.hidden {
+        display: none;
+      }
+    }
     .swap-title--icon {
       width: 45px;
       height: 45px;

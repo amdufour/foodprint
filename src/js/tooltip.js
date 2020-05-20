@@ -146,6 +146,7 @@ function showSwapImpact(swap) {
     const textEmphasis = Math.abs(funFact.funFactNumber) + funFact.titleEmphasis;
     d3.select('#tooltip-swap-impact').classed('positive-impact', true);
     d3.select('#tooltip-swap-impact .swap-title--text').text(funFact.titleShort);
+    d3.select('#tooltip-swap-impact .swap-title--subtext').classed('hidden', false);
     d3.select('#tooltip-swap-impact .swap-title--subtext-start').text(funFact.title1);
     d3.select('#tooltip-swap-impact .swap-title--subtext-emphasis').text(textEmphasis);
     d3.select('#tooltip-swap-impact .swap-title--subtext-end').text(funFact.title2);
@@ -163,6 +164,7 @@ function showSwapImpact(swap) {
     d3.select('#tooltip-swap-impact').classed('positive-impact', false);
     d3.select('#tooltip-swap-impact .swap-title--text').text(swapTitleNeg[titleRandomNumber]);
     d3.select('.impact-footnote').classed('hidden', true);
+    d3.select('#tooltip-swap-impact .swap-title--subtext').classed('hidden', true);
   }
 
   const FIDiff = Math.ceil((Math.abs(FIMeals -  FISwap) / FIMeals * 100));
