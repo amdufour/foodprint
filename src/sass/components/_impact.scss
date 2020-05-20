@@ -28,6 +28,10 @@
     span {
       display: inline-block;
       vertical-align: bottom;
+      &.swap-title--subtext-emphasis {
+        font-weight: 600;
+        color: $textDark;
+      }
     }
     .swap-title--icon {
       width: 45px;

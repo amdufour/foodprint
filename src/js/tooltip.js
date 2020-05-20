@@ -143,10 +143,12 @@ function showSwapImpact(swap) {
     const funFactRandomNumber = Math.floor(Math.random() * funFactsSavings.length);
     const funFact = funFactsSavings[funFactRandomNumber];
     icon = funFact.icon;
-    const text = funFact.title1 + Math.abs(funFact.funFactNumber) + funFact.title2;
+    const textEmphasis = Math.abs(funFact.funFactNumber) + funFact.titleEmphasis;
     d3.select('#tooltip-swap-impact').classed('positive-impact', true);
     d3.select('#tooltip-swap-impact .swap-title--text').text(funFact.titleShort);
-    d3.select('#tooltip-swap-impact .swap-title--subtext').text(text);
+    d3.select('#tooltip-swap-impact .swap-title--subtext-start').text(funFact.title1);
+    d3.select('#tooltip-swap-impact .swap-title--subtext-emphasis').text(textEmphasis);
+    d3.select('#tooltip-swap-impact .swap-title--subtext-end').text(funFact.title2);
     if (funFact.footnote !== '') {
       d3.select('.impact-footnote').classed('hidden', false);
       d3.select('.impact-footnote-text').text(funFact.footnote);
@@ -210,7 +212,8 @@ function getFunFacts(impacts) {
       funFactNumber: Math.round(impacts[2] / funFactFactors[0] * 52),
       titleShort: 'You made it look easy !',
       title1: 'With this swap, you preserved the equivalent of ',
-      title2: ' showers in water.*',
+      titleEmphasis: ' showers',
+      title2: ' in water.*',
       footnote: ' and assuming a 4 minutes shower with an average shower head delivering 4L per minute.',
       source: '7'
     },
@@ -220,7 +223,8 @@ function getFunFacts(impacts) {
       funFactNumber: Math.round(impacts[2] / funFactFactors[1] * 52),
       titleShort: 'Look at you !',
       title1: 'You just saved the water of ',
-      title2: ' luxurious baths.*',
+      titleEmphasis: ' luxurious baths',
+      title2: '.*',
       footnote: ' and that the bath is filled with 75L of water.',
       source: '7'
     },
@@ -230,7 +234,8 @@ function getFunFacts(impacts) {
       funFactNumber: Math.round(impacts[0] / funFactFactors[2] * 52),
       titleShort: 'Go on rockstar !',
       title1: 'This swap helped you protect a land surface comparable to ',
-      title2: ' tennis courts.*',
+      titleEmphasis: ' tennis courts',
+      title2: '.*',
       footnote: ' and knowing that the dimensions of a tennis court are 23.77 x 11 meters.',
       source: ''
     },
@@ -240,7 +245,8 @@ function getFunFacts(impacts) {
       funFactNumber: Math.round(impacts[1] / funFactFactors[3] * 52),
       titleShort: 'Can you believe this ?',
       title1: 'Your greenhouse gas emission reduction corresponds to a car traveling ',
-      title2: 'km.*',
+      titleEmphasis: 'km',
+      title2: '.*',
       footnote: ' and knowing that a typical passenger car vehicle has a fuel economy of 9.35 km/L and emits 2.348 grams of CO2 per Litre.',
       source: '8'
     },
@@ -249,8 +255,9 @@ function getFunFacts(impacts) {
       icon: 'piggy-bank',
       funFactNumber: Math.round(impacts[4] / funFactFactors[4] * 52),
       titleShort: 'Double win !',
-      title1: 'This swap is not only good for the planet, it makes your wallet thicker with ',
-      title2: '$ !*',
+      title1: 'This swap is not only good for the planet, it makes your wallet heavier with ',
+      titleEmphasis: '$',
+      title2: ' !*',
       footnote: '.',
       source: ''
     },
