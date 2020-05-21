@@ -119,8 +119,6 @@ function closeTooltip(target) {
   const swapImpactTooltip = document.getElementById('tooltip-swap-impact');
   if (!target.parentNode.classList.contains('tooltip') && categoryTooltip.classList.contains('visible')) {
     hideCategoryTooltip();
-  } else if (!target.parentNode.classList.contains('tooltip') && swapImpactTooltip.classList.contains('visible') && (!target.classList.contains('option') && !target.classList.contains('child-label'))) {
-    hideSwapImpactTooltip();
   }
 }
 

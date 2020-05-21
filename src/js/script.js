@@ -270,6 +270,8 @@ let svg = d3.select('#foodprint')
   .append('svg')
     .attr('class', 'foodprint-container')
     .attr('height', height * 2);
+d3.select('.swap-impact--container')
+  .style('max-height', height * 2 + 'px');
 
 let arc = d3.arc();
 
@@ -521,7 +523,15 @@ function updateSimulation() {
       // Close swap impact if open
       if (document.querySelector('#tooltip-swap-impact.visible') !== null) {
         d3.select('#tooltip-swap-impact')
-          .classed('visible', false);
+          .classed('visible', false)
+          .classed('show-content', false);
+      }
+      if (isSwap) {
+        d3.select('#tooltip-swap-impact')
+          .classed('show-content', true);
+      } else {
+        d3.select('#tooltip-swap-impact')
+          .classed('show-content', false);
       }
       // Add a blue stroke to the circles related to the hovered ingredient
       d3.selectAll('.node-' + d.meal + '-' + d.id)
@@ -537,6 +547,12 @@ function updateSimulation() {
 
       // Hide the tooltip
       hideTooltip();
+
+      // Reopen swap impact if closed
+      if (document.querySelector('#tooltip-swap-impact.visible') === null) {
+        d3.select('#tooltip-swap-impact')
+          .classed('visible', true);
+      }
     });
 
   // Update and restart the simulation

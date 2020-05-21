@@ -191,13 +191,15 @@ function showSwapImpact(swap) {
 
   // Make the tooltip appear
   d3.select('#tooltip-swap-impact')
-    .classed('visible', true);
+    .classed('visible', true)
+    .classed('show-content', true);
 }
 
 // Hide the swap impact tooltip
 function hideSwapImpactTooltip() {
   d3.select('#tooltip-swap-impact')
-    .classed('visible', false);
+    .classed('visible', false)
+    .classed('show-content', false);
   d3.select('#tooltip-swap-impact .tooltip--fact')
     .classed('hidden', true);
   d3.select('#tooltip-swap-impact .tooltip--recipe')
