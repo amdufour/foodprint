@@ -92,68 +92,77 @@
 			</div>
 		</div>
 
-		<!-- Selectors -->
-		<div class="row dropdowns-container">
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="dropdown-label--main">Breakfast</div>
-				<div class="dropdown-container dropdown-container--breakfast">
-					<label class="dropdown-label" for="dropdown--breakfast">Meal</label>
-					<select id="dropdown--breakfast" class="dropdown dropdown--meal dropdown--breakfast" onchange="handleSelectChange(event.target)">
-						<option disabled selected value class="option">Select a breakfast</option>
-					</select>
-				</div>
-				<div class="dropdown-container dropdown-container--swap dropdown-container--swap--breakfast disabled">
-					<label class="dropdown-label dropdown-label--swap" for="dropdown--breakfast--swap">Swap</label>
-					<select disabled id="dropdown--breakfast--swap" class="dropdown dropdown--swap dropdown--swap--breakfast" onchange="handleSelectChange(event.target)">
-						<option disabled selected value class="option default">Select a swap</option>
-					</select>
+		<div class="row">
+			<div class="col-12 col-lg-8">
+				<!-- Selectors -->
+				<div class="row dropdowns-container">
+					<div class="col-12 col-md-6 col-lg-3">
+						<div class="dropdown-label--main">Breakfast</div>
+						<div class="dropdown-container dropdown-container--breakfast">
+							<label class="dropdown-label" for="dropdown--breakfast">Meal</label>
+							<select id="dropdown--breakfast" class="dropdown dropdown--meal dropdown--breakfast" onchange="handleSelectChange(event.target)">
+								<option disabled selected value class="option">Select a breakfast</option>
+							</select>
+						</div>
+						<div class="dropdown-container dropdown-container--swap dropdown-container--swap--breakfast disabled">
+							<label class="dropdown-label dropdown-label--swap" for="dropdown--breakfast--swap">Swap</label>
+							<select disabled id="dropdown--breakfast--swap" class="dropdown dropdown--swap dropdown--swap--breakfast" onchange="handleSelectChange(event.target)">
+								<option disabled selected value class="option default">Select a swap</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-3">
+						<div class="dropdown-label--main">Lunch</div>
+						<div class="dropdown-container dropdown-container--lunch">
+							<label class="dropdown-label" for="dropdown--lunch">Meal</label>
+							<select id="dropdown--lunch" class="dropdown dropdown--meal dropdown--lunch" onchange="handleSelectChange(event.target)">
+								<option disabled selected value class="option">Select a lunch</option>
+							</select>
+						</div>
+						<div class="dropdown-container dropdown-container--swap dropdown-container--swap--lunch disabled">
+							<label class="dropdown-label dropdown-label--swap" for="dropdown--lunch--swap">Swap</label>
+							<select disabled id="dropdown--lunch--swap" class="dropdown dropdown--swap dropdown--swap--lunch" onchange="handleSelectChange(event.target)">
+								<option disabled selected value class="option default">Select a swap</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-3">
+						<div class="dropdown-label--main">Snack</div>
+						<div class="dropdown-container dropdown-container--snack">
+							<label class="dropdown-label" for="dropdown--snack">Meal</label>
+							<select id="dropdown--snack" class="dropdown dropdown--meal dropdown--snack" onchange="handleSelectChange(event.target)">
+								<option disabled selected value class="option">Select a snack</option>
+							</select>
+						</div>
+						<div class="dropdown-container dropdown-container--swap dropdown-container--swap--snack disabled">
+							<label class="dropdown-label dropdown-label--swap" for="dropdown--snack--swap">Swap</label>
+							<select disabled id="dropdown--snack--swap" class="dropdown dropdown--swap dropdown--swap--snack" onchange="handleSelectChange(event.target)">
+								<option disabled selected value class="option default">Select a swap</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-3">
+						<div class="dropdown-label--main">Dinner</div>
+						<div class="dropdown-container dropdown-container--dinner">
+							<label class="dropdown-label" for="dropdown--dinner">Meal</label>
+							<select id="dropdown--dinner" class="dropdown dropdown--meal dropdown--dinner" onchange="handleSelectChange(event.target)">
+								<option disabled selected value class="option">Select a dinner</option>
+							</select>
+						</div>
+						<div class="dropdown-container dropdown-container--swap dropdown-container--swap--dinner disabled">
+							<label class="dropdown-label dropdown-label--swap" for="dropdown--dinner--swap">Swap</label>
+							<select disabled id="dropdown--dinner--swap" class="dropdown dropdown--swap dropdown--swap--dinner" onchange="handleSelectChange(event.target)">
+								<option disabled selected value class="option default">Select a swap</option>
+							</select>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="dropdown-label--main">Lunch</div>
-				<div class="dropdown-container dropdown-container--lunch">
-					<label class="dropdown-label" for="dropdown--lunch">Meal</label>
-					<select id="dropdown--lunch" class="dropdown dropdown--meal dropdown--lunch" onchange="handleSelectChange(event.target)">
-						<option disabled selected value class="option">Select a lunch</option>
-					</select>
-				</div>
-				<div class="dropdown-container dropdown-container--swap dropdown-container--swap--lunch disabled">
-					<label class="dropdown-label dropdown-label--swap" for="dropdown--lunch--swap">Swap</label>
-					<select disabled id="dropdown--lunch--swap" class="dropdown dropdown--swap dropdown--swap--lunch" onchange="handleSelectChange(event.target)">
-						<option disabled selected value class="option default">Select a swap</option>
-					</select>
-				</div>
+			<div class="col-12 col-lg-4">
+				<!-- Legend -->
+
 			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="dropdown-label--main">Snack</div>
-				<div class="dropdown-container dropdown-container--snack">
-					<label class="dropdown-label" for="dropdown--snack">Meal</label>
-					<select id="dropdown--snack" class="dropdown dropdown--meal dropdown--snack" onchange="handleSelectChange(event.target)">
-						<option disabled selected value class="option">Select a snack</option>
-					</select>
-				</div>
-				<div class="dropdown-container dropdown-container--swap dropdown-container--swap--snack disabled">
-					<label class="dropdown-label dropdown-label--swap" for="dropdown--snack--swap">Swap</label>
-					<select disabled id="dropdown--snack--swap" class="dropdown dropdown--swap dropdown--swap--snack" onchange="handleSelectChange(event.target)">
-						<option disabled selected value class="option default">Select a swap</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-12 col-sm-6 col-md-3">
-				<div class="dropdown-label--main">Dinner</div>
-				<div class="dropdown-container dropdown-container--dinner">
-					<label class="dropdown-label" for="dropdown--dinner">Meal</label>
-					<select id="dropdown--dinner" class="dropdown dropdown--meal dropdown--dinner" onchange="handleSelectChange(event.target)">
-						<option disabled selected value class="option">Select a dinner</option>
-					</select>
-				</div>
-				<div class="dropdown-container dropdown-container--swap dropdown-container--swap--dinner disabled">
-					<label class="dropdown-label dropdown-label--swap" for="dropdown--dinner--swap">Swap</label>
-					<select disabled id="dropdown--dinner--swap" class="dropdown dropdown--swap dropdown--swap--dinner" onchange="handleSelectChange(event.target)">
-						<option disabled selected value class="option default">Select a swap</option>
-					</select>
-				</div>
-			</div>
+
 		</div>
 
 		<!-- Footnotes -->

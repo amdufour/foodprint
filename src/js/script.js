@@ -34,27 +34,33 @@ let foodprintDinner = [0, 0, 0, 0, 0];
 
 // Generate clusters and initialize nodes arrays
 let clusters = d3.range(m).map((category, i) => {
+  let axisRadius = 0;
   let xTranslation = 0;
   let yTranslation = 0;
 
   switch (i) {
     case 0:
-      xTranslation = width / 5;
+      axisRadius = height - 125;
+      xTranslation = axisRadius;
       yTranslation = 3 * height / 2;
       break;
     case 1:
+      axisRadius = height - 150;
       xTranslation = 1.5 * width / 6;
       yTranslation = 2.8 * height / 5;
       break;
     case 2:
+      axisRadius = height - 80;
       xTranslation = width / 2;
       yTranslation = height;
       break;
     case 3:
-      xTranslation = 4 * width / 5;
+      axisRadius = height - 125;
+      xTranslation = width - axisRadius - 10;
       yTranslation = 2.9 * height / 2;
       break;
     case 4:
+      axisRadius = height - 160;
       xTranslation = 4.5 * width / 6;
       yTranslation = 2.8 * height / 5;
       break;
@@ -63,6 +69,7 @@ let clusters = d3.range(m).map((category, i) => {
   const d = {
     cluster: i,
     radius: maxRadius,
+    r: axisRadius, 
     x: xTranslation,
     y: yTranslation
   };
@@ -313,7 +320,6 @@ circlesIndex.append('path')
       outerRadius: height - 15
     });
   })
-  // .style('stroke', 'black')
   .style('transform', 'translate(' + (width/2 + paddingLeft) + 'px, ' + height + 'px)');
 circlesIndex.append('path')
   .attr('id', 'index-circle--path--result')
@@ -325,7 +331,6 @@ circlesIndex.append('path')
       outerRadius: height - 5
     });
   })
-  // .style('stroke', 'black')
   .style('transform', 'translate(' + (width/2 + paddingLeft) + 'px, ' + height + 'px)');
 circlesIndex.append('text')
   .attr('class', 'foodprint-index--label')
@@ -340,14 +345,6 @@ circlesIndex.append('text')
       .classed('active', true);
     d3.select('.index-circle--external')
       .classed('active', true);
-  })
-  .on('click', d => {
-    d3.event.stopPropagation();
-    // Keep the hover styles
-    // d3.select('.axis-circles--' + category.class)
-    //   .classed('active-tooltip', true);
-    // Show the tooltip
-    // showCategoryTooltip(category.class, category.fact, category.source);
   })
   .on('mouseout', d => {
     d3.event.stopPropagation();
@@ -375,27 +372,7 @@ if (windowWidth > 768) {
     .append('g')
       .attr('class', d => { return 'axis-circles axis-circles--' + d.class; });
 
-  categories.forEach((category, i) => {
-    let axisRadius;
-    switch (category.cluster) {
-      case 0:
-        axisRadius = height - 125;
-        break;
-      case 1:
-        axisRadius = height - 150;
-        break;
-      case 2:
-        axisRadius = height - 80;
-        break;
-      case 3:
-        axisRadius = height - 125;
-        break;
-      case 4:
-        axisRadius = height - 160;
-        break;
-    }
-
-    // Append circles showing foodprint in each category
+  categories.forEach((category, i) => {// Append circles showing foodprint in each category
     d3.select('.axis-circles--' + category.class)
       .append('circle')
         .attr('class', 'axis axis-circle axis-circle--' + category.class)
@@ -409,7 +386,7 @@ if (windowWidth > 768) {
         .attr('class', 'axis axis-circle--delimiter axis-circle--delimiter--' + category.class)
         .attr('cx', clusters[category.cluster].x)
         .attr('cy', clusters[category.cluster].y)
-        .attr('r', axisRadius);
+        .attr('r', clusters[category.cluster].r);
 
     // Append path for category titles
     d3.select('.axis-circles--' + category.class)
@@ -420,8 +397,8 @@ if (windowWidth > 768) {
           return arc({
             startAngle: degreeToRadian(-120),
             endAngle: degreeToRadian(120),
-            innerRadius: axisRadius + 10,
-            outerRadius: axisRadius + 10
+            innerRadius: clusters[category.cluster].r + 10,
+            outerRadius: clusters[category.cluster].r + 10
           });
         })
         // .style('stroke', 'black')
@@ -436,8 +413,8 @@ if (windowWidth > 768) {
           return arc({
             startAngle: degreeToRadian(90),
             endAngle: degreeToRadian(270),
-            innerRadius: axisRadius - 10,
-            outerRadius: axisRadius - 10
+            innerRadius: clusters[category.cluster].r - 10,
+            outerRadius: clusters[category.cluster].r - 10
           });
         })
         // .style('stroke', 'black')
