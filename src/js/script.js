@@ -103,6 +103,11 @@ function appendSelectors() {
 
 // Prep data for node generation
 function addMeal(meal, currentSelection, newSelection) {
+  // If meal instruction is still visible, hide it
+  if (document.querySelector('.tip.visible') !== null && updatedMeal === '') {
+    d3.select('.tip').classed('visible', false);
+  }
+
   updatedMeal = meal;
   currentMenu = newSelection;
 
@@ -128,9 +133,20 @@ function addMeal(meal, currentSelection, newSelection) {
   const addedIngredients = getIngredients(meal, newSelection);
 
   updateNodes(meal, removedIngredients, addedIngredients);
+
+  // Show swap instruction
+  setTimeout(function() {
+    // Show instruction only if user is not currently hovering a node
+    if (document.querySelectorAll('.node.active').length === 0) {
+      showSwapInstruction();
+    }
+  }, 3000);
 }
 
 function swapIngredient(meal, swapId) {
+  // Hide swap instruction
+  hideSwapInstruction();
+
   let swap = {};
   menusDetail[meal].forEach(menu => {
     let obj = menu.swaps.find(obj => obj.key == swapId);
@@ -533,6 +549,12 @@ function updateSimulation() {
         d3.select('#tooltip-swap-impact')
           .classed('show-content', false);
       }
+
+      // Hide swap instruction if visible
+      if (document.querySelector('.tip.visible') !== null) {
+        hideSwapInstruction();
+      }
+
       // Add a blue stroke to the circles related to the hovered ingredient
       d3.selectAll('.node-' + d.meal + '-' + d.id)
         .classed('active', true);
