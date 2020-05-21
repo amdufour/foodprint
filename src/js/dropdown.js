@@ -100,7 +100,6 @@ document.addEventListener('click', (e) => {
   if (parent === null || parent.classList === undefined || !isDropdown) {
     closeDropdowns();
     closeTooltip(e.target);
-    hideInstructions();
   }
 });
 // Close open dropdowns
@@ -171,13 +170,6 @@ function handleDropdownSelection(newSelection) {
   if (dropdownContainer.classList[1].substring(toStrip.length) === 'meal') {
     // Call viz
     addMeal(meal, currentSelection, newSelection.id);
-    // If this is the first meal selection, show the second instruction
-    if (!secondInstructionShown) {
-      setTimeout(function() {
-        showInstruction('two');
-        secondInstructionShown = true;
-      }, 2000);
-    }
     // Handle swap selector
     const swapContainer = dropdownContainer.parentNode.parentNode.querySelector('.dropdown-container--swap--' + meal);
     fillSwapDropdown(meal, newSelection.id, swapContainer);
