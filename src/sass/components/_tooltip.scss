@@ -95,13 +95,13 @@
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: all 100ms ease-out;
   .tooltip--container {
     position: static;
     width: 100%;
   }
 }
 #tooltip {
+  transition: all 100ms ease-out;
   transition-delay: 200ms;
   &.visible {
     max-height: 500px;
