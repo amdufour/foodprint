@@ -5,7 +5,7 @@ const categories = [
     label: 'land_use_m2_per_kg',
     unit: 'm2',
     title: 'Land use',
-    fact: 'Half of the world\'s habitable land is used for agriculture.',
+    fact: '"Half of the world\'s habitable land is used for agriculture."',
     source: '1',
     factor: 100
   },
@@ -15,7 +15,7 @@ const categories = [
     label: 'gas_emissions_kgCO2eq_per_kg',
     unit: 'kgCO2eq',
     title: 'Greenhouse gas emissions',
-    fact: 'Food production is responsible for one-quarter of the world\’s greenhouse gas emissions.',
+    fact: '"Food production is responsible for one-quarter of the world\’s greenhouse gas emissions."',
     source: '1',
     factor: 100
   },
@@ -25,7 +25,7 @@ const categories = [
     label: 'water_liters_per_kg',
     unit: 'L',
     title: 'Water use',
-    fact: 'Agriculture is by far the largest consumer of the Earth\’s available freshwater: 70% of “blue water” withdrawals from watercourses and groundwater are for agricultural usage, three times more than 50 years ago.',
+    fact: '"Agriculture is by far the largest consumer of the Earth\’s available freshwater: 70% of “blue water” withdrawals from watercourses and groundwater are for agricultural usage, three times more than 50 years ago."',
     source: '2',
     factor: 20
   },
@@ -35,7 +35,7 @@ const categories = [
     label: 'eutrophying_emissions_kgPO4eq_per_kg',
     unit: 'kgPO4eq',
     title: 'Eutrophication',
-    fact: 'Eutrophication is the pollution of water bodies and ecosystems with excess nutrients. It is a major environmental problem from which the runoff of nitrogen and other nutrients from agricultural production systems is a leading contributor.',
+    fact: '"Eutrophication is the pollution of water bodies and ecosystems with excess nutrients. It is a major environmental problem from which the runoff of nitrogen and other nutrients from agricultural production systems is a leading contributor."',
     source: '1',
     factor: 100
   },

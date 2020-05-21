@@ -1,0 +1,34 @@
+.legend {
+  .legend-title {
+    margin-bottom: 6px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $textDark;
+  }
+  .legend-item-label {
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+    .dimension {
+      font-size: 1.1rem;
+    }
+  }
+  .legend-item-category {
+    margin: 3px 0;
+    font-size: 1rem;
+    .dimension {
+      font-size: .8rem;
+    }
+    sub, sup {
+      font-size: 8px;
+    }
+  }
+
+  .lengend-circle {
+    &.outer { fill-opacity: .3; }
+    &.middle { fill-opacity: .5; }
+    &.inner { fill-opacity: 1; }
+
+    &.water { fill: $water; }
+    &.others { fill: $gas; }
+  }
+}

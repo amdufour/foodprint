@@ -91,6 +91,7 @@ Promise.all(promises).then(data => {
   // Now that the data is imported, allow user to interact with them
   // showActions();
   appendSelectors();
+  showLegend();
 });
 
 function appendSelectors() {
@@ -198,10 +199,12 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
     addedIngredients.forEach(ingredient => {
       // Find ingredient foodprint in data
       const ingredientFoodprint = getFoodprint(ingredient.id);
+      console.log(ingredient.id)
       
       // Create a node for each category
       categories.forEach((category, i) => {
         const radius = Math.sqrt((parseFloat(ingredientFoodprint[category.label]) * parseFloat(ingredientFoodprint.portion_kg) * category.factor) / Math.PI);
+        console.log(category.label, radius);
         const d = {
           meal: meal,
           id: ingredient.id,

@@ -1,7 +1,10 @@
-// Dropdowns container
-.dropdowns-container {
+.visualization-bottom {
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+// Dropdowns container
+.dropdowns-container {
   font-size: 1.3rem;
   @media (min-height: 826px) {
     bottom: auto;
