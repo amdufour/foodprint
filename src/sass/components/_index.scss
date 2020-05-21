@@ -1,27 +1,31 @@
 .index-circle {
-  fill: $orange;
-  fill-opacity: .1;
+  fill: $index;
+  fill-opacity: .2;
   transition: r 500ms ease;
 }
 
 .index-circle--external {
-  fill: $orange;
-  fill-opacity: .05;
+  fill: $index;
+  fill-opacity: .2;
+  stroke: $index;
+  stroke-width: 1;
+  stroke-opacity: .3;
   transition: all 250ms ease;
   &.active,
   &.active-tooltip {
-    stroke-opacity: 0.2;
-    stroke-width: 3;
+    stroke-width: 2;
+    stroke-opacity: 1;
   }
 }
 
 .foodprint-index--label {
-  fill: $textDark;
+  fill: $index;
+  font-size: 1.6rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 250ms ease;
   &.foodprint-index--label--result {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
   &.active,
   &.active-tooltip {

@@ -39,6 +39,7 @@
   }
   .axis-circle--delimiter {
     stroke-width: 1;
+    stroke-opacity: .3;
     transition: all 250ms ease;
   }
   &.axis-circles--land text { fill: $land; }
@@ -46,10 +47,18 @@
   &.axis-circles--water text { fill: $water; }
   &.axis-circles--eutro text { fill: $eutro; }
   &.axis-circles--cost text { fill: $cost; }
+  .axis-circle--delimiter--land { stroke: $land; }
+  .axis-circle--delimiter--gas { stroke: $gas; }
+  .axis-circle--delimiter--water { stroke: $water; }
+  .axis-circle--delimiter--eutro { stroke: $eutro; }
+  .axis-circle--delimiter--cost { stroke: $cost; }
   &.active,
   &.active-tooltip {
     text {
       font-size: 1.5rem;
+    }
+    .foodprint-result {
+      font-size: 1.6rem;
     }
     &.axis-circles--land text { fill: darken($land, 5%); }
     &.axis-circles--gas text { fill: darken($gas, 10%); }

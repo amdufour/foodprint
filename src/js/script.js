@@ -9,7 +9,7 @@ const paddingCircles = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
 const radiusClustersCenters = 150; // Radius of the clusters centers
 
-const colors = ['#F16A43', '#EC1C4B', '#2F9395', '#A6206A', '#F7D969'];
+const colors = ['#F16A43', '#EC1C4B', '#2F9395', '#A6206A', '#BF7222'];
 const meals = ['breakfast', 'lunch', 'snack', 'dinner'];
 const m = categories.length; // number of distinct clusters
 
@@ -42,7 +42,7 @@ let clusters = d3.range(m).map((category, i) => {
     case 0:
       axisRadius = height - 125;
       xTranslation = axisRadius;
-      yTranslation = 3 * height / 2;
+      yTranslation = 2 * height - axisRadius;
       break;
     case 1:
       axisRadius = height - 150;
@@ -57,7 +57,7 @@ let clusters = d3.range(m).map((category, i) => {
     case 3:
       axisRadius = height - 125;
       xTranslation = width - axisRadius - 10;
-      yTranslation = 2.9 * height / 2;
+      yTranslation = 2 * height - axisRadius;
       break;
     case 4:
       axisRadius = height - 160;
