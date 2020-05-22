@@ -6,9 +6,9 @@ window.onload = function() {
 };
 
 const swapInstructions = [
-  'Wanna become a superhero? Try swaping an ingredient',
-  'Time to help the planet. Swap an ingredient!',
-  'Now, let\'s reduce your foodprint! Select a swap.'
+  'Wanna become a superhero? Try swaping an ingredient.',
+  'Time to help the planet! Swap an ingredient.',
+  'Now, let\'s reduce your foodprint by selecting a swap!'
 ];
 
 function showSwapInstruction() {
