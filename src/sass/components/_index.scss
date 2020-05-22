@@ -26,6 +26,12 @@
   transition: all 250ms ease;
   &.foodprint-index--label--result {
     font-size: 1.6rem;
+    textPath {
+      transition: opacity 250ms ease;
+      &.hidden {
+        opacity: 0;
+      }
+    }
   }
   &.active,
   &.active-tooltip {

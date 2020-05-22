@@ -35,6 +35,12 @@
     transition: all 250ms ease;
     &.foodprint-result {
       font-size: 1.5rem;
+      textPath {
+        transition: opacity 250ms ease;
+        &.hidden {
+          opacity: 0;
+        }
+      }
     }
   }
   .axis-circle--delimiter {

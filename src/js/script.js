@@ -360,7 +360,7 @@ circlesIndex.append('text')
   .style('text-anchor', 'middle')
   .append('textPath')
     .attr('id', 'foodprint-result--number--index')
-    .attr('class', 'foodprint-result--number--index')
+    .attr('class', 'foodprint-result--number--index hidden')
     .attr('xlink:href', '#index-circle--path--result')
     .attr('startOffset', '75%')
     .text(0);
@@ -467,7 +467,7 @@ if (windowWidth > 768) {
       .style('text-anchor', 'middle')
       .append('textPath')
         .attr('id', 'foodprint-result--number--' + category.class)
-        .attr('class', 'foodprint-result--number')
+        .attr('class', 'foodprint-result--number hidden')
         .attr('xlink:href', '#category-label--path--result--' + category.class)
         .attr('startOffset', '75%')
         .text(0);
