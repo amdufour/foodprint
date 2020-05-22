@@ -1,4 +1,5 @@
 .legend {
+  padding: 0 15px;
   .legend-title {
     margin-bottom: 6px;
     font-size: 1.4rem;
@@ -6,29 +7,33 @@
     color: $textDark;
   }
   .legend-item-label {
-    margin-bottom: 5px;
+    min-height: 30px;
     font-size: 1.3rem;
-    .dimension {
-      font-size: 1.1rem;
-    }
+    line-height: 1.1;
   }
-  .legend-item-category {
-    margin: 3px 0;
-    font-size: 1rem;
-    .dimension {
-      font-size: .8rem;
-    }
-    sub, sup {
-      font-size: 8px;
-    }
+  .legend-item-graphe {
+    margin-left: 5px;
   }
 
+  // Circles
   .lengend-circle {
     &.outer { fill-opacity: .3; }
-    &.middle { fill-opacity: .5; }
-    &.inner { fill-opacity: 1; }
+    &.middle { fill-opacity: .4; }
+    &.inner { fill-opacity: .9; }
 
     &.water { fill: $water; }
-    &.others { fill: $gas; }
+    &.other { fill: $gas; }
+  }
+
+  // Axis
+  .legend-axis {
+    stroke: $text;
+    stroke-opacity: .6;
+  }
+
+  // Label
+  .legend-label {
+    fill: $text;
+    font-size: 1.1rem;
   }
 }
