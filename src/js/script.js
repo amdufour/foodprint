@@ -23,6 +23,7 @@ let currentDinner = '';
 let updatedMeal = '';
 let currentMenu = '';
 let isSwap = false;
+let instructionsShown = false;
 let currentSwap = '';
 let currentSwapedMeal = '';
 
@@ -145,8 +146,9 @@ function addMeal(meal, currentSelection, newSelection) {
   // Show swap instruction
   setTimeout(function() {
     // Show instruction only if user is not currently hovering a node
-    if (document.querySelectorAll('.node.active').length === 0) {
+    if (document.querySelectorAll('.node.active').length === 0 && !instructionsShown) {
       showSwapInstruction();
+      instructionsShown = true;
     }
   }, 3000);
 }
