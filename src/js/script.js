@@ -205,7 +205,7 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
       // Create a node for each category
       categories.forEach((category, i) => {
         const radius = Math.sqrt((parseFloat(ingredientFoodprint[category.label]) * parseFloat(ingredientFoodprint.portion_kg) * category.factor) / Math.PI);
-        console.log(category.label, radius);
+        // console.log(category.label, radius);
         const d = {
           meal: meal,
           id: ingredient.id,
@@ -298,7 +298,7 @@ let svg = d3.select('#foodprint')
     .attr('class', 'foodprint-container')
     .attr('height', height * 2);
 d3.select('.swap-impact--container')
-  .style('max-height', height * 2 + 'px');
+  .style('height', height * 2 + 'px');
 
 let arc = d3.arc();
 
