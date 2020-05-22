@@ -93,7 +93,7 @@ function hideCategoryTooltip() {
 
 // Show swap impact
 const swapIconsNeg = ['earth-sad_01', 'earth-sad_02'];
-const swapTitleNeg = ['Womp Womp...', 'Let\'s take a deeper look'];
+const swapTitleNeg = 'Womp Womp...';
 function showSwapImpact(swap) {
   // Reset the swap impact tooltip
   d3.select('#tooltip-swap-impact .tooltip--fact').classed('hidden', true);
@@ -159,10 +159,9 @@ function showSwapImpact(swap) {
     }
   } else {
     const iconRandomNumber = Math.floor(Math.random() * 2);
-    const titleRandomNumber = Math.floor(Math.random() * 2);
     icon = swapIconsNeg[iconRandomNumber];
     d3.select('#tooltip-swap-impact').classed('positive-impact', false);
-    d3.select('#tooltip-swap-impact .swap-title--text').text(swapTitleNeg[titleRandomNumber]);
+    d3.select('#tooltip-swap-impact .swap-title--text').text(swapTitleNeg);
     d3.select('.impact-footnote').classed('hidden', true);
     d3.select('#tooltip-swap-impact .swap-title--subtext').classed('hidden', true);
   }
