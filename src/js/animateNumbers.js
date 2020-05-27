@@ -1,6 +1,7 @@
 const speed = 100;
 
 function animateNumber(id, count, target) {
+  const decimals = id === 'foodprint-result--number--index' ? 0 : 2;
   const counter = document.getElementById(id);
   let factor;
   factor = count < target ? 1 : -1;
@@ -13,10 +14,10 @@ function animateNumber(id, count, target) {
   const updateCount = () => {
     if ((factor > 0 && count < target) || (factor < 0 && count > target)) {
       count += increment;
-      counter.innerHTML = (count).toFixed(2);
+      counter.innerHTML = (count).toFixed(decimals);
       setTimeout(updateCount, 1);
     } else {
-      counter.innerHTML = target;
+      counter.innerHTML = target.toFixed(decimals);
       return;
     }
   };
