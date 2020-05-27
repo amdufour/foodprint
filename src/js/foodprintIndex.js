@@ -20,5 +20,5 @@ function getFoodprintIndex() {
   maxFoodprint.forEach((foodprint, i) => {
     index += newFoodprint[i] / maxFoodprint[i];
   });
-  return (index * 5).toFixed(2);
+  return (index * 25).toFixed(0);
 }

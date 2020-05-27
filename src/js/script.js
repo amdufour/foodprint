@@ -605,7 +605,7 @@ function updateSimulation() {
   let foodprintIndex = parseFloat(getFoodprintIndex());
   let radiusIndex = Math.sqrt(foodprintIndex / Math.PI);
   d3.select('.index-circle')
-    .attr('r', radiusIndex * foodprintAreaFactor * 0.9);
+    .attr('r', radiusIndex * foodprintAreaFactor * 0.4);
   animateNumber('foodprint-result--number--index', +indexCounter.innerHTML, foodprintIndex);
 
   // If swap, show swap impact tooltip
