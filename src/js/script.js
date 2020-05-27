@@ -295,6 +295,7 @@ function swapNodes(meal, swap) {
 
 let svg = d3.select('#foodprint')
   .append('svg')
+    .attr('id', 'foodprint')
     .attr('class', 'foodprint-container')
     .attr('height', height * 2);
 d3.select('.swap-impact--container')
@@ -421,10 +422,9 @@ if (windowWidth > 768) {
             outerRadius: clusters[category.cluster].r - 10
           });
         })
-        // .style('stroke', 'black')
         .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
         
-        
+    // Path for superscript
     d3.select('.axis-circles--' + category.class)
       .append('path')
         .attr('id', 'category-label--path--result--sup--' + category.class)
@@ -437,9 +437,9 @@ if (windowWidth > 768) {
             outerRadius: clusters[category.cluster].r - 8
           });
         })
-        // .style('stroke', 'black')
         .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
       
+    // Path for subscript
     d3.select('.axis-circles--' + category.class)
       .append('path')
         .attr('id', 'category-label--path--result--sub--' + category.class)
@@ -452,10 +452,9 @@ if (windowWidth > 768) {
             outerRadius: clusters[category.cluster].r - 13
           });
         })
-        // .style('stroke', 'black')
         .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
     
-        // Append category titles
+    // Append category titles
     d3.select('.axis-circles--' + category.class)
         .append('text')
           .attr('class', 'category-label')
@@ -477,27 +476,27 @@ if (windowWidth > 768) {
             .text(category.title)
             .on('mouseover', d => {
               d3.event.stopPropagation();
-              d3.select('.axis-circles--' + category.class)
-                .classed('active', true);
+              activeStyleCategory(category.class, true)
             })
             .on('click', d => {
               d3.event.stopPropagation();
-              // Keep the hover styles
-              d3.select('.axis-circles--' + category.class)
-                .classed('active-tooltip', true);
-              // Show the tooltip
-              showCategoryTooltip(category.class, category.fact, category.source);
+              handleCategoryClick(category.class, category.fact, category.source)
             })
-            .on('mouseout', d => {
-              d3.event.stopPropagation();
-              d3.select('.axis-circles--' + category.class)
-                .classed('active', false);
-            });
+            .on('mouseout', d => activeStyleCategory(category.class, false));
 
     // Append total foodprint in each category
     let printResult = d3.select('.axis-circles--' + category.class)
       .append('g')
-      .attr('class', 'axis-circles-text-container hidden');
+      .attr('class', 'axis-circles-text-container hidden')
+      .on('mouseover', d => {
+        d3.event.stopPropagation();
+        activeStyleCategory(category.class, true)
+      })
+      .on('click', d => {
+        d3.event.stopPropagation();
+        handleCategoryClick(category.class, category.fact, category.source)
+      })
+      .on('mouseout', d => activeStyleCategory(category.class, false));
     printResult.append('text')
         .attr('class', 'foodprint-result')
         .style('text-anchor', 'end')
@@ -731,7 +730,22 @@ function getFoodprint(ingredient) {
   return dataFoodprint.find(item => item.id === ingredient);
 }
 
-// Helper function - convert degress to radians
+// Add active styles to a category circle
+function activeStyleCategory(categoryClass, state) {
+  d3.select('.axis-circles--' + categoryClass)
+    .classed('active', state);
+}
+
+// Handle click on a category circle
+function handleCategoryClick(categoryClass, categoryFact, categorySource) {
+  // Maintain active style
+  d3.select('.axis-circles--' + categoryClass)
+    .classed('active-tooltip', true);
+  // Show the tooltip
+  showCategoryTooltip(categoryClass, categoryFact, categorySource);
+}
+
+// Helper function - convert degrees to radians
 function degreeToRadian(angle) {
   return angle * Math.PI / 180;
 }

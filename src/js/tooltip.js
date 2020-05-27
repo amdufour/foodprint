@@ -26,8 +26,13 @@ function hideTooltip() {
 
 // Show the category tooltip
 function showCategoryTooltip(category, fact, source) {
-  const xpos = d3.event.pageX;
-  const ypos = d3.event.pageY + 150;
+  const svgContainer = document.getElementById('foodprint').getBoundingClientRect();
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  const svgContainerTop = +svgContainer.top + +scrollTop;
+  const svgContainerLeft = +svgContainer.left + +scrollLeft;
+  const cx = +d3.select('.axis-circle--delimiter--' + category).attr('cx');
+  const cy = +d3.select('.axis-circle--delimiter--' + category).attr('cy');
 
   // Ensure to empty info from previously selected categories
   const detailsElements = document.querySelectorAll('.category-detail');
@@ -43,25 +48,14 @@ function showCategoryTooltip(category, fact, source) {
   d3.select('#tooltip-category .quote').classed(category, true);
   d3.select('#tooltip-category .tooltip--fact').text(fact);
   d3.select('#tooltip-category .tooltip--source').text(source);
+  let tooltipHeight = d3.select('#tooltip-category .tooltip--container').style('height');
+  tooltipHeight = +tooltipHeight.substring(0, tooltipHeight.length - 2);
 
   // Make the tooltip appear at the right location
   d3.select('#tooltip-category')
     .classed('visible', true)
-    .style('top', ypos + 'px')
-    .style('left', () => {
-      switch (category) {
-        case 'land':
-          return xpos + 150 + 'px';
-        case 'gas':
-          return xpos + 100 + 'px';
-        case 'eutro':
-          return xpos - 150 + 'px';
-        case 'cost':
-          return xpos - 100 + 'px';
-        default:
-          return xpos + 'px';
-      }
-    })
+    .style('top', svgContainerTop + cy + tooltipHeight/2 + 'px')
+    .style('left', svgContainerLeft + cx + 'px')
     .transition()
     .duration(0)
     .style('opacity', 1);
