@@ -9,7 +9,7 @@ const paddingCircles = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
 const radiusClustersCenters = 150; // Radius of the clusters centers
 
-const colors = ['#EC1C4B', '#F16A43', '#2F9395', '#A6206A', '#BF7222'];
+const colors = ['#EC1C4B', '#F16A43', '#56BFBF', '#A6206A', '#BF7222'];
 const meals = ['breakfast', 'lunch', 'snack', 'dinner'];
 const m = categories.length; // number of distinct clusters
 
