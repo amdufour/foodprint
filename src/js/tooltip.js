@@ -140,10 +140,15 @@ function showSwapImpact(swap) {
     const textEmphasis = Math.abs(funFact.funFactNumber) + funFact.titleEmphasis;
     d3.select('#tooltip-swap-impact').classed('positive-impact', true);
     d3.select('#tooltip-swap-impact .swap-title--text').text(funFact.titleShort);
+    d3.select('#tooltip-swap-impact .swap-title--subtext').text(funFact.title1);
+    d3.select('#tooltip-swap-impact .swap-title--subtext').append('span')
+      .attr('class', 'swap-title--subtext-emphasis')
+      .text(textEmphasis);
+    d3.select('#tooltip-swap-impact .swap-title--subtext').append('span')
+      .attr('class', 'swap-title--subtext-end')
+      .text(funFact.title2);
+
     d3.select('#tooltip-swap-impact .swap-title--subtext').classed('hidden', false);
-    d3.select('#tooltip-swap-impact .swap-title--subtext-start').text(funFact.title1);
-    d3.select('#tooltip-swap-impact .swap-title--subtext-emphasis').text(textEmphasis);
-    d3.select('#tooltip-swap-impact .swap-title--subtext-end').text(funFact.title2);
     if (funFact.footnote !== '') {
       d3.select('.impact-footnote').classed('hidden', false);
       d3.select('.impact-footnote-text').text(funFact.footnote);
