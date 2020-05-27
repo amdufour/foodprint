@@ -10,6 +10,9 @@ function animateNumber(id, count, target) {
   if (counter.parentNode.parentNode.classList.contains('hidden')) {
     counter.parentNode.parentNode.classList.remove('hidden');
   }
+  if (counter.classList.contains('hidden')) {
+    counter.classList.remove('hidden');
+  }
 
   const updateCount = () => {
     if ((factor > 0 && count < target) || (factor < 0 && count > target)) {
