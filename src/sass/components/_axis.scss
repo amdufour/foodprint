@@ -27,20 +27,25 @@
 }
 
 .axis-circles {
+  .axis-circles-text-container {
+    transition: opacity 250ms ease;
+    &.hidden {
+      opacity: 0;
+    }
+  }
   text {
     fill: $text;
     font-size: 1.4rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 250ms ease;
-    &.foodprint-result {
+    &.foodprint-result,
+    &.foodprint-result--dimension {
       font-size: 1.5rem;
-      textPath {
-        transition: opacity 250ms ease;
-        &.hidden {
-          opacity: 0;
-        }
-      }
+    }
+    &.superscript,
+    &.subscript {
+      font-size: 1rem;
     }
   }
   .axis-circle--delimiter {
@@ -60,11 +65,8 @@
   .axis-circle--delimiter--cost { stroke: $cost; }
   &.active,
   &.active-tooltip {
-    text {
+    .category-label {
       font-size: 1.5rem;
-    }
-    .foodprint-result {
-      font-size: 1.6rem;
     }
     &.axis-circles--land text { fill: darken($land, 5%); }
     &.axis-circles--gas text { fill: darken($gas, 10%); }

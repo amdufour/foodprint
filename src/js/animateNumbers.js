@@ -7,8 +7,8 @@ function animateNumber(id, count, target) {
   factor = count < target ? 1 : -1;
   const increment = factor * Math.abs(target - count) / speed;
 
-  if (counter.classList.contains('hidden')) {
-    counter.classList.remove('hidden');
+  if (counter.parentNode.parentNode.classList.contains('hidden')) {
+    counter.parentNode.parentNode.classList.remove('hidden');
   }
 
   const updateCount = () => {

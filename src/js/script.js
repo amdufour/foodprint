@@ -423,10 +423,42 @@ if (windowWidth > 768) {
         })
         // .style('stroke', 'black')
         .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
-
-    // Append category titles
+        
+        
+    d3.select('.axis-circles--' + category.class)
+      .append('path')
+        .attr('id', 'category-label--path--result--sup--' + category.class)
+        .attr('class', 'category-label--path')
+        .attr('d', d => {
+          return arc({
+            startAngle: degreeToRadian(90),
+            endAngle: degreeToRadian(270),
+            innerRadius: clusters[category.cluster].r - 8,
+            outerRadius: clusters[category.cluster].r - 8
+          });
+        })
+        // .style('stroke', 'black')
+        .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
+      
+    d3.select('.axis-circles--' + category.class)
+      .append('path')
+        .attr('id', 'category-label--path--result--sub--' + category.class)
+        .attr('class', 'category-label--path')
+        .attr('d', d => {
+          return arc({
+            startAngle: degreeToRadian(90),
+            endAngle: degreeToRadian(270),
+            innerRadius: clusters[category.cluster].r - 13,
+            outerRadius: clusters[category.cluster].r - 13
+          });
+        })
+        // .style('stroke', 'black')
+        .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
+    
+        // Append category titles
     d3.select('.axis-circles--' + category.class)
         .append('text')
+          .attr('class', 'category-label')
           .style('text-anchor', 'middle')
           .append('textPath')
             .attr('xlink:href', '#category-label--path--' + category.class)
@@ -463,16 +495,63 @@ if (windowWidth > 768) {
             });
 
     // Append total foodprint in each category
-    d3.select('.axis-circles--' + category.class)
-    .append('text')
-      .attr('class', 'foodprint-result')
-      .style('text-anchor', 'middle')
+    let printResult = d3.select('.axis-circles--' + category.class)
+      .append('g')
+      .attr('class', 'axis-circles-text-container hidden');
+    printResult.append('text')
+        .attr('class', 'foodprint-result')
+        .style('text-anchor', 'end')
       .append('textPath')
         .attr('id', 'foodprint-result--number--' + category.class)
-        .attr('class', 'foodprint-result--number hidden')
+        .attr('class', 'foodprint-result--number')
         .attr('xlink:href', '#category-label--path--result--' + category.class)
-        .attr('startOffset', '75%')
+        .attr('startOffset', '76%')
         .text(0);
+    let resultDimension1 = printResult.append('text')
+        .attr('class', 'foodprint-result--dimension')
+        .style('text-anchor', 'start')
+      .append('textPath')
+        .attr('xlink:href', '#category-label--path--result--' + category.class)
+        .attr('startOffset', '76.5%');
+    let resultDimension2 = printResult.append('text')
+      .attr('class', 'foodprint-result--dimension')
+      .style('text-anchor', 'start');
+    
+    switch (category.class) {
+      case 'land':
+        resultDimension1.text(' m');
+        resultDimension2.classed('superscript', true)
+          .append('textPath')
+            .attr('xlink:href', '#category-label--path--result--sup--' + category.class)
+            .attr('startOffset', '578px')
+            .attr('baseline-shift', 'super')
+            .text('2');
+        break;
+      case 'gas':
+        resultDimension1.text(' kgCO');
+        resultDimension2.classed('subscript', true)
+          .append('textPath')
+            .attr('xlink:href', '#category-label--path--result--sub--' + category.class)
+            .attr('startOffset', '454px')
+            .attr('baseline-shift', 'sub')
+            .text('2eq');
+        break;
+      case 'water':
+        resultDimension1.text('L');
+        break;
+      case 'eutro':
+        resultDimension1.text(' kgPO');
+        resultDimension2.classed('subscript', true)
+          .append('textPath')
+            .attr('xlink:href', '#category-label--path--result--sub--' + category.class)
+            .attr('startOffset', '574px')
+            .attr('baseline-shift', 'sub')
+            .text('4eq');
+        break;
+      case 'cost':
+        resultDimension1.text('$');
+        break;
+    };
   });
 }
 
