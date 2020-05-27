@@ -49,3 +49,6 @@ const categories = [
     source: '',
     factor: 100 },
 ];
+
+const indexDefinition1 = 'The Foodprint index was created for the purpose of this visualization, to give a better overview of how the food selections impact the overall foodprint.';
+const indexDefinition2 = 'The index is calculated by making the sum of the ratios between the of impact a category and the maximum impact possible in that category (in the context of this simulation). The result is spread on a scale between 0 and 100.';

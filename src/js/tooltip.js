@@ -31,8 +31,8 @@ function showCategoryTooltip(category, fact, source) {
   const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
   const svgContainerTop = +svgContainer.top + +scrollTop;
   const svgContainerLeft = +svgContainer.left + +scrollLeft;
-  const cx = +d3.select('.axis-circle--delimiter--' + category).attr('cx');
-  const cy = +d3.select('.axis-circle--delimiter--' + category).attr('cy');
+  let cx;
+  let cy;
 
   // Ensure to empty info from previously selected categories
   const detailsElements = document.querySelectorAll('.category-detail');
@@ -45,9 +45,22 @@ function showCategoryTooltip(category, fact, source) {
   // Add text to the existing tooltip markup
   d3.select('#tooltip-category .category-title .' + category).classed('hidden', false);
   d3.select('#tooltip-category .quote').attr('class', 'tooltip quote');
-  d3.select('#tooltip-category .quote').classed(category, true);
-  d3.select('#tooltip-category .tooltip--fact').text(fact);
-  d3.select('#tooltip-category .tooltip--source').text(source);
+
+  if (category === 'index') {
+    cx = +d3.select('.index-circle--external').attr('cx');
+    cy = +d3.select('.index-circle--external').attr('cy');
+    d3.select('#tooltip-category .tooltip--fact').classed('fact-index', true);
+    d3.select('#tooltip-category .tooltip--fact').append('span').text(indexDefinition1);
+    d3.select('#tooltip-category .tooltip--fact').append('span').text(indexDefinition2);
+    d3.select('#tooltip-category .tooltip--source').text('');
+  } else {
+    cx = +d3.select('.axis-circle--delimiter--' + category).attr('cx');
+    cy = +d3.select('.axis-circle--delimiter--' + category).attr('cy');
+    d3.select('#tooltip-category .tooltip--fact').classed('fact-index', false);
+    d3.select('#tooltip-category .tooltip--fact').text(fact);
+    d3.select('#tooltip-category .tooltip--source').text(source);
+  }
+
   let tooltipHeight = d3.select('#tooltip-category .tooltip--container').style('height');
   tooltipHeight = +tooltipHeight.substring(0, tooltipHeight.length - 2);
 

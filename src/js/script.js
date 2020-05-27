@@ -351,6 +351,14 @@ circlesIndex.append('text')
     d3.select('.index-circle--external')
       .classed('active', true);
   })
+  .on('click', d => {
+    d3.event.stopPropagation();
+    // Maintain active style
+      d3.select('.foodprint-index--label')
+      .classed('active-tooltip', true);
+    // Show the tooltip
+    showCategoryTooltip('index');
+  })
   .on('mouseout', d => {
     d3.event.stopPropagation();
     d3.selectAll('.foodprint-index--label')

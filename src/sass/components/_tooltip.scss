@@ -145,6 +145,7 @@
       &.water { color: $water; }
       &.eutro { color: $eutro; }
       &.cost { color: $cost; }
+      &.index { color: $index; }
       &.hidden {
         display: none;
       }
@@ -155,6 +156,18 @@
   .tooltip--fact {
     font-size: 1.2rem;
     font-style: italic;
+    &.fact-index {
+      display: block;
+      padding-bottom: 40px;
+      background-image: url(../svg/index-formula.svg);
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: 300px auto;
+      span {
+        display: block;
+        margin: 1rem 0;
+      }
+    }
   }
   .quote {
     position: relative;
