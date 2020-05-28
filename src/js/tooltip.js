@@ -101,7 +101,7 @@ function hideCategoryTooltip() {
 // Show swap impact
 const swapIconsNeg = ['earth-sad_01', 'earth-sad_02'];
 const swapTitleNeg = 'Womp Womp...';
-function showSwapImpact(swap) {
+function showSwapImpact() {
   // Reset the swap impact tooltip
   d3.select('#tooltip-swap-impact .tooltip--fact').classed('hidden', true);
   d3.select('#tooltip-swap-impact .tooltip--recipe').classed('hidden', true);
@@ -129,7 +129,7 @@ function showSwapImpact(swap) {
     d3.select('#tooltip-swap-impact .detail--' + categories[i].class + ' .detail-impact').text(sign + Math.abs(impacts[i]));
   });
 
-  const funFactsSavings = getFunFacts(impacts);
+  const funFactsSavings = getFunFacts(swapDiff);
 
   let FIMeals = 0;
   let FISwap = 0;
@@ -182,22 +182,22 @@ function showSwapImpact(swap) {
 
   d3.select('#tooltip-swap-impact .swap-title--icon')
     .style('background-image', 'url(../svg/' + icon + '.svg)');
-  d3.select('#tooltip-swap-impact .summary-swap').text(swap.impactLabel);
+  d3.select('#tooltip-swap-impact .summary-swap').text(currentSwap.impactLabel);
   d3.select('#tooltip-swap-impact .summary-impact').text(impactSummary);
   d3.select('#tooltip-swap-impact .summary-result').text(FIDiff);
 
-  if (swap.funFact !== undefined) {
+  if (currentSwap.funFact !== undefined) {
     d3.select('#tooltip-swap-impact .tooltip--fact').classed('hidden', false);
-    d3.select('#tooltip-swap-impact .fact').text(swap.funFact);
-    d3.select('#tooltip-swap-impact .source').text(swap.funFactSource);
+    d3.select('#tooltip-swap-impact .fact').text(currentSwap.funFact);
+    d3.select('#tooltip-swap-impact .source').text(currentSwap.funFactSource);
   }
 
-  if (swap.recipeLabel !== undefined) {
+  if (currentSwap.recipeLabel !== undefined) {
     d3.select('#tooltip-swap-impact .tooltip--recipe').classed('hidden', false);
-    d3.select('#tooltip-swap-impact .recipe a').attr('href', swap.recipeUrl);
-    d3.select('#tooltip-swap-impact .recipe a').text(swap.recipeLabel);
-    d3.select('#tooltip-swap-impact .recipe-source a').attr('href', swap.recipeCreatorUrl);
-    d3.select('#tooltip-swap-impact .recipe-source a').text(swap.recipeCreator);
+    d3.select('#tooltip-swap-impact .recipe a').attr('href', currentSwap.recipeUrl);
+    d3.select('#tooltip-swap-impact .recipe a').text(currentSwap.recipeLabel);
+    d3.select('#tooltip-swap-impact .recipe-source a').attr('href', currentSwap.recipeCreatorUrl);
+    d3.select('#tooltip-swap-impact .recipe-source a').text(currentSwap.recipeCreator);
   }
 
   // Make the tooltip appear
