@@ -484,11 +484,11 @@ if (windowWidth > 768) {
             .text(category.title)
             .on('mouseover', d => {
               d3.event.stopPropagation();
-              activeStyleCategory(category.class, true)
+              activeStyleCategory(category.class, true);
             })
             .on('click', d => {
               d3.event.stopPropagation();
-              handleCategoryClick(category.class, category.fact, category.source)
+              handleCategoryClick(category.class, category.fact, category.source);
             })
             .on('mouseout', d => activeStyleCategory(category.class, false));
 
@@ -498,11 +498,11 @@ if (windowWidth > 768) {
       .attr('class', 'axis-circles-text-container hidden')
       .on('mouseover', d => {
         d3.event.stopPropagation();
-        activeStyleCategory(category.class, true)
+        activeStyleCategory(category.class, true);
       })
       .on('click', d => {
         d3.event.stopPropagation();
-        handleCategoryClick(category.class, category.fact, category.source)
+        handleCategoryClick(category.class, category.fact, category.source);
       })
       .on('mouseout', d => activeStyleCategory(category.class, false));
     printResult.append('text')
@@ -558,7 +558,7 @@ if (windowWidth > 768) {
       case 'cost':
         resultDimension1.text('$');
         break;
-    };
+    }
   });
 }
 

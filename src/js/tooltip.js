@@ -29,8 +29,8 @@ function showCategoryTooltip(category, fact, source) {
   const svgContainer = document.getElementById('foodprint').getBoundingClientRect();
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-  const svgContainerTop = +svgContainer.top + +scrollTop;
-  const svgContainerLeft = +svgContainer.left + +scrollLeft;
+  const svgContainerTop = parseInt(svgContainer.top) + parseInt(scrollTop);
+  const svgContainerLeft = parseInt(svgContainer.left) + parseInt(scrollLeft);
   let cx;
   let cy;
 
