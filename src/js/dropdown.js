@@ -76,7 +76,7 @@ function toggleDropdownDisplay(target) {
     
     // Close swap impact if open
     if (dropdown.classList.contains('dropdown--meal') && document.querySelector('#tooltip-swap-impact.visible') !== null) {
-      hideSwapImpactTooltip();
+      hideSwapImpact(); 
     }
   
     if (!dropdown.parentNode.classList.contains('disabled')) {

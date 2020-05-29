@@ -24,7 +24,10 @@ let updatedMeal = '';
 let currentMenu = '';
 let isSwap = false;
 let instructionsShown = false;
+let latestMeal = '';
+let latestSwap = '';
 let currentSwap = '';
+let latestSwapedMeal = '';
 let currentSwapedMeal = '';
 
 let foodprintMeals = [0, 0, 0, 0, 0];
@@ -90,7 +93,6 @@ Promise.all(promises).then(data => {
   menusDetail = data[1];
 
   // Now that the data is imported, allow user to interact with them
-  // showActions();
   appendSelectors();
   showLegend();
 });
@@ -117,6 +119,7 @@ function addMeal(meal, currentSelection, newSelection) {
     d3.select('.tip').classed('visible', false);
   }
 
+  latestMeal = updatedMeal;
   updatedMeal = meal;
   currentMenu = newSelection;
 
@@ -142,6 +145,8 @@ function addMeal(meal, currentSelection, newSelection) {
   const addedIngredients = getIngredients(meal, newSelection);
 
   updateNodes(meal, removedIngredients, addedIngredients);
+
+  addMealImpact();
 
   // Show swap instruction
   setTimeout(function() {
@@ -227,7 +232,9 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
 }
 
 function swapNodes(meal, swap) {
+  latestSwap = currentSwap;
   currentSwap = swap;
+  latestSwapedMeal = currentSwapedMeal;
   currentSwapedMeal = meal;
 
   // Reset state of possible swaps
@@ -696,9 +703,9 @@ function updateSimulation() {
 
   // If swap, show swap impact tooltip
   if (isSwap && currentSwap.key !== 'reset') {
-    showSwapImpact(currentSwap);
+    calculateSwapImpact();
   } else if (isSwap && currentSwap.key === 'reset') {
-    hideSwapImpactTooltip();
+    hideSwapImpact();
   }
 
   if (windowWidth > 768) {
@@ -731,11 +738,6 @@ function layoutTick() {
 // Get list of ingredients of a selected meal
 function getIngredients(meal, selection) {
   return menusDetail[meal].find(meal => meal.key === selection).ingredients;
-}
-
-// Get detailed foodprint of an ingredient
-function getFoodprint(ingredient) {
-  return dataFoodprint.find(item => item.id === ingredient);
 }
 
 // Add active styles to a category circle
