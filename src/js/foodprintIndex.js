@@ -6,8 +6,6 @@ let currentFoodprint = [0, 0, 0, 0, 0];
 let newFoodprint = [0, 0, 0, 0, 0];
 let currentGlobalFoodprint = [0, 0, 0, 0, 0]; // Excludes new swaps
 let currentGlobalFI = 0; // Excludes new swaps
-let FIMeals = 0;
-let FISwap = 0;
 let lastestSwapIsSet = true;
 let currentFoodprintDetail = [
   {
@@ -114,10 +112,6 @@ function getCurrentGlobalFoodprint() {
 function updateFoodprint(foodprint) {
   currentFoodprint = newFoodprint;
   newFoodprint = foodprint;
-
-  foodprintMeals.forEach((meal, i) => {
-    foodprintMeals[i] = foodprintBreakfast[i] + foodprintLunch[i] + foodprintSnack[i] + foodprintDinner[i];
-  });
 }
 
 // Calculate foodprint index
@@ -127,12 +121,6 @@ function getFoodprintIndex() {
     index += newFoodprint[i] / maxFoodprint[i];
   });
   let FI = index * 25;
-
-  if (isSwap) {
-    FISwap = FI;
-  } else {
-    FIMeals = FI;
-  }
 
   return FI.toFixed(0);
 }

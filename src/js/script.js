@@ -30,12 +30,6 @@ let currentSwap = '';
 let latestSwapedMeal = '';
 let currentSwapedMeal = '';
 
-let foodprintMeals = [0, 0, 0, 0, 0];
-let foodprintBreakfast = [0, 0, 0, 0, 0];
-let foodprintLunch = [0, 0, 0, 0, 0];
-let foodprintSnack = [0, 0, 0, 0, 0];
-let foodprintDinner = [0, 0, 0, 0, 0];
-
 // Generate clusters and initialize nodes arrays
 let clusters = d3.range(m).map((category, i) => {
   let axisRadius = 0;
@@ -210,7 +204,6 @@ function updateNodes(meal, removedIngredients, addedIngredients) {
       // Create a node for each category
       categories.forEach((category, i) => {
         const radius = Math.sqrt((parseFloat(ingredientFoodprint[category.label]) * parseFloat(ingredientFoodprint.portion_kg) * category.factor) / Math.PI);
-        // console.log(category.label, radius);
         const d = {
           meal: meal,
           id: ingredient.id,

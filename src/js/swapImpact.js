@@ -68,7 +68,6 @@ function showSwapImpact(impacts, newSwapImpact, impactFI) {
     // Append fun fact info
     const funFacts = getFunFacts(newSwapImpact);
     const funFactRandomNumber = Math.floor(Math.random() * funFacts.length);
-    console.log(funFacts);
     const funFact = funFacts[funFactRandomNumber];
     icon = funFact.icon;
     swapTitle = funFact.titleShort;
