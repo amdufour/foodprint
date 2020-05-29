@@ -68,6 +68,7 @@ function showSwapImpact(impacts, newSwapImpact, impactFI) {
     // Append fun fact info
     const funFacts = getFunFacts(newSwapImpact);
     const funFactRandomNumber = Math.floor(Math.random() * funFacts.length);
+    console.log(funFacts);
     const funFact = funFacts[funFactRandomNumber];
     icon = funFact.icon;
     swapTitle = funFact.titleShort;
@@ -214,13 +215,13 @@ let funFactsSavings = [
   {
     key: 'car',
     icon: 'car',
-    funFactFactor: 1 / 3984,
+    funFactFactor: 3940 / 3984,
     impactIndex: 1,
     funFactNumber: 0,
     titleShort: 'Can you believe this?',
-    title1: 'Your greenhouse gas emission reduction corresponds to a car traveling ',
-    titleEmphasis: 'km',
-    title2: '.*',
+    title1: 'Your greenhouse gas emission reduction corresponds to ',
+    titleEmphasis: '',
+    title2: ' car trips between New York and Los Angeles.*',
     footnote: ' and knowing that a typical passenger car vehicle has a fuel economy of 9.35 km/L and emits 2.348 grams of CO2 per Litre.',
     source: '8'
   },
