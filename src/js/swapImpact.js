@@ -67,8 +67,7 @@ function showSwapImpact(impacts, newSwapImpact, impactFI) {
 
     // Append fun fact info
     const funFacts = getFunFacts(newSwapImpact);
-    const funFactRandomNumber = Math.floor(Math.random() * funFacts.length);
-    console.log(funFacts);
+    const funFactRandomNumber = getfunfactRandomNumber(funFacts);
     const funFact = funFacts[funFactRandomNumber];
     icon = funFact.icon;
     swapTitle = funFact.titleShort;
@@ -135,6 +134,16 @@ function showSwapImpact(impacts, newSwapImpact, impactFI) {
     .classed('show-content', true);
 }
 
+function getfunfactRandomNumber(funFacts) {
+  let funFactRandomNumber = Math.floor(Math.random() * funFacts.length);
+
+  while (funFacts[funFactRandomNumber].funFactNumber < funFacts[funFactRandomNumber].minNumber) {
+    funFactRandomNumber = Math.floor(Math.random() * funFacts.length);
+  }
+
+  return funFactRandomNumber;
+}
+
 // Add new swap in currentFoodprintDetail
 function addNewSwap() {
   let newSwap = [0, 0, 0, 0, 0];
@@ -179,6 +188,7 @@ let funFactsSavings = [
     funFactFactor: 16,
     impactIndex: 2,
     funFactNumber: 0,
+    minNumber: 10,
     titleShort: 'You made it look easy',
     title1: 'With this swap, you preserved the equivalent of ',
     titleEmphasis: ' showers',
@@ -192,6 +202,7 @@ let funFactsSavings = [
     funFactFactor: 75,
     impactIndex: 2,
     funFactNumber: 0,
+    minNumber: 10,
     titleShort: 'Look at you !',
     title1: 'You just saved the water of ',
     titleEmphasis: ' luxurious baths',
@@ -205,6 +216,7 @@ let funFactsSavings = [
     funFactFactor: 261,
     impactIndex: 0,
     funFactNumber: 0,
+    minNumber: 3,
     titleShort: 'Go on rockstar !',
     title1: 'This swap helped you protect a land surface comparable to ',
     titleEmphasis: ' tennis courts',
@@ -218,6 +230,7 @@ let funFactsSavings = [
     funFactFactor: 3940 / 3984,
     impactIndex: 1,
     funFactNumber: 0,
+    minNumber: 10,
     titleShort: 'Can you believe this?',
     title1: 'Your greenhouse gas emission reduction corresponds to ',
     titleEmphasis: '',
@@ -231,6 +244,7 @@ let funFactsSavings = [
     funFactFactor: 1,
     impactIndex: 4,
     funFactNumber: 0,
+    minNumber: 20,
     titleShort: 'Double win',
     title1: 'This swap is not only good for the planet, it makes your wallet heavier with ',
     titleEmphasis: '$',
