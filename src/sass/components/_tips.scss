@@ -1,9 +1,10 @@
 #tips {
   .tip {
     max-height: 0;
-    background: $orange;
-    font-size: 1.8rem;
-    font-weight: 600;
+    background: $textDark;
+    border-radius: $radius;
+    font-size: 1.6rem;
+    line-height: 1.6;
     color: #fff;
     opacity: 0;
     overflow: hidden;
