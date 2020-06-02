@@ -577,11 +577,11 @@
      },
      {
         "key":"shimps_saute",
-        "label":"Shrimps sautéed with Rice noodles and Broccoli",
+        "label":"Fish sautéed with Rice noodles and Broccoli",
         "ingredients":[
            {
-              "id":"prawns_farmed",
-              "label":"Shrimps",
+              "id":"fish_farmed",
+              "label":"Fish (farmed)",
               "active": true
            },
            {
@@ -602,6 +602,11 @@
            {
               "id":"peas",
               "label":"Green peas",
+              "active": false
+           },
+           {
+              "id":"prawns_farmed",
+              "label":"Shrimps",
               "active": false
            },
            {
@@ -633,17 +638,35 @@
                "removedIngredients":[],
                "addedIngredients":[]
             },
+            {
+               "key":"fish_to_shrimps",
+               "label1":"Fish",
+               "label2":"Shrimps",
+               "impactLabel":"Swaping fish for shrimps",
+               "funFact": "There are significant environmental problems associated with the current farming methods of shrimps: deforestation, erosion, rapid land subsidence, and rising salinity levels are threatening the stability of the entire Mekong region (Vietnam), and while shrimp farming does not take the blame alone for these issues, it is a substantial part of the problem.",
+               "funFactSource": "4",
+               "removedIngredients":[
+                  {
+                     "id":"fish_farmed",
+                     "label":"Fish (farmed)"
+                  }
+               ],
+               "addedIngredients":[
+                  {
+                     "id":"prawns_farmed",
+                     "label":"Shrimps"
+                  }
+               ]
+            },
            {
-              "key":"shrimps_to_peas",
-              "label1":"Shrimps",
+              "key":"fish_to_peas",
+              "label1":"Fish",
               "label2":"Green peas",
-              "impactLabel":"Swaping shrimps for green peas",
-              "funFact": "There are significant environmental problems associated with the current farming methods of shrimps: deforestation, erosion, rapid land subsidence, and rising salinity levels are threatening the stability of the entire Mekong region (Vietnam), and while shrimp farming does not take the blame alone for these issues, it is a substantial part of the problem.",
-              "funFactSource": "4",
+              "impactLabel":"Swaping fish for green peas",
               "removedIngredients":[
                  {
-                    "id":"prawns_farmed",
-                    "label":"Shrimps"
+                    "id":"fish_farmed",
+                    "label":"Fish (farmed)"
                  }
               ],
               "addedIngredients":[
@@ -654,7 +677,7 @@
               ]
            },
            {
-              "key":"shrimps_to_tofu_chickpeas",
+              "key":"fish_to_tofu_chickpeas",
               "label":"Try a high protein lettuce wrap with creamy PB sauce",
               "impactLabel":"Making a high protein lettuce wrap with creamy PB sauce",
               "recipeLabel": "High Protein Lettuce Wraps with Creamy Peanut Sauce",
@@ -663,8 +686,8 @@
               "recipeCreatorUrl": "https://www.pickuplimes.com",
               "removedIngredients":[
                  {
-                    "id":"prawns_farmed",
-                    "label":"Shrimps"
+                    "id":"fish_farmed",
+                    "label":"Fish (farmed)"
                  }
               ],
               "addedIngredients":[
@@ -864,7 +887,7 @@
               "key":"pb_to_onb",
               "label1":"Peanut butter",
               "label2":"Other nut butter",
-              "impactLabel":"Swaping peanuts for almonds",
+              "impactLabel":"Swaping peanuts for another nut butter",
               "removedIngredients":[
                  {
                     "id":"groundnuts",
@@ -1050,7 +1073,7 @@
      },
      {
         "key":"chicken_curry",
-        "label":"Chicken Curry",
+        "label":"Chicken Curry with Rice and Vegetables",
         "ingredients":[
            {
               "id":"poultry_meat",
@@ -1169,7 +1192,7 @@
      },
      {
         "key":"grilled_fish",
-        "label":"Grilled Fish with Rice and Vegetables",
+        "label":"Grilled Fish with Corn and Vegetables",
         "ingredients":[
            {
               "id":"fish_farmed",
@@ -1182,8 +1205,8 @@
               "active": true
            },
            {
-              "id":"rice",
-              "label":"Rice",
+              "id":"corn",
+              "label":"Corn",
               "active": true
            },
            {
@@ -1212,8 +1235,8 @@
               "active": false
            },
            {
-              "id":"corn",
-              "label":"Corn",
+              "id":"rice",
+              "label":"Rice",
               "active": false
            }
         ],
@@ -1284,20 +1307,20 @@
               ]
            },
            {
-              "key":"rice_to_corn",
-              "label1":"Rice",
-              "label2":"Corn",
-              "impactLabel":"Swaping rice for corn",
+              "key":"corn_to_rice",
+              "label1":"Corn",
+              "label2":"Rice",
+              "impactLabel":"Swaping corn for rice",
               "removedIngredients":[
                  {
-                    "id":"rice",
-                    "label":"Rice"
+                    "id":"corn",
+                    "label":"Corn"
                  }
               ],
               "addedIngredients":[
                  {
-                    "id":"corn",
-                    "label":"Corn"
+                    "id":"rice",
+                    "label":"Rice"
                  }
               ]
            }
