@@ -17,13 +17,41 @@
 			</div>
 		</div>
 
+		<div class="row legend">
+			<!-- Legend -->
+			<div class="col-12">
+				<h2>How to read this visualization</h2>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="legend-title">Color - Category</div>
+				<ul class="legend-colors">
+					<li class="legend-color legend-color--land">Land use (m<sup>2</sup>)</li>
+					<li class="legend-color legend-color--gas">Greenhouse gas emissions (kgCO<sub>2eq</sub>)</li>
+					<li class="legend-color legend-color--water">Freshwater withdrawal (L)</li>
+					<li class="legend-color legend-color--eutro">Eutrophying emissions (kgPO<sub>4eq</sub>)</li>
+					<li class="legend-color legend-color--cost">Average cost (USD)</li>
+				</ul>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="legend-title">Circle area - Environmental impact</div>
+					<div class="legend-item water">
+						<div class="legend-item-label">Water use <span class="dimension">(L)</span></div>
+						<div class="legend-item-graphe"></div>
+					</div>
+					<div class="legend-item others">
+						<div class="legend-item-label">Land use <span class="dimension">(m<sup>2</sup>)</span> and other categories</div>
+						<div class="legend-item-graphe"></div>
+					</div>
+			</div>
+		</div>
+
 		<div class="row">
 			<div class="col-12 col-lg-8">
 				<h2>Visualize your foodprint</h2>
 				<!-- Foodprint visualization -->
 				<div id="foodprint"></div>
 			</div>
-			<div class="col-12 col-lg-4 scrollable-wrapper">
+			<div class="col-12 col-lg-4">
 
 				<!-- Swap impact and related informations -->
 				<div class="swap-impact--container">
@@ -41,13 +69,13 @@
 							<div class="tooltip--portion">Portion: <span></span>g</div>
 							<div class="tooltip--foodprint-index">Foodprint detail (per kg of food):<span></span></div>
 							<div class="tooltip--details">
-									<div class="tooltip--foodprint-detail">
-											<div class="detail detail--land">Land use : <span></span> m<sup>2</sup></div>
-											<div class="detail detail--gas">Greenhouse gas emissions : <span></span> kgCO<sub>2eq</sub></div>
-											<div class="detail detail--water">Freshwater withdrawal : <span></span> L</div>
-											<div class="detail detail--eutro">Eutrophying emissions : <span></span> kgPO<sub>4eq</sub></div>
-											<div class="detail detail--cost">Average cost : <span></span> USD</div>
-									</div>
+									<ul class="tooltip--foodprint-detail">
+											<li class="detail detail--land">Land use : <span></span> m<sup>2</sup></li>
+											<li class="detail detail--gas">Greenhouse gas emissions : <span></span> kgCO<sub>2eq</sub></li>
+											<li class="detail detail--water">Freshwater withdrawal : <span></span> L</li>
+											<li class="detail detail--eutro">Eutrophying emissions : <span></span> kgPO<sub>4eq</sub></li>
+											<li class="detail detail--cost">Average cost : <span></span> USD</li>
+									</ul>
 							</div>
 						</div>
 					</div>
@@ -67,13 +95,13 @@
 								<span class="summary-result"></span>%.
 							</div>
 							<div class="tooltip--details">
-									<div class="tooltip--foodprint-detail">
-											<div class="detail detail--land">Land use : <span class="detail-impact"></span><span class="detail-result"></span> %</div>
-											<div class="detail detail--gas">Greenhouse gas emissions : <span class="detail-impact"></span><span class="detail-result"></span> %</div>
-											<div class="detail detail--water">Freshwater withdrawal : <span class="detail-impact"></span><span class="detail-result"></span> %</div>
-											<div class="detail detail--eutro">Eutrophying emissions : <span class="detail-impact"></span><span class="detail-result"></span> %</div>
-											<div class="detail detail--cost">Average cost : <span class="detail-impact"></span><span class="detail-result"></span> %</div>
-									</div>
+									<ul class="tooltip--foodprint-detail">
+										<li class="detail detail--land">Land use : <span class="detail-impact"></span><span class="detail-result"></span> %</li>
+										<li class="detail detail--gas">Greenhouse gas emissions : <span class="detail-impact"></span><span class="detail-result"></span> %</li>
+										<li class="detail detail--water">Freshwater withdrawal : <span class="detail-impact"></span><span class="detail-result"></span> %</li>
+										<li class="detail detail--eutro">Eutrophying emissions : <span class="detail-impact"></span><span class="detail-result"></span> %</li>
+										<li class="detail detail--cost">Average cost : <span class="detail-impact"></span><span class="detail-result"></span> %</li>
+									</ul>
 							</div>
 							<div class="tooltip--fact hidden">
 								<span class="fact"></span><sup class="source"></sup>
@@ -163,28 +191,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-lg-4">
-				<!-- Legend -->
-				<div class="legend">
-					<div class="legend-title">Legend</div>
-					<div class="row">
-						<div class="col-12 col-sm-6">
-							<div class="legend-item water">
-								<div class="legend-item-label">Water use <span class="dimension">(L)</span></div>
-								<div class="legend-item-graphe"></div>
-							</div>
-						</div>
-						<div class="col-12 col-sm-6">
-							<div class="legend-item others">
-								<div class="legend-item-label">Land use <span class="dimension">(m<sup>2</sup>)</span> and other categories</div>
-								<div class="legend-item-graphe"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
 		</div>
 
 		<!-- Footnotes -->

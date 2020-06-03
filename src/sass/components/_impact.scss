@@ -1,7 +1,6 @@
 .swap-impact--container {
-  padding: 10px 15px;
+  padding: 75px 15px;
   width: 100%;
-  overflow-y: scroll;
 
   // Swap impact
   .impact-title {
@@ -116,19 +115,5 @@
     top: -2px;
     left: 0;
     font-size: 1.4rem;
-  }
-}
-
-.scrollable-wrapper {
-  position: relative;
-  &:after {
-    content: '';
-    position: absolute;
-    z-index: 100;
-    bottom: 0;
-    left: 30px;
-    right: 30px;
-    height: 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
   }
 }
