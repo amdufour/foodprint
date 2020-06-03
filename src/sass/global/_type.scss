@@ -4,6 +4,20 @@ $fontPrimary: 'Open Sans', sans-serif;
 $fontSecondary: 'Josefin Sans', sans-serif;
 $fontSize: 1.4rem;
 
+h1, h2, h3 {
+  font-family: $fontSecondary;
+  color: $textDark;
+}
+h1 {
+  margin: 80px 0 4px;
+  font-size: 4rem;
+  line-height: 1.1;
+}
+h2 {
+  margin: 35px 0 15px;
+  font-size: 2.2rem;
+}
+
 a {
   text-decoration: none;
   color: $text;
@@ -12,6 +26,12 @@ a {
   &:hover, &:focus {
     box-shadow: inset 0 -18px 0 0 rgba($cyanDark, 0.3);
   }
+}
+.dont-break-out {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 sup {

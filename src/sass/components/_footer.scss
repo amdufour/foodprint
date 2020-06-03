@@ -11,6 +11,10 @@ footer {
       font-family: $fontSecondary;
       font-size: 3.6rem;
       line-height: 4.5rem;
+      color: #fff;
+      @media (max-width: $md) {
+        font-size: 3.4rem;
+      }
     }
     p {
       max-width: 190px;
@@ -24,8 +28,9 @@ footer {
 
   // Copyright
   .copyright {
+    margin-top: 40px;
     font-size: 1.2rem;
+    line-height: 1.4;
     font-weight: 600;
-    text-align: right;
   }
 }

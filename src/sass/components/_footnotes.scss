@@ -1,12 +1,5 @@
 .footnotes-container {
   margin-top: 100px;
-  .footnote-title {
-    margin: 35px 0 15px;
-    font-family: $fontSecondary;
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: $textDark;
-  }
   .footnote-body {
     font-size: 1.5rem;
     line-height: 1.5;
@@ -15,7 +8,7 @@
     }
   }
   .sources-list {
-    padding-left: 15px;
+    padding-left: 20px;
     font-size: 1.3rem;
     line-height: 1.2;
     li {
