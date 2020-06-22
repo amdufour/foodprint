@@ -264,7 +264,13 @@ function fillSwapSelect(meal, selection, swapContainer) {
     selector.append('option')
     .attr('class', 'option')
     .attr('value', swap.key)
-    .text(swap.label);
+    .text(() => {
+      if (swap.label !== undefined) {
+        return swap.label;
+      } else {
+        return swap.label1 + ' → ' + swap.label2;
+      }
+    });
   });
   
   // Enable swap selector
