@@ -608,47 +608,57 @@ function updateSimulation() {
     .style('fill', d => colors[d.cluster])
     .merge(node)
     .on('mouseover', d => {
-      d3.event.stopPropagation();
-      // Close swap impact if open
-      if (document.querySelector('#tooltip-swap-impact.visible') !== null) {
-        d3.select('#tooltip-swap-impact')
-          .classed('visible', false)
-          .classed('show-content', false);
+      if (windowWidth > 576) {
+        handleShowNodeTooltip(d);
       }
-      if (isSwap) {
-        d3.select('#tooltip-swap-impact')
-          .classed('show-content', true);
-      } else {
-        d3.select('#tooltip-swap-impact')
-          .classed('show-content', false);
-      }
-
-      // Hide swap instruction if visible
-      if (document.querySelector('.tip.visible') !== null) {
-        hideSwapInstruction();
-      }
-
-      // Add a blue stroke to the circles related to the hovered ingredient
-      d3.selectAll('.node-' + d.meal + '-' + d.id)
-        .classed('active', true);
-
-      // Show the tooltip
-      showTooltip(d);
     })
     .on('mouseout', d => {
-      // Remove blue stroke
-      d3.selectAll('.node-' + d.meal + '-' + d.id)
-        .classed('active', false);
-
-      // Hide the tooltip
-      hideTooltip();
-
-      // Reopen swap impact if closed
-      if (document.querySelector('#tooltip-swap-impact.visible') === null) {
-        d3.select('#tooltip-swap-impact')
-          .classed('visible', true);
+      if (windowWidth > 576) {
+        handleHideNodeTooltip(d);
+      }
+    })
+    .on('click', d => {
+      if (windowWidth <= 576) {
+        if (document.querySelector('#tooltip').classList.contains('visible')) {
+          handleHideNodeTooltip(d);
+        } else {
+          handleShowNodeTooltip(d);
+        }
       }
     });
+
+  function handleShowNodeTooltip(d) {
+    d3.event.stopPropagation();
+    // Close swap impact if open
+    closeSwapImpact();
+
+    // Hide swap instruction if visible
+    if (document.querySelector('.tip.visible') !== null) {
+      hideSwapInstruction();
+    }
+
+    // Add a blue stroke to the circles related to the hovered ingredient
+    d3.selectAll('.node-' + d.meal + '-' + d.id)
+      .classed('active', true);
+
+    // Show the tooltip
+    showTooltip(d);
+  }
+
+  function handleHideNodeTooltip(d) {
+    // Remove blue stroke
+    d3.selectAll('.node-' + d.meal + '-' + d.id)
+    .classed('active', false);
+
+    // Hide the tooltip
+    hideTooltip();
+
+    // Reopen swap impact if closed
+    if (document.querySelector('#tooltip-swap-impact.visible') === null) {
+    d3.select('#tooltip-swap-impact')
+      .classed('visible', true);
+    }
+  }
 
   // Update and restart the simulation
   simulation.nodes(nodes);

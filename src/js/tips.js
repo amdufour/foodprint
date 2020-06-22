@@ -24,3 +24,18 @@ function showSwapInstruction() {
 function hideSwapInstruction() {
   d3.select('.tip').classed('visible', false);
 }
+
+function closeSwapImpact() {
+  if (document.querySelector('#tooltip-swap-impact.visible') !== null) {
+    d3.select('#tooltip-swap-impact')
+      .classed('visible', false)
+      .classed('show-content', false);
+  }
+  if (isSwap) {
+    d3.select('#tooltip-swap-impact')
+      .classed('show-content', true);
+  } else {
+    d3.select('#tooltip-swap-impact')
+      .classed('show-content', false);
+  }
+}
