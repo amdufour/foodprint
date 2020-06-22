@@ -1,9 +1,12 @@
-// Make first instruction appear 2s after page load
-window.onload = function() {
-  setTimeout(function() {
+// Make first instruction appear once the visualization is in viewport
+let firstTipShown = false;
+const dropdownsContainer = document.querySelector('.dropdowns-container');
+window.addEventListener('scroll', function (event) {
+	if (isInViewport(dropdownsContainer) && !firstTipShown) {
     d3.select('.tip').classed('visible', true);
-  }, 2000);
-};
+    firstTipShown = true;
+	}
+}, false);
 
 const swapInstructions = [
   'Wanna become a superhero? Try swaping an ingredient.',

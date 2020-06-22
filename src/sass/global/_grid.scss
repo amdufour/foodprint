@@ -1,8 +1,8 @@
 $gap: 0.02;
-$smGrid: $sm + $gap;
-$mdGrid: $md + $gap;
-$lgGrid: $lg + $gap;
-$xlGrid: $xl + $gap;
+$smGrid: $sm - 1 + $gap;
+$mdGrid: $md - 1 + $gap;
+$lgGrid: $lg - 1 + $gap;
+$xlGrid: $xl - 1 + $gap;
 
 .container {
   margin-right: auto;

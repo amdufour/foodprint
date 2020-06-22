@@ -1,6 +1,9 @@
 .swap-impact--container {
   padding: 75px 15px;
   width: 100%;
+  @media (max-width: $lg) {
+    padding: 30px 0 0;
+  }
 
   // Swap impact
   .impact-title {

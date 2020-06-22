@@ -1,6 +1,9 @@
 #tips {
   .tip {
+    max-width: 300px;
     max-height: 0;
+    margin-left: auto;
+    margin-right: auto;
     background: $textDark;
     border-radius: $radius;
     font-size: 1.6rem;
@@ -12,6 +15,9 @@
       margin-bottom: 30px;
       padding: 20px 30px;
       animation: scale-in-center 0.5s cubic-bezier(.15, 1.58, .61, .95) both;
+      @media (max-width: $lg) {
+        margin-bottom: 0;
+      }
     }
   }
 }

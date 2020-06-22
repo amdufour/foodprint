@@ -2,9 +2,8 @@ const windowWidth = window.innerWidth;
 const container = 1200;
 const padding = 30;
 const paddingLeft = 0;
-const width = windowWidth > container ? (container - padding * 2) * 2/3 : (windowWidth - padding * 2) * 2/3;
-const maxHeight = (window.innerHeight - 336) / 2;
-const height = 250;
+const width = document.getElementById('foodprint').offsetWidth;
+const height = windowWidth > 576 ? 250 : (width / 2 + 25);
 const paddingCircles = 1.5; // Separation between same-color nodes
 const maxRadius = 15;
 const radiusClustersCenters = 150; // Radius of the clusters centers
@@ -298,8 +297,10 @@ let svg = d3.select('#foodprint')
     .attr('id', 'foodprint')
     .attr('class', 'foodprint-container')
     .attr('height', height * 2);
-d3.select('.swap-impact--container')
-  .style('height', height * 2 + 'px');
+if (windowWidth > 1024) {
+  d3.select('.swap-impact--container')
+    .style('height', height * 2 + 'px');
+}
 
 let arc = d3.arc();
 
@@ -314,7 +315,9 @@ circlesIndex.append('circle')
   .attr('class', 'index-circle--external')
   .attr('cx', width/2 + paddingLeft)
   .attr('cy', height)
-  .attr('r', height - 25);
+  .attr('r', () => {
+    return windowWidth > 576 ? (height - 25) : (windowWidth / 2 - 30);
+  });
 circlesIndex.append('path')
   .attr('id', 'index-circle--path')
   .attr('d', d => {
@@ -376,7 +379,7 @@ circlesIndex.append('text')
     .attr('startOffset', '75%')
     .text(0);
 
-if (windowWidth > 768) {
+if (windowWidth > 576) {
   svg.append('g')
     .attr('class', 'axis-circles--container')
     .selectAll('.axis-circles')
@@ -567,11 +570,14 @@ let node = svg.append('g')
   .attr('r', 0);
 
 let simulation = d3.forceSimulation();
-if (windowWidth <= 768) {
+if (windowWidth <= 576) {
   simulation
     // Attract clusters toward the horizontal center
-    .force('x', d3.forceX().x(width/2 + paddingLeft)
-    .strength(1));
+    .force('x', d3.forceX().x(width/2)
+      .strength(1))
+    // Attract clusters toward a specific y position
+    .force('y', d3.forceY().y(width/2 + 30)
+      .strength(1));
 } else {
   simulation
     // Attract clusters toward specific x positions
@@ -580,13 +586,13 @@ if (windowWidth <= 768) {
     // Cluster nodes by section
     .force('cluster', d3.forceCluster()
       .centers(d => clusters[d.cluster])
-      .strength(1));
+      .strength(1))
+    // Attract clusters toward a specific y position
+    .force('y', d3.forceY().y(d => clusters[d.cluster].y)
+      .strength(3));
 }
 
 simulation
-  // Attract clusters toward a specific y position
-  .force('y', d3.forceY().y(d => clusters[d.cluster].y)
-    .strength(3))
   // Apply collision with padding
   .force('collide', d3.forceCollide(d => (d.radius + paddingCircles) ))
   .on('tick', layoutTick);
@@ -687,7 +693,7 @@ function updateSimulation() {
   }
 
   // Update foodprint index circle and text
-  const foodprintAreaFactor = 100;
+  const foodprintAreaFactor = windowWidth > 576 ? 100 : windowWidth * 70 / 375;
   let foodprintIndex = parseFloat(getFoodprintIndex());
   let radiusIndex = Math.sqrt(foodprintIndex / Math.PI);
   d3.select('.index-circle')
@@ -701,7 +707,7 @@ function updateSimulation() {
     hideSwapImpact();
   }
 
-  if (windowWidth > 768) {
+  if (windowWidth > 576) {
     // Update radius of the axis circles
     d3.selectAll('.axis-circle')
       .attr('r', (d, i) => {
