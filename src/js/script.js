@@ -627,10 +627,10 @@ function updateSimulation() {
       }
     });
 
-  function handleShowNodeTooltip(d, closeSwapImpact) {
+  function handleShowNodeTooltip(d, closeSwap) {
     d3.event.stopPropagation();
     // Close swap impact if open
-    if (closeSwapImpact) {
+    if (closeSwap) {
       closeSwapImpact();
     }
 
