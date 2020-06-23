@@ -97,3 +97,17 @@ function hideCategoryTooltip() {
   d3.select('.axis-circles--' + category)
     .classed('active-tooltip', false);
 }
+
+// Handle open/close of nodes tooltip on mobile
+d3.select('#tooltip .tooltip--toggle')
+  .on('click', () => {
+    tooltipToggle = document.querySelector('#tooltip .tooltip--toggle');
+    tooltipContent = document.querySelector('#tooltip .tooltip--content');
+    if (tooltipContent.classList.contains('close')) {
+      tooltipToggle.classList.remove('closed');
+      tooltipContent.classList.remove('close');
+    } else {
+      tooltipToggle.classList.add('closed');
+      tooltipContent.classList.add('close');
+    }
+  });

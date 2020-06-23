@@ -109,43 +109,61 @@
     transition: all 350ms ease-out;
   }
   @media (max-width: $sm) {
-    padding: 20px;
+    max-height: 0;
+    padding: 20px 20px 0;
     border-radius: $radius;
     box-shadow: 0px 1px 5px rgba(36, 36, 36, 0.5);
-  }
-  .tooltip--header {
-    position: relative;
-  }
-  .tooltip--ingredient {
-    margin-right: 25px;
-    margin-bottom: 20px;
-  }
-  .tooltip--close {
-    display: none;
-    @media (max-width: $sm) {
-      display: block;
-      position: absolute;
-      top: 4px;
-      right: 0;
-      width: 22px;
-      height: 22px;
-      border: 1px solid rgba($textDark, .6);
-      border-radius: 50%;
-      cursor: pointer;
-      &:before,
-      &:after {
-        content: "";
+    &.visible {
+      max-height: none;
+      .tooltip--header {
+        position: relative;
+      }
+      .tooltip--ingredient {
+        margin-right: 25px;
+        margin-bottom: 20px;
+      }
+      .tooltip--toggle {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 12px;
-        border-bottom: 2px solid rgba($textDark, .6);
+        top: 4px;
+        right: 0;
+        width: 22px;
+        height: 22px;
+        border: 1px solid rgba($textDark, .6);
+        border-radius: 50%;
+        cursor: pointer;
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 12px;
+          border-bottom: 2px solid $textDark;
+          transform: translate(-50%, -50%) rotate(0);
+          transition: all 250ms ease;
+        }
+
+        // Closed state
+        &.closed {
+          &:before {
+            transform: translate(-50%, -50%) rotate(90deg);
+          }
+          &:after {
+            transform: translate(-50%, -50%) rotate(180deg);
+          }
+        }
       }
-      &:before {
-        transform: translate(-50%, -50%) rotate(90deg);
-      }
-      &:after {
-        transform: translate(-50%, -50%) rotate(180deg);
+      .tooltip--content {
+        overflow: hidden;
+        max-height: 300px;
+        padding-bottom: 20px;
+        opacity: 1;
+        transition: max-height 250ms ease;
+        &.close {
+          max-height: 0;
+          padding-bottom: 0;
+          opacity: 0;
+        }
       }
     }
   }

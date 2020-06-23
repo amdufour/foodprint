@@ -619,11 +619,11 @@ function updateSimulation() {
     })
     .on('click', d => {
       if (windowWidth <= 576) {
-        if (document.querySelector('#tooltip').classList.contains('visible')) {
-          handleHideNodeTooltip(d);
-        } else {
-          handleShowNodeTooltip(d);
-        }
+        // Remove blue stroke
+        d3.selectAll('.node')
+          .classed('active', false);
+
+        handleShowNodeTooltip(d);
       }
     });
 
