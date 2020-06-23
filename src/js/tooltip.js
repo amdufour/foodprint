@@ -80,7 +80,13 @@ d3.select('#tooltip-category .close')
     hideCategoryTooltip();
   });
 function hideCategoryTooltip() {
-  const category = d3.select('#tooltip-category .quote').attr('class').substring(14);
+  category = '';
+  document.querySelectorAll('#tooltip-category .category-detail').forEach(detail => {
+    if (!detail.classList.contains('hidden')) {
+      category = detail.classList[1];
+    }
+  })
+  
   // Hide the tooltip
   d3.select('#tooltip-category')
     .classed('visible', false)
