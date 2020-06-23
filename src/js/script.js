@@ -609,7 +609,7 @@ function updateSimulation() {
     .merge(node)
     .on('mouseover', d => {
       if (windowWidth > 576) {
-        handleShowNodeTooltip(d);
+        handleShowNodeTooltip(d, true);
       }
     })
     .on('mouseout', d => {
@@ -623,14 +623,16 @@ function updateSimulation() {
         d3.selectAll('.node')
           .classed('active', false);
 
-        handleShowNodeTooltip(d);
+        handleShowNodeTooltip(d, false);
       }
     });
 
-  function handleShowNodeTooltip(d) {
+  function handleShowNodeTooltip(d, closeSwapImpact) {
     d3.event.stopPropagation();
     // Close swap impact if open
-    closeSwapImpact();
+    if (closeSwapImpact) {
+      closeSwapImpact();
+    }
 
     // Hide swap instruction if visible
     if (document.querySelector('.tip.visible') !== null) {

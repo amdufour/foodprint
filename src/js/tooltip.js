@@ -111,3 +111,16 @@ d3.select('#tooltip .tooltip--toggle')
       tooltipContent.classList.add('close');
     }
   });
+// Handle open/close of nodes tooltip-impact on mobile
+d3.select('#tooltip-swap-impact .tooltip--toggle')
+  .on('click', () => {
+    tooltipToggle = document.querySelector('#tooltip-swap-impact .tooltip--toggle');
+    tooltipContent = document.querySelector('#tooltip-swap-impact .tooltip--content');
+    if (tooltipContent.classList.contains('close')) {
+      tooltipToggle.classList.remove('closed');
+      tooltipContent.classList.remove('close');
+    } else {
+      tooltipToggle.classList.add('closed');
+      tooltipContent.classList.add('close');
+    }
+  });
