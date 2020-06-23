@@ -608,17 +608,17 @@ function updateSimulation() {
     .style('fill', d => colors[d.cluster])
     .merge(node)
     .on('mouseover', d => {
-      if (windowWidth > 576) {
+      if (windowWidth > 768) {
         handleShowNodeTooltip(d, true);
       }
     })
     .on('mouseout', d => {
-      if (windowWidth > 576) {
+      if (windowWidth > 768) {
         handleHideNodeTooltip(d);
       }
     })
     .on('click', d => {
-      if (windowWidth <= 576) {
+      if (windowWidth <= 768) {
         // Remove blue stroke
         d3.selectAll('.node')
           .classed('active', false);
