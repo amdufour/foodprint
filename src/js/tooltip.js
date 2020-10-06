@@ -85,7 +85,7 @@ function hideCategoryTooltip() {
     if (!detail.classList.contains('hidden')) {
       category = detail.classList[1];
     }
-  })
+  });
   
   // Hide the tooltip
   d3.select('#tooltip-category')
@@ -129,4 +129,12 @@ d3.select('#tooltip-swap-impact .tooltip--toggle')
       tooltipToggle.classList.add('closed');
       tooltipContent.classList.add('close');
     }
+  });
+
+
+// Hide the mobile warning on click
+d3.select('.mobile-warning .close')
+  .on('click', () => {
+    d3.select('.mobile-warning')
+      .classed('closed', true);
   });
