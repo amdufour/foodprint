@@ -23,6 +23,9 @@
         color: $textDark;
       }
     }
+    .swap-title--text {
+      font-weight: 700;
+    }
     .swap-title--subtext {
       &.hidden {
         display: none;
@@ -73,6 +76,7 @@
   .tooltip--recipe {
     margin-top: 30px;
     .tooltip--recipe-title {
+      font-weight: 700;
       .icon {
         margin-right: 10px;
         width: 45px;
