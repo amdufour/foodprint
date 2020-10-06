@@ -306,7 +306,11 @@ circlesIndex.append('circle')
   .attr('r', () => {
     return windowWidth > 576 ? (height - 25) : (windowWidth / 2 - 30);
   });
-circlesIndex.append('path')
+
+let circlesIndexTransformed = circlesIndex.append('g')
+  .attr('class', 'transformed')
+  .style('transform', 'translate(' + (width/2 + paddingLeft) + 'px, ' + height + 'px)');
+circlesIndexTransformed.append('path')
   .attr('id', 'index-circle--path')
   .attr('d', d => {
     return arc({
@@ -315,9 +319,8 @@ circlesIndex.append('path')
       innerRadius: height - 15,
       outerRadius: height - 15
     });
-  })
-  .style('transform', 'translate(' + (width/2 + paddingLeft) + 'px, ' + height + 'px)');
-circlesIndex.append('path')
+  });
+circlesIndexTransformed.append('path')
   .attr('id', 'index-circle--path--result')
   .attr('d', d => {
     return arc({
@@ -326,9 +329,8 @@ circlesIndex.append('path')
       innerRadius: height - 5,
       outerRadius: height - 5
     });
-  })
-  .style('transform', 'translate(' + (width/2 + paddingLeft) + 'px, ' + height + 'px)');
-circlesIndex.append('text')
+  });
+circlesIndexTransformed.append('text')
   .attr('class', 'foodprint-index--label')
   .style('text-anchor', 'middle')
   .append('textPath')
@@ -357,7 +359,7 @@ circlesIndex.append('text')
     d3.select('.index-circle--external')
       .classed('active', false);
   });
-circlesIndex.append('text')
+circlesIndexTransformed.append('text')
   .attr('class', 'foodprint-index--label foodprint-index--label--result')
   .style('text-anchor', 'middle')
   .append('textPath')
@@ -393,8 +395,12 @@ if (windowWidth > 576) {
         .attr('r', clusters[category.cluster].r);
 
     // Append path for category titles
-    d3.select('.axis-circles--' + category.class)
-      .append('path')
+    let textPaths = d3.select('.axis-circles--' + category.class).append('g')
+      .attr('class', 'axis-paths-transformed')
+      .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
+
+
+    textPaths.append('path')
         .attr('id', 'category-label--path--' + category.class)
         .attr('class', 'category-label--path')
         .attr('d', d => {
@@ -404,13 +410,10 @@ if (windowWidth > 576) {
             innerRadius: clusters[category.cluster].r + 10,
             outerRadius: clusters[category.cluster].r + 10
           });
-        })
-        // .style('stroke', 'black')
-        .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
+        });
 
     // Append path for total foodprint in each category
-    d3.select('.axis-circles--' + category.class)
-      .append('path')
+    textPaths.append('path')
         .attr('id', 'category-label--path--result--' + category.class)
         .attr('class', 'category-label--path')
         .attr('d', d => {
@@ -420,12 +423,10 @@ if (windowWidth > 576) {
             innerRadius: clusters[category.cluster].r - 10,
             outerRadius: clusters[category.cluster].r - 10
           });
-        })
-        .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
+        });
         
     // Path for superscript
-    d3.select('.axis-circles--' + category.class)
-      .append('path')
+    textPaths.append('path')
         .attr('id', 'category-label--path--result--sup--' + category.class)
         .attr('class', 'category-label--path')
         .attr('d', d => {
@@ -435,12 +436,10 @@ if (windowWidth > 576) {
             innerRadius: clusters[category.cluster].r - 8,
             outerRadius: clusters[category.cluster].r - 8
           });
-        })
-        .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
+        });
       
     // Path for subscript
-    d3.select('.axis-circles--' + category.class)
-      .append('path')
+    textPaths.append('path')
         .attr('id', 'category-label--path--result--sub--' + category.class)
         .attr('class', 'category-label--path')
         .attr('d', d => {
@@ -450,42 +449,39 @@ if (windowWidth > 576) {
             innerRadius: clusters[category.cluster].r - 13,
             outerRadius: clusters[category.cluster].r - 13
           });
-        })
-        .style('transform', 'translate(' + clusters[category.cluster].x + 'px, ' + clusters[category.cluster].y + 'px)');
+        });
     
     // Append category titles
-    d3.select('.axis-circles--' + category.class)
-        .append('text')
-          .attr('class', 'category-label')
-          .style('text-anchor', 'middle')
-          .append('textPath')
-            .attr('xlink:href', '#category-label--path--' + category.class)
-            .attr('startOffset', (d) => {
-              switch (category.cluster) {
-                case 0:
-                case 1:
-                  return '18%';
-                case 2:
-                  return '25%';
-                case 3:
-                case 4:
-                  return '32%';
-              }
-            })
-            .text(category.title)
-            .on('mouseover', d => {
-              d3.event.stopPropagation();
-              activeStyleCategory(category.class, true);
-            })
-            .on('click', d => {
-              d3.event.stopPropagation();
-              handleCategoryClick(category.class, category.fact, category.source);
-            })
-            .on('mouseout', d => activeStyleCategory(category.class, false));
+    textPaths.append('text')
+      .attr('class', 'category-label')
+      .style('text-anchor', 'middle')
+      .append('textPath')
+        .attr('xlink:href', '#category-label--path--' + category.class)
+        .attr('startOffset', (d) => {
+          switch (category.cluster) {
+            case 0:
+            case 1:
+              return '18%';
+            case 2:
+              return '25%';
+            case 3:
+            case 4:
+              return '32%';
+          }
+        })
+        .text(category.title)
+        .on('mouseover', d => {
+          d3.event.stopPropagation();
+          activeStyleCategory(category.class, true);
+        })
+        .on('click', d => {
+          d3.event.stopPropagation();
+          handleCategoryClick(category.class, category.fact, category.source);
+        })
+        .on('mouseout', d => activeStyleCategory(category.class, false));
 
     // Append total foodprint in each category
-    let printResult = d3.select('.axis-circles--' + category.class)
-      .append('g')
+    let printResult = textPaths.append('g')
       .attr('class', 'axis-circles-text-container hidden')
       .on('mouseover', d => {
         d3.event.stopPropagation();
