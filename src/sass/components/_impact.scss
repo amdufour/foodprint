@@ -37,6 +37,12 @@
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center bottom;
+      &.shower { background-image: url(../svg/shower.svg); }
+      &.bath { background-image: url(../svg/bath.svg); }
+      &.tennis { background-image: url(../svg/tennis.svg); }
+      &.car { background-image: url(../svg/car.svg); }
+      &.piggy-bank { background-image: url(../svg/piggy-bank.svg); }
+      &.earth-sad { background-image: url(../svg/earth-sad.svg); }
     }
   }
 
