@@ -75,20 +75,8 @@ let clusters = d3.range(m).map((category, i) => {
 let nodes = [];
 let newNodes = [];
 
-// Import data
-let dataFoodprint = [];
-let menusDetail = {};
-let promises = [];
-promises.push(d3.csv('/data/data_foodprint.csv'));
-promises.push(d3.json('/data/menus.json'));
-Promise.all(promises).then(data => {
-  dataFoodprint = data[0];
-  menusDetail = data[1];
-
-  // Now that the data is imported, allow user to interact with them
-  appendSelectors();
-  showLegend();
-});
+appendSelectors();
+showLegend();
 
 function appendSelectors() {
   // Append meal and swap selectors to the DOM
