@@ -100,7 +100,6 @@ function showSwapImpact(impacts, newSwapImpact, impactFI) {
     }
   } else {
     // Impact is increased
-
     icon = 'earth-sad';
     swapTitle = 'Womp Womp...';
     d3.select('#tooltip-swap-impact').classed('positive-impact', false);
@@ -111,7 +110,7 @@ function showSwapImpact(impacts, newSwapImpact, impactFI) {
   // Append swap impact info
   const impactSummary = impactFI < 0 ? 'decreases' : 'increases';
   d3.select('#tooltip-swap-impact .swap-title--icon')
-    .style('background-image', 'url(../svg/' + icon + '.svg)');
+    .attr('class', 'swap-title--icon ' + icon);
   d3.select('#tooltip-swap-impact .swap-title--text').text(swapTitle);
   d3.select('#tooltip-swap-impact .summary-swap').text(currentSwap.impactLabel);
   d3.select('#tooltip-swap-impact .summary-impact').text(impactSummary);
