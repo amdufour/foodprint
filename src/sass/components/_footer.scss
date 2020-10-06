@@ -1,36 +1,52 @@
 footer {
-  margin-top: 100px;
-  padding: 60px 0 40px;
+  margin-top: 200px;
+  padding: 100px 0 20px;
   background: $textDark;
-  color: #fff;
-
-  // CTA
-  .cta {
-    .tagline {
-      margin: 30px 0;
-      font-family: $fontSecondary;
-      font-size: 3.6rem;
-      line-height: 4.5rem;
-      color: #fff;
-      @media (max-width: $md) {
-        font-size: 3.4rem;
-      }
+  color: $white;
+  .footer-content {
+    h2 {
+      margin-bottom: 52px;
+      font-size: 3rem;
+      color: $white;
     }
     p {
-      max-width: 190px;
-      font-size: 1.6rem;
-      line-height: 2.6;
-    }
-    .btn {
-      margin: 33px 0 50px;
+      margin: 20px 0;
+      font-size: 1.5rem;
     }
   }
-
-  // Copyright
-  .copyright {
+  .btn {
     margin-top: 40px;
-    font-size: 1.2rem;
-    line-height: 1.4;
-    font-weight: 600;
+    margin-right: 20px;
+    width: 132px;
+  }
+
+  .footer-bottom {
+    margin-top: 150px;
+    .icons,
+    .copyright {
+      font-size: 1.3rem;
+      line-height: 1.2;
+      @media (max-width: $md) {
+        font-size: 1.1rem;
+      }
+    }
+    .icons {
+      a {
+        color: $white;
+        &:hover, &:focus {
+          color: $cyan;
+        }
+      }
+      @media (max-width: $md) {
+        margin-bottom: 8px;
+        margin-left: 2px;
+      }
+    }
+    .copyright {
+      text-align: right;
+      @media (max-width: $md) {
+        text-align: left;
+      }
+    }
   }
 }

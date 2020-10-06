@@ -10,7 +10,7 @@
     position: relative;
     margin: 30px 0;
     padding: 20px 30px 20px 20px;
-    color: #fff;
+    color:$white;
     background-color: $cyan;
     border-radius: $radius;
     .close {
@@ -28,7 +28,7 @@
         left: 12px;
         width: 2px;
         height: 15px;
-        background: #fff;
+        background:$white;
       }
       &:before {
         transform: rotate(45deg);
